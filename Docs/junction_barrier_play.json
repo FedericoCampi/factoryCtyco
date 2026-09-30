@@ -1,0 +1,14 @@
+{
+ "passed": true,
+ "checks": {
+  "no_se_enciman_en_la_union": {
+   "passed": true,
+   "min_gap_cm": 81.9,
+   "en_cinta2": 3,
+   "en_cinta": 7
+  },
+  "frena_en_la_barrera_nueva": {
+   "passed": true
+  }
+ }
+}

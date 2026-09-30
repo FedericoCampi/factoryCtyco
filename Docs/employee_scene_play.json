@@ -1,0 +1,197 @@
+{
+ "passed": true,
+ "checks": {
+  "aparece_parado_en_el_patio": {
+   "passed": true,
+   "donde": [
+    -3830,
+    9220,
+    487
+   ],
+   "z_inicial": 487
+  },
+  "tres_pisos": {
+   "passed": true,
+   "pisos": [
+    "Ascensor_Fabrica",
+    "Ascensor_Estacionamiento",
+    "Ascensor_Empleados"
+   ]
+  },
+  "vagabundo_habla_al_acercarse": {
+   "passed": true,
+   "linea": "¿Y ella?",
+   "voces": 1
+  },
+  "vagabundo_levanta_el_brazo": {
+   "passed": true
+  },
+  "vagabundo_animado": {
+   "passed": true,
+   "malla": "SK_Vagabundo"
+  },
+  "vagabundo_se_calla_al_alejarse": {
+   "passed": true
+  },
+  "puerta_cerrada_de_lejos": {
+   "passed": true,
+   "abierta": 0.0
+  },
+  "puerta_se_abre_hacia_afuera": {
+   "passed": true,
+   "abierta": 1.0,
+   "punta": [
+    -2984,
+    8245,
+    650
+   ],
+   "bisagra": [
+    -2975,
+    8145,
+    650
+   ]
+  },
+  "se_para_en_la_recepcion": {
+   "passed": true,
+   "donde": [
+    -3232,
+    8040,
+    737
+   ]
+  },
+  "elige_despacho": {
+   "passed": true
+  },
+  "baja_al_despacho_y_cumple_el_paso_1": {
+   "passed": true,
+   "z": 232,
+   "segundos": 8.6
+  },
+  "dinero_inicial": {
+   "passed": true,
+   "dinero": 0,
+   "costo": 800
+  },
+  "sin_plata_no_contrata": {
+   "passed": true,
+   "dinero": 500
+  },
+  "contratar_cuesta_800": {
+   "passed": true,
+   "dinero": 200
+  },
+  "contratado_llega_en_auto": {
+   "passed": true
+  },
+  "estaciona_en_el_cajon_F4": {
+   "passed": true,
+   "auto": [
+    -3270,
+    9780,
+    402
+   ],
+   "cajon": [
+    -3270,
+    9780,
+    400
+   ]
+  },
+  "encargado_en_la_cabina": {
+   "passed": true,
+   "donde": [
+    -2926,
+    406,
+    97
+   ],
+   "segundos": 34.5,
+   "saltos": 0
+  },
+  "camina_sin_trabarse": {
+   "passed": true,
+   "saltos": 0,
+   "trabado_en": [
+    0,
+    0,
+    0
+   ]
+  }
+ },
+ "trip": [
+  {
+   "estado": "DRIVING",
+   "a_los_s": 0.0,
+   "donde": [
+    -7000,
+    10825,
+    490
+   ]
+  },
+  {
+   "estado": "WALKING",
+   "a_los_s": 11.1,
+   "donde": [
+    -3230,
+    9480,
+    487
+   ]
+  },
+  {
+   "estado": "RIDING",
+   "a_los_s": 22.6,
+   "donde": [
+    -2789,
+    7641,
+    737
+   ]
+  },
+  {
+   "estado": "WALKING",
+   "a_los_s": 25.6,
+   "donde": [
+    -2903,
+    -1390,
+    250
+   ]
+  },
+  {
+   "estado": "WORKING",
+   "a_los_s": 34.5,
+   "donde": [
+    -2926,
+    406,
+    97
+   ]
+  }
+ ],
+ "camino_al_ascensor": {
+  "valido": true,
+  "parcial": false,
+  "puntos": [
+   [
+    -3230,
+    9480,
+    410
+   ],
+   [
+    -3154,
+    9044,
+    410
+   ],
+   [
+    -3135,
+    8892,
+    470
+   ],
+   [
+    -3040,
+    8094,
+    660
+   ],
+   [
+    -2996,
+    7640,
+    660
+   ]
+  ]
+ }
+}

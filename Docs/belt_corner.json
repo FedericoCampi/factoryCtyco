@@ -1,0 +1,18 @@
+{
+ "passed": true,
+ "mesh": "/Game/Arena/Environments/CintaEsquina/SM_CintaEsquina.SM_CintaEsquina",
+ "actor": "Cinta_Esquina",
+ "location": [
+  -3500,
+  -1250,
+  10
+ ],
+ "length_cm": 241.7,
+ "turn_degrees": -90.0,
+ "nearest_other_belt_cm": 764,
+ "triangles": 126006,
+ "materials": [
+  "Material_0",
+  "M_CintaAcero"
+ ]
+}

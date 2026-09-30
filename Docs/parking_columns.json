@@ -1,0 +1,24 @@
+{
+ "passed": true,
+ "mesh": "/Game/Arena/Environments/Parking/SM_ParkingColumna.SM_ParkingColumna",
+ "collisions": 1,
+ "actors": {
+  "Columna_Arcada_1": [
+   -4533.0,
+   -710.0,
+   0.0
+  ],
+  "Columna_Arcada_2": [
+   -4533.0,
+   -310.0,
+   0.0
+  ]
+ },
+ "materials": [
+  "Weathered burnt orange brick",
+  "Pale limestone concrete coping",
+  "Steel worn edges",
+  "Charcoal blue structural steel",
+  "Dark concrete foundation"
+ ]
+}

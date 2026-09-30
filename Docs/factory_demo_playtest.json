@@ -1,0 +1,39 @@
+{
+  "passed": true,
+  "checks": {
+    "spawn_and_starting_resources": {
+      "passed": true,
+      "mass": 210,
+      "machines": 4
+    },
+    "gather_and_inventory_controls": {
+      "passed": true
+    },
+    "construction_validation_cancel_cost_and_refund": {
+      "passed": true
+    },
+    "manual_recipes_timing_output_pause_and_resource_conservation": {
+      "passed": true
+    },
+    "straight_belt_direction_and_storage_filter": {
+      "passed": true
+    },
+    "save_load_preserves_in_flight_material_and_progress": {
+      "passed": true
+    },
+    "mouse_preview_and_click_construction": {
+      "passed": true
+    },
+    "automatic_line_produces_twenty_plates": {
+      "passed": true,
+      "stored": 20,
+      "delivered": 20,
+      "mass": 210
+    },
+    "save_and_load_keyboard_controls": {
+      "passed": true
+    }
+  },
+  "scope": "Rendered Unreal PIE; real input bindings plus public gameplay operations. No generated GPU jobs.",
+  "elapsed_seconds": 117.1
+}

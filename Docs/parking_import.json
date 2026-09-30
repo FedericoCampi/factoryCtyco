@@ -1,0 +1,19 @@
+{
+ "passed": true,
+ "asset": "/Game/Arena/Environments/Parking/SM_Parking.SM_Parking",
+ "actor": "Parking_Estacionamiento",
+ "location": [
+  -2303.0,
+  -410.0,
+  0.0
+ ],
+ "convex_collisions": 253,
+ "triangles": 71196,
+ "materials": 12,
+ "bounds_cm": [
+  -1143.0,
+  -1243.0,
+  1190.0,
+  1043.0
+ ]
+}

@@ -1,0 +1,44 @@
+{
+ "passed": true,
+ "checks": {
+  "flecha_sobre_el_ascensor": {
+   "passed": true,
+   "arrow_target": "Ascensor_Empleados",
+   "step": 0,
+   "arrow_at": [
+    -2761,
+    7640,
+    973
+   ]
+  },
+  "cinta_derecho": {
+   "passed": true,
+   "outputs": {
+    "Cinta_Carga3": [
+     "Cinta_Carga4"
+    ],
+    "Cinta_Carga4": []
+   }
+  },
+  "puerta_hacia_adentro": {
+   "passed": true,
+   "turned": 60.0,
+   "open_yaw": 60.0,
+   "openness": 1.0
+  },
+  "camion_para_en_la_cinta_derecha": {
+   "passed": true,
+   "belt": "Cinta_Carga4",
+   "along": 2585
+  },
+  "caja_en_la_cinta": {
+   "passed": true,
+   "count": 1
+  },
+  "caja_llega_al_camion": {
+   "passed": true,
+   "cargo": 1,
+   "seconds": 8.0
+  }
+ }
+}

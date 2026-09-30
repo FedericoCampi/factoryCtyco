@@ -1,0 +1,51 @@
+{
+ "passed": true,
+ "checks": {
+  "empieza_libre": {
+   "passed": true
+  },
+  "libre_no_sigue": {
+   "passed": true,
+   "foco_se_movio_cm": 0,
+   "personaje_al_foco_cm": 600
+  },
+  "clic_en_el_personaje_lo_sigue": {
+   "passed": true,
+   "pantalla": [
+    2303,
+    592
+   ]
+  },
+  "foco_en_el_personaje": {
+   "passed": true,
+   "distancia_cm": 0
+  },
+  "lo_acompana_al_moverse": {
+   "passed": true,
+   "distancia_cm": 0
+  },
+  "libre_otra_vez": {
+   "passed": true,
+   "foco_se_movio_cm": 0
+  },
+  "ascensor_la_lleva": {
+   "passed": true,
+   "cambio_de_encuadre_cm": 0
+  },
+  "flechas_mueven_la_camara": {
+   "passed": true,
+   "foco_se_movio_cm": 1423
+  },
+  "flechas_no_mueven_al_personaje": {
+   "passed": true,
+   "personaje_se_movio_cm": 0
+  },
+  "contratado": {
+   "passed": true
+  },
+  "sigue_al_auto": {
+   "passed": true,
+   "distancia_cm": 63
+  }
+ }
+}

@@ -1,0 +1,102 @@
+{
+ "passed": true,
+ "removed": [
+  "Empleados_Auto_Azul_F0",
+  "Empleados_Auto_Blanco_F1",
+  "Empleados_Auto_Gris_R0",
+  "Empleados_Auto_Rojo_F3",
+  "Empleados_Auto_Verde_R3",
+  "Empleados_Escena",
+  "Puerta_Recepcion",
+  "Recepcion_Sala"
+ ],
+ "mesh": {
+  "hulls": 214,
+  "expected_hulls": 214,
+  "size_m": [
+   66.0,
+   54.0,
+   7.4
+  ]
+ },
+ "parked": [
+  "F0",
+  "F1",
+  "F3",
+  "R0",
+  "R3"
+ ],
+ "reception": {
+  "sala": [
+   -3282,
+   7640,
+   650
+  ],
+  "sala_hulls": 30,
+  "puerta": [
+   -2975,
+   8145,
+   650
+  ],
+  "entrada": [
+   -3045,
+   8153,
+   650
+  ]
+ },
+ "elevator": {
+  "world": [
+   -2766,
+   7640,
+   650
+  ],
+  "yaw": 180,
+  "approach": [
+   [
+    -3052,
+    8080,
+    652
+   ],
+   [
+    -3232,
+    8080,
+    652
+   ],
+   [
+    -3232,
+    7680,
+    652
+   ]
+  ]
+ },
+ "door_marker": [
+  -3045,
+  8193,
+  890
+ ],
+ "arrival": {
+  "stall": "F4",
+  "world": [
+   -3270,
+   9780,
+   400
+  ]
+ },
+ "nav": {
+  "centre": [
+   -3800,
+   8530,
+   600
+  ],
+  "size_m": [
+   26.0,
+   34.4,
+   8.0
+  ]
+ },
+ "player_start": [
+  -3830,
+  9220,
+  500
+ ]
+}

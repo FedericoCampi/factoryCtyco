@@ -1,0 +1,25 @@
+{
+  "passed": true,
+  "checks": {
+    "spawn": {
+      "passed": true,
+      "class": "BP_Robot1_C",
+      "position_cm": [
+        0.0,
+        960.0,
+        92.15
+      ],
+      "visual": "/Game/Arena/Characters/Robot1/SM_Robot1.SM_Robot1",
+      "visual_upright": true
+    },
+    "movement": {
+      "passed": true,
+      "distance_cm": 465.0
+    },
+    "jump_and_landing": {
+      "passed": true,
+      "rise_cm": 127.5
+    }
+  },
+  "scope": "Automated Play In Editor spawn, movement and jump; keyboard/mouse interaction not manually tested."
+}

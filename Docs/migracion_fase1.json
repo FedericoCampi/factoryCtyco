@@ -1,0 +1,34 @@
+{
+ "passed": false,
+ "phase": 1,
+ "maps": [
+  "/Game/Arena/Maps/L_Arena",
+  "/Game/Arena/Maps/L_FactoryDemo",
+  "/Game/Arena/Maps/L_FactoryDemo_Completo",
+  "/Game/Arena/Maps/L_GrowRobots"
+ ],
+ "moved": 503,
+ "rename_ok": true,
+ "not_moved": [
+  "/Game/Arena/Characters/Vagabundo/S_Vagabundo_YElla",
+  "/Game/Arena/Environments/Ascensor2/S_Ascensor_Golpe",
+  "/Game/Arena/Environments/Ascensor2/S_Ascensor_Motor",
+  "/Game/Arena/Environments/Ascensor2/S_Ascensor_Puerta",
+  "/Game/Arena/Environments/DispatchBox/S_CintaApagar",
+  "/Game/Arena/Environments/DispatchBox/S_CintaEncender",
+  "/Game/Arena/Environments/DispatchBox/SM_BotoneraDespacho",
+  "/Game/Arena/Characters/Vagabundo/A_Vagabundo_Idle",
+  "/Game/Arena/Characters/Vagabundo/A_Vagabundo_LevantaBrazo",
+  "/Game/Arena/Environments/ExtractorSilicio/SK_ExtractorSilicio_Anim",
+  "/Game/Arena/Environments/ExtractorSilicio/M_ExtractorPantalla",
+  "/Game/Arena/Characters/Vagabundo/SM_Botella",
+  "/Game/Arena/Environments/Ascensor2/SM_Ascensor2Puerta",
+  "/Game/Arena/Environments/Ascensor2/SM_Ascensor2Tubo",
+  "/Game/Arena/Environments/CabinaBarrera/SM_BarreraBrazo",
+  "/Game/Arena/Environments/CabinaBarrera/SM_BarreraPoste",
+  "/Game/Arena/Blueprints/BP_ArenaGameMode",
+  "/Game/Arena/Blueprints/BP_ArenaGameMode",
+  "/Game/Arena/Blueprints/BP_ArenaGameMode",
+  "/Game/Arena/Environments/CabinaBarrera/SM_Cabina"
+ ]
+}

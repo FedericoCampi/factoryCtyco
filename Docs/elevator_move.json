@@ -1,0 +1,50 @@
+{
+ "passed": true,
+ "backdrop_cm": {
+  "Arena_Backdrop": [
+   -5000,
+   -5000,
+   1071,
+   5000
+  ],
+  "Arena_Backdrop_Este": [
+   1349,
+   -5000,
+   5000,
+   5000
+  ],
+  "Arena_Backdrop_PozoSur": [
+   1071,
+   -5000,
+   1349,
+   -87
+  ],
+  "Arena_Backdrop_PozoNorte": [
+   1071,
+   247,
+   1349,
+   5000
+  ]
+ },
+ "backdrop_material": [
+  "M_Backdrop"
+ ],
+ "checks": {
+  "pozo_abierto_visual": true,
+  "pozo_abierto_colision": true,
+  "piso_frente_a_la_puerta": [
+   0.9,
+   -0.0
+  ],
+  "agujero_viejo_cerrado": [
+   -0.0,
+   -0.0
+  ]
+ },
+ "hole_world_cm": [
+  1071,
+  -87,
+  1349,
+  247
+ ]
+}

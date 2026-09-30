@@ -1,0 +1,8 @@
+{
+ "passed": true,
+ "sounds": {
+  "S_CajaAgarrar": 0.22,
+  "S_CajaSoltar": 0.3,
+  "S_MisionCompleta": 1.6
+ }
+}

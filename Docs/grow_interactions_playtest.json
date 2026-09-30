@@ -1,0 +1,1481 @@
+{
+  "passed": true,
+  "checks": {
+    "all_six_systems_have_incoming_and_outgoing_links": {
+      "passed": true,
+      "nodes": 6,
+      "links": 24
+    },
+    "two_second_upgrades_are_sequential_and_dependency_driven": {
+      "passed": true,
+      "events": [
+        {
+          "route": "timed_water_chain",
+          "serial": 1,
+          "source": "<GrowDecision.WATER: 1>",
+          "target": "<GrowDecision.ENERGY: 3>",
+          "level": 2,
+          "reason": "Agua \u2192 Energ\u00eda: refrigeraci\u00f3n. Nivel 2.",
+          "levels_before": [
+            1,
+            1,
+            0,
+            1,
+            0,
+            0
+          ],
+          "levels_after": [
+            1,
+            1,
+            0,
+            2,
+            0,
+            0
+          ],
+          "wall_interval_seconds": 2.0,
+          "game_interval_seconds": 2.0,
+          "delay_seconds": 2.0,
+          "timed": true
+        },
+        {
+          "route": "timed_water_chain",
+          "serial": 2,
+          "source": "<GrowDecision.ENERGY: 3>",
+          "target": "<GrowDecision.RECYCLING: 0>",
+          "level": 2,
+          "reason": "Energ\u00eda \u2192 Reciclaje: electricidad. Nivel 2.",
+          "levels_before": [
+            1,
+            1,
+            0,
+            2,
+            0,
+            0
+          ],
+          "levels_after": [
+            2,
+            1,
+            0,
+            2,
+            0,
+            0
+          ],
+          "wall_interval_seconds": 2.0,
+          "game_interval_seconds": 2.0,
+          "delay_seconds": 2.0,
+          "timed": true
+        }
+      ]
+    },
+    "final_result_waits_for_last_upgrade": {
+      "passed": true,
+      "final_state": {
+        "history": [
+          "<GrowDecision.ENERGY: 3>",
+          "<GrowDecision.RECYCLING: 0>",
+          "<GrowDecision.WATER: 1>",
+          "<GrowDecision.AWAKEN: 5>",
+          "<GrowDecision.LOGISTICS: 2>",
+          "<GrowDecision.HABITAT: 4>"
+        ],
+        "system_levels": [
+          3,
+          2,
+          2,
+          3,
+          1,
+          2
+        ],
+        "profession": "<GrowProfession.CARETAKER: 2>",
+        "creature_level": 2,
+        "complete": true,
+        "successful": false
+      }
+    },
+    "undo_mid_chain_restores_prefix_and_cancels_pending_upgrade": {
+      "passed": true
+    },
+    "keyboard_and_mouse_respect_lock_reset_cancels_old_events": {
+      "passed": true
+    },
+    "numeric_and_mouse_input_choose_available_systems": {
+      "passed": true
+    },
+    "delayed_route_builder": {
+      "passed": true,
+      "state": {
+        "history": [
+          "<GrowDecision.ENERGY: 3>",
+          "<GrowDecision.RECYCLING: 0>",
+          "<GrowDecision.AWAKEN: 5>",
+          "<GrowDecision.WATER: 1>",
+          "<GrowDecision.LOGISTICS: 2>",
+          "<GrowDecision.HABITAT: 4>"
+        ],
+        "system_levels": [
+          3,
+          2,
+          2,
+          3,
+          1,
+          3
+        ],
+        "profession": "<GrowProfession.BUILDER: 1>",
+        "creature_level": 3,
+        "complete": true,
+        "successful": true
+      },
+      "upgrades": 8
+    },
+    "settled_undo_and_replay_are_deterministic": {
+      "passed": true
+    },
+    "delayed_route_caretaker": {
+      "passed": true,
+      "state": {
+        "history": [
+          "<GrowDecision.ENERGY: 3>",
+          "<GrowDecision.WATER: 1>",
+          "<GrowDecision.AWAKEN: 5>",
+          "<GrowDecision.RECYCLING: 0>",
+          "<GrowDecision.HABITAT: 4>",
+          "<GrowDecision.LOGISTICS: 2>"
+        ],
+        "system_levels": [
+          2,
+          3,
+          1,
+          2,
+          2,
+          3
+        ],
+        "profession": "<GrowProfession.CARETAKER: 2>",
+        "creature_level": 3,
+        "complete": true,
+        "successful": true
+      },
+      "upgrades": 7
+    },
+    "delayed_route_courier": {
+      "passed": true,
+      "state": {
+        "history": [
+          "<GrowDecision.ENERGY: 3>",
+          "<GrowDecision.LOGISTICS: 2>",
+          "<GrowDecision.AWAKEN: 5>",
+          "<GrowDecision.RECYCLING: 0>",
+          "<GrowDecision.WATER: 1>",
+          "<GrowDecision.HABITAT: 4>"
+        ],
+        "system_levels": [
+          3,
+          2,
+          3,
+          3,
+          1,
+          3
+        ],
+        "profession": "<GrowProfession.COURIER: 3>",
+        "creature_level": 3,
+        "complete": true,
+        "successful": true
+      },
+      "upgrades": 9
+    },
+    "order_still_changes_system_levels_and_profession": {
+      "passed": true
+    },
+    "active_links_match_current_dependencies": {
+      "passed": true,
+      "active_links": 23
+    },
+    "reset_restores_empty_world_and_production_delay": {
+      "passed": true,
+      "delay_seconds": 2.0
+    },
+    "screenshots_written": {
+      "passed": true,
+      "count": 5
+    }
+  },
+  "routes": {
+    "timed": {
+      "history": [
+        "<GrowDecision.ENERGY: 3>",
+        "<GrowDecision.RECYCLING: 0>",
+        "<GrowDecision.WATER: 1>",
+        "<GrowDecision.AWAKEN: 5>",
+        "<GrowDecision.LOGISTICS: 2>",
+        "<GrowDecision.HABITAT: 4>"
+      ],
+      "system_levels": [
+        3,
+        2,
+        2,
+        3,
+        1,
+        2
+      ],
+      "profession": "<GrowProfession.CARETAKER: 2>",
+      "creature_level": 2,
+      "complete": true,
+      "successful": false
+    },
+    "builder": {
+      "history": [
+        "<GrowDecision.ENERGY: 3>",
+        "<GrowDecision.RECYCLING: 0>",
+        "<GrowDecision.AWAKEN: 5>",
+        "<GrowDecision.WATER: 1>",
+        "<GrowDecision.LOGISTICS: 2>",
+        "<GrowDecision.HABITAT: 4>"
+      ],
+      "system_levels": [
+        3,
+        2,
+        2,
+        3,
+        1,
+        3
+      ],
+      "profession": "<GrowProfession.BUILDER: 1>",
+      "creature_level": 3,
+      "complete": true,
+      "successful": true
+    },
+    "caretaker": {
+      "history": [
+        "<GrowDecision.ENERGY: 3>",
+        "<GrowDecision.WATER: 1>",
+        "<GrowDecision.AWAKEN: 5>",
+        "<GrowDecision.RECYCLING: 0>",
+        "<GrowDecision.HABITAT: 4>",
+        "<GrowDecision.LOGISTICS: 2>"
+      ],
+      "system_levels": [
+        2,
+        3,
+        1,
+        2,
+        2,
+        3
+      ],
+      "profession": "<GrowProfession.CARETAKER: 2>",
+      "creature_level": 3,
+      "complete": true,
+      "successful": true
+    },
+    "courier": {
+      "history": [
+        "<GrowDecision.ENERGY: 3>",
+        "<GrowDecision.LOGISTICS: 2>",
+        "<GrowDecision.AWAKEN: 5>",
+        "<GrowDecision.RECYCLING: 0>",
+        "<GrowDecision.WATER: 1>",
+        "<GrowDecision.HABITAT: 4>"
+      ],
+      "system_levels": [
+        3,
+        2,
+        3,
+        3,
+        1,
+        3
+      ],
+      "profession": "<GrowProfession.COURIER: 3>",
+      "creature_level": 3,
+      "complete": true,
+      "successful": true
+    }
+  },
+  "events": [
+    {
+      "route": "timed_water_chain",
+      "serial": 1,
+      "source": "<GrowDecision.WATER: 1>",
+      "target": "<GrowDecision.ENERGY: 3>",
+      "level": 2,
+      "reason": "Agua \u2192 Energ\u00eda: refrigeraci\u00f3n. Nivel 2.",
+      "levels_before": [
+        1,
+        1,
+        0,
+        1,
+        0,
+        0
+      ],
+      "levels_after": [
+        1,
+        1,
+        0,
+        2,
+        0,
+        0
+      ],
+      "wall_interval_seconds": 2.0,
+      "game_interval_seconds": 2.0,
+      "delay_seconds": 2.0,
+      "timed": true
+    },
+    {
+      "route": "timed_water_chain",
+      "serial": 2,
+      "source": "<GrowDecision.ENERGY: 3>",
+      "target": "<GrowDecision.RECYCLING: 0>",
+      "level": 2,
+      "reason": "Energ\u00eda \u2192 Reciclaje: electricidad. Nivel 2.",
+      "levels_before": [
+        1,
+        1,
+        0,
+        2,
+        0,
+        0
+      ],
+      "levels_after": [
+        2,
+        1,
+        0,
+        2,
+        0,
+        0
+      ],
+      "wall_interval_seconds": 2.0,
+      "game_interval_seconds": 2.0,
+      "delay_seconds": 2.0,
+      "timed": true
+    },
+    {
+      "route": "timed_full_route",
+      "serial": 3,
+      "source": "<GrowDecision.ENERGY: 3>",
+      "target": "<GrowDecision.WATER: 1>",
+      "level": 2,
+      "reason": "Energ\u00eda \u2192 Agua: electricidad. Nivel 2.",
+      "levels_before": [
+        2,
+        1,
+        0,
+        2,
+        0,
+        1
+      ],
+      "levels_after": [
+        2,
+        2,
+        0,
+        2,
+        0,
+        1
+      ],
+      "wall_interval_seconds": 2.0,
+      "game_interval_seconds": 2.0,
+      "delay_seconds": 2.0,
+      "timed": true
+    },
+    {
+      "route": "timed_full_route",
+      "serial": 4,
+      "source": "<GrowDecision.WATER: 1>",
+      "target": "<GrowDecision.AWAKEN: 5>",
+      "level": 2,
+      "reason": "Agua \u2192 Robots: refrigeraci\u00f3n. Nivel 2.",
+      "levels_before": [
+        2,
+        2,
+        1,
+        2,
+        0,
+        1
+      ],
+      "levels_after": [
+        2,
+        2,
+        1,
+        2,
+        0,
+        2
+      ],
+      "wall_interval_seconds": 2.0,
+      "game_interval_seconds": 2.0,
+      "delay_seconds": 2.0,
+      "timed": true
+    },
+    {
+      "route": "timed_full_route",
+      "serial": 5,
+      "source": "<GrowDecision.RECYCLING: 0>",
+      "target": "<GrowDecision.LOGISTICS: 2>",
+      "level": 2,
+      "reason": "Reciclaje \u2192 Transporte: piezas recuperadas. Nivel 2.",
+      "levels_before": [
+        2,
+        2,
+        1,
+        2,
+        1,
+        2
+      ],
+      "levels_after": [
+        2,
+        2,
+        2,
+        2,
+        1,
+        2
+      ],
+      "wall_interval_seconds": 2.0,
+      "game_interval_seconds": 2.0,
+      "delay_seconds": 2.0,
+      "timed": true
+    },
+    {
+      "route": "timed_full_route",
+      "serial": 6,
+      "source": "<GrowDecision.LOGISTICS: 2>",
+      "target": "<GrowDecision.ENERGY: 3>",
+      "level": 3,
+      "reason": "Transporte \u2192 Energ\u00eda: distribuci\u00f3n de suministros. Nivel 3.",
+      "levels_before": [
+        2,
+        2,
+        2,
+        2,
+        1,
+        2
+      ],
+      "levels_after": [
+        2,
+        2,
+        2,
+        3,
+        1,
+        2
+      ],
+      "wall_interval_seconds": 2.0,
+      "game_interval_seconds": 2.0,
+      "delay_seconds": 2.0,
+      "timed": true
+    },
+    {
+      "route": "timed_full_route",
+      "serial": 7,
+      "source": "<GrowDecision.LOGISTICS: 2>",
+      "target": "<GrowDecision.RECYCLING: 0>",
+      "level": 3,
+      "reason": "Transporte \u2192 Reciclaje: distribuci\u00f3n de suministros. Nivel 3.",
+      "levels_before": [
+        2,
+        2,
+        2,
+        3,
+        1,
+        2
+      ],
+      "levels_after": [
+        3,
+        2,
+        2,
+        3,
+        1,
+        2
+      ],
+      "wall_interval_seconds": 2.0,
+      "game_interval_seconds": 2.0,
+      "delay_seconds": 2.0,
+      "timed": true
+    },
+    {
+      "route": "builder",
+      "serial": 1,
+      "source": "<GrowDecision.WATER: 1>",
+      "target": "<GrowDecision.ENERGY: 3>",
+      "level": 2,
+      "reason": "Agua \u2192 Energ\u00eda: refrigeraci\u00f3n. Nivel 2.",
+      "levels_before": [
+        1,
+        1,
+        0,
+        1,
+        0,
+        1
+      ],
+      "levels_after": [
+        1,
+        1,
+        0,
+        2,
+        0,
+        1
+      ],
+      "wall_interval_seconds": 0.156,
+      "game_interval_seconds": 0.1667,
+      "delay_seconds": 0.15000000596046448,
+      "timed": false
+    },
+    {
+      "route": "builder",
+      "serial": 2,
+      "source": "<GrowDecision.ENERGY: 3>",
+      "target": "<GrowDecision.RECYCLING: 0>",
+      "level": 2,
+      "reason": "Energ\u00eda \u2192 Reciclaje: electricidad. Nivel 2.",
+      "levels_before": [
+        1,
+        1,
+        0,
+        2,
+        0,
+        1
+      ],
+      "levels_after": [
+        2,
+        1,
+        0,
+        2,
+        0,
+        1
+      ],
+      "wall_interval_seconds": 0.172,
+      "game_interval_seconds": 0.1667,
+      "delay_seconds": 0.15000000596046448,
+      "timed": false
+    },
+    {
+      "route": "builder",
+      "serial": 3,
+      "source": "<GrowDecision.RECYCLING: 0>",
+      "target": "<GrowDecision.AWAKEN: 5>",
+      "level": 2,
+      "reason": "Reciclaje \u2192 Robots: piezas recuperadas. Nivel 2.",
+      "levels_before": [
+        2,
+        1,
+        0,
+        2,
+        0,
+        1
+      ],
+      "levels_after": [
+        2,
+        1,
+        0,
+        2,
+        0,
+        2
+      ],
+      "wall_interval_seconds": 0.172,
+      "game_interval_seconds": 0.1667,
+      "delay_seconds": 0.15000000596046448,
+      "timed": false
+    },
+    {
+      "route": "builder",
+      "serial": 4,
+      "source": "<GrowDecision.ENERGY: 3>",
+      "target": "<GrowDecision.WATER: 1>",
+      "level": 2,
+      "reason": "Energ\u00eda \u2192 Agua: electricidad. Nivel 2.",
+      "levels_before": [
+        2,
+        1,
+        1,
+        2,
+        0,
+        2
+      ],
+      "levels_after": [
+        2,
+        2,
+        1,
+        2,
+        0,
+        2
+      ],
+      "wall_interval_seconds": 0.156,
+      "game_interval_seconds": 0.1667,
+      "delay_seconds": 0.15000000596046448,
+      "timed": false
+    },
+    {
+      "route": "builder",
+      "serial": 5,
+      "source": "<GrowDecision.RECYCLING: 0>",
+      "target": "<GrowDecision.LOGISTICS: 2>",
+      "level": 2,
+      "reason": "Reciclaje \u2192 Transporte: piezas recuperadas. Nivel 2.",
+      "levels_before": [
+        2,
+        2,
+        1,
+        2,
+        1,
+        2
+      ],
+      "levels_after": [
+        2,
+        2,
+        2,
+        2,
+        1,
+        2
+      ],
+      "wall_interval_seconds": 0.172,
+      "game_interval_seconds": 0.1667,
+      "delay_seconds": 0.15000000596046448,
+      "timed": false
+    },
+    {
+      "route": "builder",
+      "serial": 6,
+      "source": "<GrowDecision.LOGISTICS: 2>",
+      "target": "<GrowDecision.ENERGY: 3>",
+      "level": 3,
+      "reason": "Transporte \u2192 Energ\u00eda: distribuci\u00f3n de suministros. Nivel 3.",
+      "levels_before": [
+        2,
+        2,
+        2,
+        2,
+        1,
+        2
+      ],
+      "levels_after": [
+        2,
+        2,
+        2,
+        3,
+        1,
+        2
+      ],
+      "wall_interval_seconds": 0.172,
+      "game_interval_seconds": 0.1667,
+      "delay_seconds": 0.15000000596046448,
+      "timed": false
+    },
+    {
+      "route": "builder",
+      "serial": 7,
+      "source": "<GrowDecision.LOGISTICS: 2>",
+      "target": "<GrowDecision.RECYCLING: 0>",
+      "level": 3,
+      "reason": "Transporte \u2192 Reciclaje: distribuci\u00f3n de suministros. Nivel 3.",
+      "levels_before": [
+        2,
+        2,
+        2,
+        3,
+        1,
+        2
+      ],
+      "levels_after": [
+        3,
+        2,
+        2,
+        3,
+        1,
+        2
+      ],
+      "wall_interval_seconds": 0.156,
+      "game_interval_seconds": 0.1667,
+      "delay_seconds": 0.15000000596046448,
+      "timed": false
+    },
+    {
+      "route": "builder",
+      "serial": 8,
+      "source": "<GrowDecision.RECYCLING: 0>",
+      "target": "<GrowDecision.AWAKEN: 5>",
+      "level": 3,
+      "reason": "Reciclaje \u2192 Robots: piezas recuperadas. Nivel 3.",
+      "levels_before": [
+        3,
+        2,
+        2,
+        3,
+        1,
+        2
+      ],
+      "levels_after": [
+        3,
+        2,
+        2,
+        3,
+        1,
+        3
+      ],
+      "wall_interval_seconds": 0.172,
+      "game_interval_seconds": 0.1667,
+      "delay_seconds": 0.15000000596046448,
+      "timed": false
+    },
+    {
+      "route": "builder_replay",
+      "serial": 1,
+      "source": "<GrowDecision.RECYCLING: 0>",
+      "target": "<GrowDecision.LOGISTICS: 2>",
+      "level": 2,
+      "reason": "Reciclaje \u2192 Transporte: piezas recuperadas. Nivel 2.",
+      "levels_before": [
+        2,
+        2,
+        1,
+        2,
+        1,
+        2
+      ],
+      "levels_after": [
+        2,
+        2,
+        2,
+        2,
+        1,
+        2
+      ],
+      "wall_interval_seconds": 0.172,
+      "game_interval_seconds": 0.1667,
+      "delay_seconds": 0.15000000596046448,
+      "timed": false
+    },
+    {
+      "route": "builder_replay",
+      "serial": 2,
+      "source": "<GrowDecision.LOGISTICS: 2>",
+      "target": "<GrowDecision.ENERGY: 3>",
+      "level": 3,
+      "reason": "Transporte \u2192 Energ\u00eda: distribuci\u00f3n de suministros. Nivel 3.",
+      "levels_before": [
+        2,
+        2,
+        2,
+        2,
+        1,
+        2
+      ],
+      "levels_after": [
+        2,
+        2,
+        2,
+        3,
+        1,
+        2
+      ],
+      "wall_interval_seconds": 0.172,
+      "game_interval_seconds": 0.1667,
+      "delay_seconds": 0.15000000596046448,
+      "timed": false
+    },
+    {
+      "route": "builder_replay",
+      "serial": 3,
+      "source": "<GrowDecision.LOGISTICS: 2>",
+      "target": "<GrowDecision.RECYCLING: 0>",
+      "level": 3,
+      "reason": "Transporte \u2192 Reciclaje: distribuci\u00f3n de suministros. Nivel 3.",
+      "levels_before": [
+        2,
+        2,
+        2,
+        3,
+        1,
+        2
+      ],
+      "levels_after": [
+        3,
+        2,
+        2,
+        3,
+        1,
+        2
+      ],
+      "wall_interval_seconds": 0.156,
+      "game_interval_seconds": 0.1667,
+      "delay_seconds": 0.15000000596046448,
+      "timed": false
+    },
+    {
+      "route": "builder_replay",
+      "serial": 4,
+      "source": "<GrowDecision.RECYCLING: 0>",
+      "target": "<GrowDecision.AWAKEN: 5>",
+      "level": 3,
+      "reason": "Reciclaje \u2192 Robots: piezas recuperadas. Nivel 3.",
+      "levels_before": [
+        3,
+        2,
+        2,
+        3,
+        1,
+        2
+      ],
+      "levels_after": [
+        3,
+        2,
+        2,
+        3,
+        1,
+        3
+      ],
+      "wall_interval_seconds": 0.172,
+      "game_interval_seconds": 0.1667,
+      "delay_seconds": 0.15000000596046448,
+      "timed": false
+    },
+    {
+      "route": "caretaker",
+      "serial": 1,
+      "source": "<GrowDecision.ENERGY: 3>",
+      "target": "<GrowDecision.WATER: 1>",
+      "level": 2,
+      "reason": "Energ\u00eda \u2192 Agua: electricidad. Nivel 2.",
+      "levels_before": [
+        0,
+        1,
+        0,
+        1,
+        0,
+        1
+      ],
+      "levels_after": [
+        0,
+        2,
+        0,
+        1,
+        0,
+        1
+      ],
+      "wall_interval_seconds": 0.157,
+      "game_interval_seconds": 0.1667,
+      "delay_seconds": 0.15000000596046448,
+      "timed": false
+    },
+    {
+      "route": "caretaker",
+      "serial": 2,
+      "source": "<GrowDecision.RECYCLING: 0>",
+      "target": "<GrowDecision.ENERGY: 3>",
+      "level": 2,
+      "reason": "Reciclaje \u2192 Energ\u00eda: piezas recuperadas. Nivel 2.",
+      "levels_before": [
+        1,
+        2,
+        0,
+        1,
+        0,
+        1
+      ],
+      "levels_after": [
+        1,
+        2,
+        0,
+        2,
+        0,
+        1
+      ],
+      "wall_interval_seconds": 0.172,
+      "game_interval_seconds": 0.1667,
+      "delay_seconds": 0.15000000596046448,
+      "timed": false
+    },
+    {
+      "route": "caretaker",
+      "serial": 3,
+      "source": "<GrowDecision.ENERGY: 3>",
+      "target": "<GrowDecision.AWAKEN: 5>",
+      "level": 2,
+      "reason": "Energ\u00eda \u2192 Robots: electricidad. Nivel 2.",
+      "levels_before": [
+        1,
+        2,
+        0,
+        2,
+        0,
+        1
+      ],
+      "levels_after": [
+        1,
+        2,
+        0,
+        2,
+        0,
+        2
+      ],
+      "wall_interval_seconds": 0.171,
+      "game_interval_seconds": 0.1667,
+      "delay_seconds": 0.15000000596046448,
+      "timed": false
+    },
+    {
+      "route": "caretaker",
+      "serial": 4,
+      "source": "<GrowDecision.WATER: 1>",
+      "target": "<GrowDecision.RECYCLING: 0>",
+      "level": 2,
+      "reason": "Agua \u2192 Reciclaje: refrigeraci\u00f3n. Nivel 2.",
+      "levels_before": [
+        1,
+        2,
+        0,
+        2,
+        1,
+        2
+      ],
+      "levels_after": [
+        2,
+        2,
+        0,
+        2,
+        1,
+        2
+      ],
+      "wall_interval_seconds": 0.157,
+      "game_interval_seconds": 0.1667,
+      "delay_seconds": 0.15000000596046448,
+      "timed": false
+    },
+    {
+      "route": "caretaker",
+      "serial": 5,
+      "source": "<GrowDecision.RECYCLING: 0>",
+      "target": "<GrowDecision.HABITAT: 4>",
+      "level": 2,
+      "reason": "Reciclaje \u2192 H\u00e1bitat: piezas recuperadas. Nivel 2.",
+      "levels_before": [
+        2,
+        2,
+        1,
+        2,
+        1,
+        2
+      ],
+      "levels_after": [
+        2,
+        2,
+        1,
+        2,
+        2,
+        2
+      ],
+      "wall_interval_seconds": 0.172,
+      "game_interval_seconds": 0.1667,
+      "delay_seconds": 0.15000000596046448,
+      "timed": false
+    },
+    {
+      "route": "caretaker",
+      "serial": 6,
+      "source": "<GrowDecision.HABITAT: 4>",
+      "target": "<GrowDecision.WATER: 1>",
+      "level": 3,
+      "reason": "H\u00e1bitat \u2192 Agua: filtrado natural. Nivel 3.",
+      "levels_before": [
+        2,
+        2,
+        1,
+        2,
+        2,
+        2
+      ],
+      "levels_after": [
+        2,
+        3,
+        1,
+        2,
+        2,
+        2
+      ],
+      "wall_interval_seconds": 0.171,
+      "game_interval_seconds": 0.1667,
+      "delay_seconds": 0.15000000596046448,
+      "timed": false
+    },
+    {
+      "route": "caretaker",
+      "serial": 7,
+      "source": "<GrowDecision.WATER: 1>",
+      "target": "<GrowDecision.AWAKEN: 5>",
+      "level": 3,
+      "reason": "Agua \u2192 Robots: refrigeraci\u00f3n. Nivel 3.",
+      "levels_before": [
+        2,
+        3,
+        1,
+        2,
+        2,
+        2
+      ],
+      "levels_after": [
+        2,
+        3,
+        1,
+        2,
+        2,
+        3
+      ],
+      "wall_interval_seconds": 0.157,
+      "game_interval_seconds": 0.1667,
+      "delay_seconds": 0.15000000596046448,
+      "timed": false
+    },
+    {
+      "route": "courier",
+      "serial": 1,
+      "source": "<GrowDecision.RECYCLING: 0>",
+      "target": "<GrowDecision.LOGISTICS: 2>",
+      "level": 2,
+      "reason": "Reciclaje \u2192 Transporte: piezas recuperadas. Nivel 2.",
+      "levels_before": [
+        1,
+        0,
+        1,
+        1,
+        0,
+        1
+      ],
+      "levels_after": [
+        1,
+        0,
+        2,
+        1,
+        0,
+        1
+      ],
+      "wall_interval_seconds": 0.172,
+      "game_interval_seconds": 0.1667,
+      "delay_seconds": 0.15000000596046448,
+      "timed": false
+    },
+    {
+      "route": "courier",
+      "serial": 2,
+      "source": "<GrowDecision.LOGISTICS: 2>",
+      "target": "<GrowDecision.AWAKEN: 5>",
+      "level": 2,
+      "reason": "Transporte \u2192 Robots: distribuci\u00f3n de suministros. Nivel 2.",
+      "levels_before": [
+        1,
+        0,
+        2,
+        1,
+        0,
+        1
+      ],
+      "levels_after": [
+        1,
+        0,
+        2,
+        1,
+        0,
+        2
+      ],
+      "wall_interval_seconds": 0.156,
+      "game_interval_seconds": 0.1667,
+      "delay_seconds": 0.15000000596046448,
+      "timed": false
+    },
+    {
+      "route": "courier",
+      "serial": 3,
+      "source": "<GrowDecision.WATER: 1>",
+      "target": "<GrowDecision.ENERGY: 3>",
+      "level": 2,
+      "reason": "Agua \u2192 Energ\u00eda: refrigeraci\u00f3n. Nivel 2.",
+      "levels_before": [
+        1,
+        1,
+        2,
+        1,
+        0,
+        2
+      ],
+      "levels_after": [
+        1,
+        1,
+        2,
+        2,
+        0,
+        2
+      ],
+      "wall_interval_seconds": 0.172,
+      "game_interval_seconds": 0.1667,
+      "delay_seconds": 0.15000000596046448,
+      "timed": false
+    },
+    {
+      "route": "courier",
+      "serial": 4,
+      "source": "<GrowDecision.ENERGY: 3>",
+      "target": "<GrowDecision.RECYCLING: 0>",
+      "level": 2,
+      "reason": "Energ\u00eda \u2192 Reciclaje: electricidad. Nivel 2.",
+      "levels_before": [
+        1,
+        1,
+        2,
+        2,
+        0,
+        2
+      ],
+      "levels_after": [
+        2,
+        1,
+        2,
+        2,
+        0,
+        2
+      ],
+      "wall_interval_seconds": 0.172,
+      "game_interval_seconds": 0.1667,
+      "delay_seconds": 0.15000000596046448,
+      "timed": false
+    },
+    {
+      "route": "courier",
+      "serial": 5,
+      "source": "<GrowDecision.AWAKEN: 5>",
+      "target": "<GrowDecision.ENERGY: 3>",
+      "level": 3,
+      "reason": "Robots \u2192 Energ\u00eda: trabajo de la colonia. Nivel 3.",
+      "levels_before": [
+        2,
+        1,
+        2,
+        2,
+        1,
+        2
+      ],
+      "levels_after": [
+        2,
+        1,
+        2,
+        3,
+        1,
+        2
+      ],
+      "wall_interval_seconds": 0.156,
+      "game_interval_seconds": 0.1667,
+      "delay_seconds": 0.15000000596046448,
+      "timed": false
+    },
+    {
+      "route": "courier",
+      "serial": 6,
+      "source": "<GrowDecision.HABITAT: 4>",
+      "target": "<GrowDecision.LOGISTICS: 2>",
+      "level": 3,
+      "reason": "H\u00e1bitat \u2192 Transporte: refugio y mantenimiento. Nivel 3.",
+      "levels_before": [
+        2,
+        1,
+        2,
+        3,
+        1,
+        2
+      ],
+      "levels_after": [
+        2,
+        1,
+        3,
+        3,
+        1,
+        2
+      ],
+      "wall_interval_seconds": 0.172,
+      "game_interval_seconds": 0.1667,
+      "delay_seconds": 0.15000000596046448,
+      "timed": false
+    },
+    {
+      "route": "courier",
+      "serial": 7,
+      "source": "<GrowDecision.LOGISTICS: 2>",
+      "target": "<GrowDecision.AWAKEN: 5>",
+      "level": 3,
+      "reason": "Transporte \u2192 Robots: distribuci\u00f3n de suministros. Nivel 3.",
+      "levels_before": [
+        2,
+        1,
+        3,
+        3,
+        1,
+        2
+      ],
+      "levels_after": [
+        2,
+        1,
+        3,
+        3,
+        1,
+        3
+      ],
+      "wall_interval_seconds": 0.172,
+      "game_interval_seconds": 0.1667,
+      "delay_seconds": 0.15000000596046448,
+      "timed": false
+    },
+    {
+      "route": "courier",
+      "serial": 8,
+      "source": "<GrowDecision.AWAKEN: 5>",
+      "target": "<GrowDecision.RECYCLING: 0>",
+      "level": 3,
+      "reason": "Robots \u2192 Reciclaje: trabajo de la colonia. Nivel 3.",
+      "levels_before": [
+        2,
+        1,
+        3,
+        3,
+        1,
+        3
+      ],
+      "levels_after": [
+        3,
+        1,
+        3,
+        3,
+        1,
+        3
+      ],
+      "wall_interval_seconds": 0.172,
+      "game_interval_seconds": 0.1667,
+      "delay_seconds": 0.15000000596046448,
+      "timed": false
+    },
+    {
+      "route": "courier",
+      "serial": 9,
+      "source": "<GrowDecision.ENERGY: 3>",
+      "target": "<GrowDecision.WATER: 1>",
+      "level": 2,
+      "reason": "Energ\u00eda \u2192 Agua: electricidad. Nivel 2.",
+      "levels_before": [
+        3,
+        1,
+        3,
+        3,
+        1,
+        3
+      ],
+      "levels_after": [
+        3,
+        2,
+        3,
+        3,
+        1,
+        3
+      ],
+      "wall_interval_seconds": 0.156,
+      "game_interval_seconds": 0.1667,
+      "delay_seconds": 0.15000000596046448,
+      "timed": false
+    }
+  ],
+  "screenshots": [
+    "C:\\Users\\Usuario\\Desktop\\unreal Projects\\ArenaProject\\Saved\\GrowEvolutionWork\\Interactions-20260920-001118-870674Z\\01_timed_chain_complete.png",
+    "C:\\Users\\Usuario\\Desktop\\unreal Projects\\ArenaProject\\Saved\\GrowEvolutionWork\\Interactions-20260920-001118-870674Z\\02_builder_connected.png",
+    "C:\\Users\\Usuario\\Desktop\\unreal Projects\\ArenaProject\\Saved\\GrowEvolutionWork\\Interactions-20260920-001118-870674Z\\02_caretaker_connected.png",
+    "C:\\Users\\Usuario\\Desktop\\unreal Projects\\ArenaProject\\Saved\\GrowEvolutionWork\\Interactions-20260920-001118-870674Z\\02_courier_connected.png",
+    "C:\\Users\\Usuario\\Desktop\\unreal Projects\\ArenaProject\\Saved\\GrowEvolutionWork\\Interactions-20260920-001118-870674Z\\03_reaction_in_progress.png"
+  ],
+  "scope": "Rendered PIE; delayed upgrades, observed dependencies, cancellation, final result timing and production input.",
+  "production_delay_seconds": 2.0,
+  "interaction_graph": [
+    {
+      "source": "<GrowDecision.ENERGY: 3>",
+      "target": "<GrowDecision.RECYCLING: 0>",
+      "required_level": 2,
+      "active": true
+    },
+    {
+      "source": "<GrowDecision.WATER: 1>",
+      "target": "<GrowDecision.RECYCLING: 0>",
+      "required_level": 1,
+      "active": true
+    },
+    {
+      "source": "<GrowDecision.LOGISTICS: 2>",
+      "target": "<GrowDecision.RECYCLING: 0>",
+      "required_level": 2,
+      "active": true
+    },
+    {
+      "source": "<GrowDecision.AWAKEN: 5>",
+      "target": "<GrowDecision.RECYCLING: 0>",
+      "required_level": 2,
+      "active": true
+    },
+    {
+      "source": "<GrowDecision.ENERGY: 3>",
+      "target": "<GrowDecision.WATER: 1>",
+      "required_level": 1,
+      "active": true
+    },
+    {
+      "source": "<GrowDecision.HABITAT: 4>",
+      "target": "<GrowDecision.WATER: 1>",
+      "required_level": 2,
+      "active": false
+    },
+    {
+      "source": "<GrowDecision.LOGISTICS: 2>",
+      "target": "<GrowDecision.WATER: 1>",
+      "required_level": 1,
+      "active": true
+    },
+    {
+      "source": "<GrowDecision.ENERGY: 3>",
+      "target": "<GrowDecision.LOGISTICS: 2>",
+      "required_level": 1,
+      "active": true
+    },
+    {
+      "source": "<GrowDecision.RECYCLING: 0>",
+      "target": "<GrowDecision.LOGISTICS: 2>",
+      "required_level": 1,
+      "active": true
+    },
+    {
+      "source": "<GrowDecision.AWAKEN: 5>",
+      "target": "<GrowDecision.LOGISTICS: 2>",
+      "required_level": 2,
+      "active": true
+    },
+    {
+      "source": "<GrowDecision.HABITAT: 4>",
+      "target": "<GrowDecision.LOGISTICS: 2>",
+      "required_level": 1,
+      "active": true
+    },
+    {
+      "source": "<GrowDecision.WATER: 1>",
+      "target": "<GrowDecision.ENERGY: 3>",
+      "required_level": 1,
+      "active": true
+    },
+    {
+      "source": "<GrowDecision.RECYCLING: 0>",
+      "target": "<GrowDecision.ENERGY: 3>",
+      "required_level": 1,
+      "active": true
+    },
+    {
+      "source": "<GrowDecision.LOGISTICS: 2>",
+      "target": "<GrowDecision.ENERGY: 3>",
+      "required_level": 2,
+      "active": true
+    },
+    {
+      "source": "<GrowDecision.AWAKEN: 5>",
+      "target": "<GrowDecision.ENERGY: 3>",
+      "required_level": 2,
+      "active": true
+    },
+    {
+      "source": "<GrowDecision.WATER: 1>",
+      "target": "<GrowDecision.HABITAT: 4>",
+      "required_level": 2,
+      "active": true
+    },
+    {
+      "source": "<GrowDecision.RECYCLING: 0>",
+      "target": "<GrowDecision.HABITAT: 4>",
+      "required_level": 1,
+      "active": true
+    },
+    {
+      "source": "<GrowDecision.AWAKEN: 5>",
+      "target": "<GrowDecision.HABITAT: 4>",
+      "required_level": 2,
+      "active": true
+    },
+    {
+      "source": "<GrowDecision.LOGISTICS: 2>",
+      "target": "<GrowDecision.HABITAT: 4>",
+      "required_level": 2,
+      "active": true
+    },
+    {
+      "source": "<GrowDecision.ENERGY: 3>",
+      "target": "<GrowDecision.AWAKEN: 5>",
+      "required_level": 1,
+      "active": true
+    },
+    {
+      "source": "<GrowDecision.RECYCLING: 0>",
+      "target": "<GrowDecision.AWAKEN: 5>",
+      "required_level": 2,
+      "active": true
+    },
+    {
+      "source": "<GrowDecision.WATER: 1>",
+      "target": "<GrowDecision.AWAKEN: 5>",
+      "required_level": 2,
+      "active": true
+    },
+    {
+      "source": "<GrowDecision.LOGISTICS: 2>",
+      "target": "<GrowDecision.AWAKEN: 5>",
+      "required_level": 2,
+      "active": true
+    },
+    {
+      "source": "<GrowDecision.HABITAT: 4>",
+      "target": "<GrowDecision.AWAKEN: 5>",
+      "required_level": 1,
+      "active": true
+    }
+  ],
+  "screenshot_resolutions": {
+    "01_timed_chain_complete": [
+      1440,
+      900
+    ],
+    "02_builder_connected": [
+      1280,
+      720
+    ],
+    "02_caretaker_connected": [
+      1280,
+      720
+    ],
+    "02_courier_connected": [
+      1280,
+      720
+    ],
+    "03_reaction_in_progress": [
+      1440,
+      900
+    ]
+  },
+  "mouse_clicks": [
+    {
+      "card": 2,
+      "viewport": [
+        955,
+        502
+      ],
+      "position": [
+        400,
+        433
+      ]
+    },
+    {
+      "card": 0,
+      "viewport": [
+        955,
+        502
+      ],
+      "position": [
+        88,
+        433
+      ]
+    }
+  ],
+  "captured_reaction": {
+    "source": "<GrowDecision.WATER: 1>",
+    "target": "<GrowDecision.ENERGY: 3>",
+    "reason": "Agua \u2192 Energ\u00eda: refrigeraci\u00f3n. Nivel 2.",
+    "countdown": 2.0
+  },
+  "elapsed_seconds": 63.1
+}

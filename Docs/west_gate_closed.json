@@ -1,0 +1,35 @@
+{
+ "passed": true,
+ "dirty_before": [
+  "/Game/Arena/Maps/L_FactoryDemo"
+ ],
+ "reimport": {
+  "passed": true,
+  "triangles": 194253,
+  "convex_collisions": 73,
+  "bounds_cm": [
+   -1160.3,
+   -1200.0,
+   -54.0,
+   1160.3,
+   1200.0,
+   333.5
+  ]
+ },
+ "removed": "Bloqueo_PuertaFabrica",
+ "wall_hits": {
+  "-150": [
+   -1038.0,
+   "SceneRobot_Arena"
+  ],
+  "90": [
+   -1047.0,
+   "SceneRobot_Arena"
+  ],
+  "250": [
+   -1047.0,
+   "SceneRobot_Arena"
+  ]
+ },
+ "elevator_pit_open": true
+}

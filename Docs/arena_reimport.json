@@ -1,0 +1,13 @@
+{
+ "passed": true,
+ "triangles": 194253,
+ "convex_collisions": 73,
+ "bounds_cm": [
+  -1160.3,
+  -1200.0,
+  -54.0,
+  1160.3,
+  1200.0,
+  333.5
+ ]
+}

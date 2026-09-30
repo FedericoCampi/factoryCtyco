@@ -1,0 +1,90 @@
+{
+  "passed": true,
+  "placement_scan": [
+    {
+      "y": 0,
+      "problems": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ]
+    }
+  ],
+  "map": "/Game/Arena/Maps/L_FactoryDemo",
+  "starter_buildings": [
+    {
+      "id": "Starter_0",
+      "definition": "Storage",
+      "position": [
+        -600.0,
+        0.0,
+        4.0
+      ],
+      "storage_item": "Scrap"
+    },
+    {
+      "id": "Starter_2",
+      "definition": "Crusher",
+      "position": [
+        -200.0,
+        0.0,
+        4.0
+      ],
+      "storage_item": "Scrap"
+    },
+    {
+      "id": "Starter_4",
+      "definition": "Smelter",
+      "position": [
+        200.0,
+        0.0,
+        4.0
+      ],
+      "storage_item": "Scrap"
+    },
+    {
+      "id": "Starter_6",
+      "definition": "Storage",
+      "position": [
+        600.0,
+        0.0,
+        4.0
+      ],
+      "storage_item": "Plate"
+    }
+  ],
+  "belt_slots": [
+    [
+      -400.0,
+      0.0,
+      4
+    ],
+    [
+      0.0,
+      0.0,
+      4
+    ],
+    [
+      400.0,
+      0.0,
+      4
+    ]
+  ],
+  "bindings": {
+    "Crusher": "Trituradora",
+    "Smelter": "Fundicion",
+    "Storage": "Deposito",
+    "Scrap": "Chatarra",
+    "Fragments": "FragmentsBasic",
+    "Belt": "BeltBasic",
+    "Plate": "PlateBasic",
+    "note": "Temporary procedural pieces for the three ambiguous file roles; update after identification."
+  },
+  "grid_cm": 200,
+  "goal": "20 plates stored with conveyor delivery",
+  "save_slot": "ArenaFactoryDemo_v1"
+}

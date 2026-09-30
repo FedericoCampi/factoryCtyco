@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "resource": "/Game/Arena/Resources/DA_Scrap.DA_Scrap",
+  "piles": [
+    "Scrap_01",
+    "Scrap_02",
+    "Scrap_03",
+    "Scrap_04",
+    "Scrap_05",
+    "Scrap_06",
+    "Scrap_07"
+  ],
+  "world_quantity": 210,
+  "inventory_capacity": 200,
+  "interaction_distance_cm": 200,
+  "controls": {
+    "gather": "E",
+    "inventory": "I"
+  },
+  "persistence": "Session only"
+}

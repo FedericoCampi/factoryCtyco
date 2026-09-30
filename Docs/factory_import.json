@@ -1,0 +1,243 @@
+{
+  "passed": true,
+  "assets": [
+    {
+      "id": "Trituradora",
+      "source": "trituradora-optimizada-complete.glb",
+      "mesh": "/Game/Arena/Factory/Models/Trituradora/SM_Trituradora.SM_Trituradora",
+      "material": "/Game/Arena/Factory/Models/Trituradora/M_Trituradora.M_Trituradora",
+      "triangles": 99999,
+      "dimensions_cm": [
+        57.28142547607422,
+        100.11289596557617,
+        88.20286211371422
+      ],
+      "min_cm": [
+        -28.501468658447266,
+        -50.03833770751953,
+        -0.2392314374446869
+      ],
+      "textures": {
+        "BaseColor": "/Game/Arena/Factory/Models/Trituradora/T_Trituradora_BaseColor.T_Trituradora_BaseColor",
+        "ORM": "/Game/Arena/Factory/Models/Trituradora/T_Trituradora_ORM.T_Trituradora_ORM",
+        "Normal": "/Game/Arena/Factory/Models/Trituradora/T_Trituradora_Normal.T_Trituradora_Normal",
+        "AO": "/Game/Arena/Factory/Models/Trituradora/T_Trituradora_AO.T_Trituradora_AO"
+      }
+    },
+    {
+      "id": "Fundicion",
+      "source": "fundicion.glb",
+      "mesh": "/Game/Arena/Factory/Models/Fundicion/SM_Fundicion.SM_Fundicion",
+      "material": "/Game/Arena/Factory/Models/Fundicion/M_Fundicion.M_Fundicion",
+      "triangles": 90000,
+      "dimensions_cm": [
+        100.46992111206055,
+        71.77441024780273,
+        81.57317164540291
+      ],
+      "min_cm": [
+        -50.407440185546875,
+        -35.687583923339844,
+        -0.12953761219978333
+      ],
+      "textures": {
+        "BaseColor": "/Game/Arena/Factory/Models/Fundicion/T_Fundicion_BaseColor.T_Fundicion_BaseColor",
+        "ORM": "/Game/Arena/Factory/Models/Fundicion/T_Fundicion_ORM.T_Fundicion_ORM",
+        "Normal": "/Game/Arena/Factory/Models/Fundicion/T_Fundicion_Normal.T_Fundicion_Normal",
+        "AO": "/Game/Arena/Factory/Models/Fundicion/T_Fundicion_AO.T_Fundicion_AO"
+      }
+    },
+    {
+      "id": "Deposito",
+      "source": "deposito.glb",
+      "mesh": "/Game/Arena/Factory/Models/Deposito/SM_Deposito.SM_Deposito",
+      "material": "/Game/Arena/Factory/Models/Deposito/M_Deposito.M_Deposito",
+      "triangles": 60000,
+      "dimensions_cm": [
+        77.66012954711914,
+        100.66143035888672,
+        79.69335833191872
+      ],
+      "min_cm": [
+        -38.8980827331543,
+        -50.23783874511719,
+        -0.15199175477027893
+      ],
+      "textures": {
+        "BaseColor": "/Game/Arena/Factory/Models/Deposito/T_Deposito_BaseColor.T_Deposito_BaseColor",
+        "ORM": "/Game/Arena/Factory/Models/Deposito/T_Deposito_ORM.T_Deposito_ORM",
+        "Normal": "/Game/Arena/Factory/Models/Deposito/T_Deposito_Normal.T_Deposito_Normal",
+        "AO": "/Game/Arena/Factory/Models/Deposito/T_Deposito_AO.T_Deposito_AO"
+      }
+    },
+    {
+      "id": "Chatarra",
+      "source": "frag_metalicos.glb",
+      "mesh": "/Game/Arena/Factory/Models/Chatarra/SM_Chatarra.SM_Chatarra",
+      "material": "/Game/Arena/Factory/Models/Chatarra/M_Chatarra.M_Chatarra",
+      "triangles": 35000,
+      "dimensions_cm": [
+        100.40719604492188,
+        93.74550247192383,
+        65.34491884708405
+      ],
+      "min_cm": [
+        -50.412506103515625,
+        -46.910430908203125,
+        -0.5302826166152954
+      ],
+      "textures": {
+        "BaseColor": "/Game/Arena/Factory/Models/Chatarra/T_Chatarra_BaseColor.T_Chatarra_BaseColor",
+        "ORM": "/Game/Arena/Factory/Models/Chatarra/T_Chatarra_ORM.T_Chatarra_ORM",
+        "Normal": "/Game/Arena/Factory/Models/Chatarra/T_Chatarra_Normal.T_Chatarra_Normal",
+        "AO": "/Game/Arena/Factory/Models/Chatarra/T_Chatarra_AO.T_Chatarra_AO"
+      }
+    },
+    {
+      "id": "ArchivoCintaRecta",
+      "source": "cinta_recta.glb",
+      "mesh": "/Game/Arena/Factory/Models/ArchivoCintaRecta/SM_ArchivoCintaRecta.SM_ArchivoCintaRecta",
+      "material": "/Game/Arena/Factory/Models/ArchivoCintaRecta/M_ArchivoCintaRecta.M_ArchivoCintaRecta",
+      "triangles": 22000,
+      "dimensions_cm": [
+        100.1241683959961,
+        96.6293716430664,
+        58.175675481557846
+      ],
+      "min_cm": [
+        -49.974327087402344,
+        -48.359466552734375,
+        -0.2906237542629242
+      ],
+      "textures": {
+        "BaseColor": "/Game/Arena/Factory/Models/ArchivoCintaRecta/T_ArchivoCintaRecta_BaseColor.T_ArchivoCintaRecta_BaseColor",
+        "ORM": "/Game/Arena/Factory/Models/ArchivoCintaRecta/T_ArchivoCintaRecta_ORM.T_ArchivoCintaRecta_ORM",
+        "Normal": "/Game/Arena/Factory/Models/ArchivoCintaRecta/T_ArchivoCintaRecta_Normal.T_ArchivoCintaRecta_Normal",
+        "AO": "/Game/Arena/Factory/Models/ArchivoCintaRecta/T_ArchivoCintaRecta_AO.T_ArchivoCintaRecta_AO"
+      }
+    },
+    {
+      "id": "ArchivoFragTriturado",
+      "source": "frag_triturado.glb",
+      "mesh": "/Game/Arena/Factory/Models/ArchivoFragTriturado/SM_ArchivoFragTriturado.SM_ArchivoFragTriturado",
+      "material": "/Game/Arena/Factory/Models/ArchivoFragTriturado/M_ArchivoFragTriturado.M_ArchivoFragTriturado",
+      "triangles": 70000,
+      "dimensions_cm": [
+        53.84361457824707,
+        100.18442153930664,
+        77.7669726908207
+      ],
+      "min_cm": [
+        -26.976436614990234,
+        -50.02507400512695,
+        -0.12253299355506897
+      ],
+      "textures": {
+        "BaseColor": "/Game/Arena/Factory/Models/ArchivoFragTriturado/T_ArchivoFragTriturado_BaseColor.T_ArchivoFragTriturado_BaseColor",
+        "ORM": "/Game/Arena/Factory/Models/ArchivoFragTriturado/T_ArchivoFragTriturado_ORM.T_ArchivoFragTriturado_ORM",
+        "Normal": "/Game/Arena/Factory/Models/ArchivoFragTriturado/T_ArchivoFragTriturado_Normal.T_ArchivoFragTriturado_Normal",
+        "AO": "/Game/Arena/Factory/Models/ArchivoFragTriturado/T_ArchivoFragTriturado_AO.T_ArchivoFragTriturado_AO"
+      }
+    },
+    {
+      "id": "ArchivoAlmacenamiento",
+      "source": "frag_triturado_almacenamiento.glb",
+      "mesh": "/Game/Arena/Factory/Models/ArchivoAlmacenamiento/SM_ArchivoAlmacenamiento.SM_ArchivoAlmacenamiento",
+      "material": "/Game/Arena/Factory/Models/ArchivoAlmacenamiento/M_ArchivoAlmacenamiento.M_ArchivoAlmacenamiento",
+      "triangles": 18000,
+      "dimensions_cm": [
+        83.6975212097168,
+        100.35728073120117,
+        14.841866254806519
+      ],
+      "min_cm": [
+        -41.635597229003906,
+        -50.182315826416016,
+        -0.49236369132995605
+      ],
+      "textures": {
+        "BaseColor": "/Game/Arena/Factory/Models/ArchivoAlmacenamiento/T_ArchivoAlmacenamiento_BaseColor.T_ArchivoAlmacenamiento_BaseColor",
+        "ORM": "/Game/Arena/Factory/Models/ArchivoAlmacenamiento/T_ArchivoAlmacenamiento_ORM.T_ArchivoAlmacenamiento_ORM",
+        "Normal": "/Game/Arena/Factory/Models/ArchivoAlmacenamiento/T_ArchivoAlmacenamiento_Normal.T_ArchivoAlmacenamiento_Normal",
+        "AO": "/Game/Arena/Factory/Models/ArchivoAlmacenamiento/T_ArchivoAlmacenamiento_AO.T_ArchivoAlmacenamiento_AO"
+      }
+    },
+    {
+      "id": "ArchivoDepositoTriturado",
+      "source": "deposito_triturado.glb",
+      "mesh": "/Game/Arena/Factory/Models/ArchivoDepositoTriturado/SM_ArchivoDepositoTriturado.SM_ArchivoDepositoTriturado",
+      "material": "/Game/Arena/Factory/Models/ArchivoDepositoTriturado/M_ArchivoDepositoTriturado.M_ArchivoDepositoTriturado",
+      "triangles": 14000,
+      "dimensions_cm": [
+        52.29852294921875,
+        100.4248161315918,
+        25.185080483555794
+      ],
+      "min_cm": [
+        -26.20220184326172,
+        -50.1661262512207,
+        -0.07811637222766876
+      ],
+      "textures": {
+        "BaseColor": "/Game/Arena/Factory/Models/ArchivoDepositoTriturado/T_ArchivoDepositoTriturado_BaseColor.T_ArchivoDepositoTriturado_BaseColor",
+        "ORM": "/Game/Arena/Factory/Models/ArchivoDepositoTriturado/T_ArchivoDepositoTriturado_ORM.T_ArchivoDepositoTriturado_ORM",
+        "Normal": "/Game/Arena/Factory/Models/ArchivoDepositoTriturado/T_ArchivoDepositoTriturado_Normal.T_ArchivoDepositoTriturado_Normal",
+        "AO": "/Game/Arena/Factory/Models/ArchivoDepositoTriturado/T_ArchivoDepositoTriturado_AO.T_ArchivoDepositoTriturado_AO"
+      }
+    },
+    {
+      "id": "BeltBasic",
+      "source": "procedural fallback",
+      "mesh": "/Game/Arena/Factory/Models/BeltBasic/SM_BeltBasic.SM_BeltBasic",
+      "material": "/Game/Arena/Factory/Models/BeltBasic/M_BeltBasic.M_BeltBasic",
+      "triangles": 540,
+      "dimensions_cm": [
+        73.00000762939453,
+        100.00000762939453,
+        16.0
+      ],
+      "min_cm": [
+        -36.500003814697266,
+        -50.000003814697266,
+        0.0
+      ],
+      "textures": {}
+    },
+    {
+      "id": "PlateBasic",
+      "source": "procedural fallback",
+      "mesh": "/Game/Arena/Factory/Models/PlateBasic/SM_PlateBasic.SM_PlateBasic",
+      "material": "/Game/Arena/Factory/Models/PlateBasic/M_PlateBasic.M_PlateBasic",
+      "triangles": 108,
+      "dimensions_cm": [
+        55.0000114440918,
+        100.00000762939453,
+        8.0
+      ],
+      "min_cm": [
+        -27.5000057220459,
+        -50.000003814697266,
+        0.0
+      ],
+      "textures": {}
+    },
+    {
+      "id": "FragmentsBasic",
+      "source": "procedural fallback",
+      "mesh": "/Game/Arena/Factory/Models/FragmentsBasic/SM_FragmentsBasic.SM_FragmentsBasic",
+      "material": "/Game/Arena/Factory/Models/FragmentsBasic/M_FragmentsBasic.M_FragmentsBasic",
+      "triangles": 432,
+      "dimensions_cm": [
+        91.47599792480469,
+        100.00000762939453,
+        30.68647003173828
+      ],
+      "min_cm": [
+        -46.82875061035156,
+        -51.09075927734375,
+        0.0
+      ],
+      "textures": {}
+    }
+  ]
+}

@@ -1,0 +1,479 @@
+{
+ "passed": false,
+ "checks": {
+  "dos_cintas": {
+   "passed": true,
+   "found": 2
+  },
+  "apagadas_al_empezar": {
+   "passed": true,
+   "row": {
+    "t": 4.0,
+    "Despacho_Cajas": {
+     "count": 0,
+     "on": false,
+     "full": false,
+     "x": [],
+     "y": []
+    },
+    "Despacho_Cajas2": {
+     "count": 0,
+     "on": false,
+     "full": false,
+     "x": [],
+     "y": []
+    }
+   }
+  },
+  "e_prende_las_cintas": {
+   "passed": true
+  },
+  "sin_aviso_al_prender": {
+   "passed": true,
+   "notice": ""
+  }
+ },
+ "samples": [
+  {
+   "t": 4.0,
+   "Despacho_Cajas": {
+    "count": 0,
+    "on": false,
+    "full": false,
+    "x": [],
+    "y": []
+   },
+   "Despacho_Cajas2": {
+    "count": 0,
+    "on": false,
+    "full": false,
+    "x": [],
+    "y": []
+   }
+  },
+  {
+   "t": 4.0,
+   "Despacho_Cajas": {
+    "count": 1,
+    "on": true,
+    "full": false,
+    "x": [
+     21.2
+    ],
+    "y": [
+     -69.4
+    ]
+   },
+   "Despacho_Cajas2": {
+    "count": 1,
+    "on": true,
+    "full": false,
+    "x": [
+     -66.3
+    ],
+    "y": [
+     -69.4
+    ]
+   }
+  },
+  {
+   "t": 6.0,
+   "Despacho_Cajas": {
+    "count": 1,
+    "on": true,
+    "full": false,
+    "x": [
+     21.2
+    ],
+    "y": [
+     70.9
+    ]
+   },
+   "Despacho_Cajas2": {
+    "count": 1,
+    "on": true,
+    "full": false,
+    "x": [
+     -66.3
+    ],
+    "y": [
+     70.9
+    ]
+   }
+  },
+  {
+   "t": 8.0,
+   "Despacho_Cajas": {
+    "count": 2,
+    "on": true,
+    "full": false,
+    "x": [
+     21.2,
+     -65.9
+    ],
+    "y": [
+     211.0,
+     35.7
+    ]
+   },
+   "Despacho_Cajas2": {
+    "count": 2,
+    "on": true,
+    "full": false,
+    "x": [
+     -66.3,
+     -66.0
+    ],
+    "y": [
+     211.0,
+     35.7
+    ]
+   }
+  },
+  {
+   "t": 10.0,
+   "Despacho_Cajas": {
+    "count": 3,
+    "on": true,
+    "full": false,
+    "x": [
+     21.2,
+     -65.9,
+     64.6
+    ],
+    "y": [
+     300.0,
+     175.3,
+     0.1
+    ]
+   },
+   "Despacho_Cajas2": {
+    "count": 3,
+    "on": true,
+    "full": false,
+    "x": [
+     -66.3,
+     -66.0,
+     67.1
+    ],
+    "y": [
+     300.0,
+     175.3,
+     0.1
+    ]
+   }
+  },
+  {
+   "t": 12.0,
+   "Despacho_Cajas": {
+    "count": 4,
+    "on": true,
+    "full": false,
+    "x": [
+     21.2,
+     -65.9,
+     64.6,
+     -67.4
+    ],
+    "y": [
+     300.0,
+     300.0,
+     140.4,
+     -35.0
+    ]
+   },
+   "Despacho_Cajas2": {
+    "count": 4,
+    "on": true,
+    "full": false,
+    "x": [
+     -66.3,
+     -66.0,
+     67.1,
+     64.6
+    ],
+    "y": [
+     300.0,
+     256.0,
+     140.4,
+     -35.0
+    ]
+   }
+  },
+  {
+   "t": 14.0,
+   "Despacho_Cajas": {
+    "count": 4,
+    "on": true,
+    "full": false,
+    "x": [
+     21.2,
+     -65.9,
+     64.6,
+     -67.4
+    ],
+    "y": [
+     300.0,
+     300.0,
+     280.2,
+     104.8
+    ]
+   },
+   "Despacho_Cajas2": {
+    "count": 4,
+    "on": true,
+    "full": false,
+    "x": [
+     -66.3,
+     -66.0,
+     67.1,
+     64.6
+    ],
+    "y": [
+     300.0,
+     280.2,
+     256.0,
+     104.8
+    ]
+   }
+  },
+  {
+   "t": 16.0,
+   "Despacho_Cajas": {
+    "count": 5,
+    "on": true,
+    "full": false,
+    "x": [
+     21.2,
+     -65.9,
+     64.6,
+     -67.4,
+     -21.3
+    ],
+    "y": [
+     300.0,
+     300.0,
+     300.0,
+     245.1,
+     69.7
+    ]
+   },
+   "Despacho_Cajas2": {
+    "count": 5,
+    "on": true,
+    "full": false,
+    "x": [
+     -66.3,
+     -66.0,
+     67.1,
+     64.6,
+     22.9
+    ],
+    "y": [
+     300.0,
+     300.0,
+     256.0,
+     245.1,
+     69.7
+    ]
+   }
+  },
+  {
+   "t": 18.0,
+   "Despacho_Cajas": {
+    "count": 6,
+    "on": true,
+    "full": false,
+    "x": [
+     21.2,
+     -65.9,
+     64.6,
+     -67.4,
+     -21.3,
+     64.8
+    ],
+    "y": [
+     300.0,
+     300.0,
+     300.0,
+     256.0,
+     209.4,
+     33.9
+    ]
+   },
+   "Despacho_Cajas2": {
+    "count": 6,
+    "on": true,
+    "full": false,
+    "x": [
+     -66.3,
+     -66.0,
+     67.1,
+     64.6,
+     22.9,
+     -67.3
+    ],
+    "y": [
+     300.0,
+     300.0,
+     256.0,
+     256.0,
+     209.4,
+     33.9
+    ]
+   }
+  },
+  {
+   "t": 20.0,
+   "Despacho_Cajas": {
+    "count": 7,
+    "on": true,
+    "full": false,
+    "x": [
+     21.2,
+     -65.9,
+     64.6,
+     -67.4,
+     -21.4,
+     64.8,
+     67.4
+    ],
+    "y": [
+     300.0,
+     300.0,
+     300.0,
+     300.0,
+     256.0,
+     174.3,
+     -0.9
+    ]
+   },
+   "Despacho_Cajas2": {
+    "count": 7,
+    "on": true,
+    "full": false,
+    "x": [
+     -66.3,
+     -66.0,
+     67.1,
+     64.6,
+     22.9,
+     -67.3,
+     -65.0
+    ],
+    "y": [
+     300.0,
+     300.0,
+     300.0,
+     256.0,
+     256.0,
+     174.3,
+     -0.9
+    ]
+   }
+  },
+  {
+   "t": 22.0,
+   "Despacho_Cajas": {
+    "count": 8,
+    "on": true,
+    "full": false,
+    "x": [
+     21.2,
+     -65.9,
+     64.6,
+     -67.4,
+     -21.3,
+     64.8,
+     67.4,
+     -65.3
+    ],
+    "y": [
+     300.0,
+     300.0,
+     300.0,
+     300.0,
+     256.0,
+     256.0,
+     139.0,
+     -36.1
+    ]
+   },
+   "Despacho_Cajas2": {
+    "count": 7,
+    "on": true,
+    "full": false,
+    "x": [
+     -66.3,
+     -66.0,
+     -22.8,
+     64.6,
+     22.9,
+     -67.3,
+     -65.0
+    ],
+    "y": [
+     300.0,
+     300.0,
+     300.0,
+     256.0,
+     212.0,
+     139.0,
+     -36.1
+    ]
+   }
+  },
+  {
+   "t": 24.0,
+   "Despacho_Cajas": {
+    "count": 8,
+    "on": true,
+    "full": false,
+    "x": [
+     21.2,
+     -65.9,
+     64.6,
+     -67.4,
+     -21.3,
+     64.8,
+     67.4,
+     -65.3
+    ],
+    "y": [
+     300.0,
+     300.0,
+     300.0,
+     300.0,
+     256.0,
+     256.0,
+     212.0,
+     103.8
+    ]
+   },
+   "Despacho_Cajas2": {
+    "count": 7,
+    "on": true,
+    "full": false,
+    "x": [
+     -66.3,
+     -66.0,
+     -22.8,
+     64.6,
+     22.9,
+     -67.3,
+     -65.0
+    ],
+    "y": [
+     300.0,
+     300.0,
+     300.0,
+     256.0,
+     212.0,
+     168.0,
+     103.8
+    ]
+   }
+  }
+ ],
+ "error": "Traceback (most recent call last):\n  File \"C:/Users/Usuario/Desktop/unreal Projects/ArenaProject/Scripts/playtest_dispatch_belts.py\", line 109, in step\n    if all(b.full for b in state[\"belts\"]) or age > 40:\n       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:/Users/Usuario/Desktop/unreal Projects/ArenaProject/Scripts/playtest_dispatch_belts.py\", line 109, in <genexpr>\n    if all(b.full for b in state[\"belts\"]) or age > 40:\n           ^^^^^^\nException: FactoryDispatchBelt: Internal Error - ObjectInstance is null!\n"
+}

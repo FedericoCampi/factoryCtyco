@@ -1,0 +1,470 @@
+{
+  "source": "C:\\Users\\Usuario\\Desktop\\3D assets\\GLBs\\robotAutomation",
+  "originals_modified": false,
+  "assets": [
+    {
+      "file": "trituradora-optimizada-complete.glb",
+      "bytes": 64788256,
+      "triangles": 695971,
+      "mesh_objects": 1,
+      "materials": 1,
+      "images": [
+        {
+          "name": null,
+          "size": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": null,
+          "size": [
+            2048,
+            2048
+          ]
+        },
+        {
+          "name": null,
+          "size": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": null,
+          "size": [
+            4096,
+            4096
+          ]
+        }
+      ],
+      "skins": 0,
+      "animations": 0,
+      "bounds_blender": {
+        "min": [
+          -0.28522685170173645,
+          -0.5,
+          0.0
+        ],
+        "max": [
+          0.28522685170173645,
+          0.5,
+          0.8747993111610413
+        ]
+      },
+      "dimensions_blender": [
+        0.5704537034034729,
+        1.0,
+        0.8747993111610413
+      ],
+      "preview": "trituradora-optimizada-complete.png",
+      "role": "Trituradora"
+    },
+    {
+      "file": "fundicion.glb",
+      "bytes": 50070376,
+      "triangles": 697691,
+      "mesh_objects": 1,
+      "materials": 1,
+      "images": [
+        {
+          "name": null,
+          "size": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": null,
+          "size": [
+            2048,
+            2048
+          ]
+        },
+        {
+          "name": null,
+          "size": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": null,
+          "size": [
+            4096,
+            4096
+          ]
+        }
+      ],
+      "skins": 0,
+      "animations": 0,
+      "bounds_blender": {
+        "min": [
+          -0.5,
+          -0.3555012047290802,
+          0.0
+        ],
+        "max": [
+          0.5,
+          0.3555012047290802,
+          0.8089538812637329
+        ]
+      },
+      "dimensions_blender": [
+        1.0,
+        0.7110024094581604,
+        0.8089538812637329
+      ],
+      "preview": "fundicion.png",
+      "role": "Fundición"
+    },
+    {
+      "file": "deposito.glb",
+      "bytes": 45543544,
+      "triangles": 698474,
+      "mesh_objects": 1,
+      "materials": 1,
+      "images": [
+        {
+          "name": null,
+          "size": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": null,
+          "size": [
+            2048,
+            2048
+          ]
+        },
+        {
+          "name": null,
+          "size": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": null,
+          "size": [
+            4096,
+            4096
+          ]
+        }
+      ],
+      "skins": 0,
+      "animations": 0,
+      "bounds_blender": {
+        "min": [
+          -0.386866956949234,
+          -0.5,
+          0.0
+        ],
+        "max": [
+          0.386866956949234,
+          0.5,
+          0.7923375964164734
+        ]
+      },
+      "dimensions_blender": [
+        0.773733913898468,
+        1.0,
+        0.7923375964164734
+      ],
+      "preview": "deposito.png",
+      "role": "Depósito general"
+    },
+    {
+      "file": "cinta_recta.glb",
+      "bytes": 61096828,
+      "triangles": 687331,
+      "mesh_objects": 1,
+      "materials": 1,
+      "images": [
+        {
+          "name": null,
+          "size": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": null,
+          "size": [
+            2048,
+            2048
+          ]
+        },
+        {
+          "name": null,
+          "size": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": null,
+          "size": [
+            4096,
+            4096
+          ]
+        }
+      ],
+      "skins": 0,
+      "animations": 0,
+      "bounds_blender": {
+        "min": [
+          -0.5,
+          -0.4840303659439087,
+          0.0
+        ],
+        "max": [
+          0.5,
+          0.4840303659439087,
+          0.5786633491516113
+        ]
+      },
+      "dimensions_blender": [
+        1.0,
+        0.9680607318878174,
+        0.5786633491516113
+      ],
+      "preview": "cinta_recta.png",
+      "role": "Cinta transportadora recta"
+    },
+    {
+      "file": "frag_metalicos.glb",
+      "bytes": 64796180,
+      "triangles": 693367,
+      "mesh_objects": 1,
+      "materials": 1,
+      "images": [
+        {
+          "name": null,
+          "size": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": null,
+          "size": [
+            2048,
+            2048
+          ]
+        },
+        {
+          "name": null,
+          "size": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": null,
+          "size": [
+            4096,
+            4096
+          ]
+        }
+      ],
+      "skins": 0,
+      "animations": 0,
+      "bounds_blender": {
+        "min": [
+          -0.5,
+          -0.4671742916107178,
+          0.0
+        ],
+        "max": [
+          0.5,
+          0.4671742916107178,
+          0.6454108357429504
+        ]
+      },
+      "dimensions_blender": [
+        1.0,
+        0.9343485832214355,
+        0.6454108357429504
+      ],
+      "preview": "frag_metalicos.png",
+      "role": "Chatarra recogible sin procesar"
+    },
+    {
+      "file": "frag_triturado.glb",
+      "bytes": 42644992,
+      "triangles": 698543,
+      "mesh_objects": 1,
+      "materials": 1,
+      "images": [
+        {
+          "name": null,
+          "size": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": null,
+          "size": [
+            2048,
+            2048
+          ]
+        },
+        {
+          "name": null,
+          "size": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": null,
+          "size": [
+            4096,
+            4096
+          ]
+        }
+      ],
+      "skins": 0,
+      "animations": 0,
+      "bounds_blender": {
+        "min": [
+          -0.2689177989959717,
+          -0.5,
+          0.0
+        ],
+        "max": [
+          0.2689177989959717,
+          0.5,
+          0.7747717499732971
+        ]
+      },
+      "dimensions_blender": [
+        0.5378355979919434,
+        1.0,
+        0.7747717499732971
+      ],
+      "preview": "frag_triturado.png",
+      "role": "Material triturado"
+    },
+    {
+      "file": "frag_triturado_almacenamiento.glb",
+      "bytes": 39146612,
+      "triangles": 699798,
+      "mesh_objects": 1,
+      "materials": 1,
+      "images": [
+        {
+          "name": null,
+          "size": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": null,
+          "size": [
+            2048,
+            2048
+          ]
+        },
+        {
+          "name": null,
+          "size": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": null,
+          "size": [
+            4096,
+            4096
+          ]
+        }
+      ],
+      "skins": 0,
+      "animations": 0,
+      "bounds_blender": {
+        "min": [
+          -0.4116150140762329,
+          -0.5,
+          0.0
+        ],
+        "max": [
+          0.4116150140762329,
+          0.5,
+          0.1437729448080063
+        ]
+      },
+      "dimensions_blender": [
+        0.8232300281524658,
+        1.0,
+        0.1437729448080063
+      ],
+      "preview": "frag_triturado_almacenamiento.png",
+      "role": "Material triturado almacenado temporalmente"
+    },
+    {
+      "file": "deposito_triturado.glb",
+      "bytes": 36369760,
+      "triangles": 698231,
+      "mesh_objects": 1,
+      "materials": 1,
+      "images": [
+        {
+          "name": null,
+          "size": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": null,
+          "size": [
+            2048,
+            2048
+          ]
+        },
+        {
+          "name": null,
+          "size": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "name": null,
+          "size": [
+            4096,
+            4096
+          ]
+        }
+      ],
+      "skins": 0,
+      "animations": 0,
+      "bounds_blender": {
+        "min": [
+          -0.2604399025440216,
+          -0.5,
+          0.0
+        ],
+        "max": [
+          0.2604399025440216,
+          0.5,
+          0.25024956464767456
+        ]
+      },
+      "dimensions_blender": [
+        0.5208798050880432,
+        1.0,
+        0.25024956464767456
+      ],
+      "preview": "deposito_triturado.png",
+      "role": "Depósito para guardar y almacenar material triturado"
+    }
+  ]
+}

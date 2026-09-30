@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "component": "ArenaCameraControls_GEN_VARIABLE",
+  "controls": {
+    "zoom": "Mouse wheel",
+    "pan": "Middle mouse drag",
+    "reset": "Home",
+    "move": "WASD",
+    "jump": "Space"
+  },
+  "zoom_cm": [
+    1100,
+    3800
+  ],
+  "maximum_pan_cm": 1250
+}

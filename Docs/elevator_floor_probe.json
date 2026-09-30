@@ -1,0 +1,125 @@
+{
+ "passed": true,
+ "Ascensor_Estacionamiento": {
+  "loc": [
+   -2903.0,
+   -1410.0,
+   135.0000023841858
+  ],
+  "yaw": 0.0,
+  "comps": {
+   "Platform": -5.0,
+   "GlowRing": -8.0,
+   "Post0": 150.0,
+   "Post1": 150.0,
+   "Post2": 150.0,
+   "Post3": 150.0,
+   "Crown": -57.0
+  },
+  "ground_rel_z": [
+   [
+    0,
+    0,
+    -2.0,
+    "Parking_Estacionamiento"
+   ],
+   [
+    50,
+    50,
+    0.0,
+    "Parking_Estacionamiento"
+   ],
+   [
+    -50,
+    -50,
+    0.0,
+    "Parking_Estacionamiento"
+   ],
+   [
+    170,
+    0,
+    -2.0,
+    "Parking_Estacionamiento"
+   ],
+   [
+    0,
+    170,
+    -2.0,
+    "Parking_Estacionamiento"
+   ],
+   [
+    -170,
+    0,
+    -2.0,
+    "Parking_Estacionamiento"
+   ],
+   [
+    0,
+    -170,
+    -2.0,
+    "Parking_Estacionamiento"
+   ]
+  ]
+ },
+ "Ascensor_Fabrica": {
+  "loc": [
+   820.0,
+   -370.0,
+   -7.450580596923828e-07
+  ],
+  "yaw": 0.0,
+  "comps": {
+   "Platform": -5.0,
+   "GlowRing": -8.0,
+   "Post0": 150.0,
+   "Post1": 150.0,
+   "Post2": 150.0,
+   "Post3": 150.0,
+   "Crown": -57.0
+  },
+  "ground_rel_z": [
+   [
+    0,
+    0,
+    0.0,
+    "SceneRobot_Arena"
+   ],
+   [
+    50,
+    50,
+    0.0,
+    "SceneRobot_Arena"
+   ],
+   [
+    -50,
+    -50,
+    0.0,
+    "SceneRobot_Arena"
+   ],
+   [
+    170,
+    0,
+    0.0,
+    "SceneRobot_Arena"
+   ],
+   [
+    0,
+    170,
+    0.0,
+    "SceneRobot_Arena"
+   ],
+   [
+    -170,
+    0,
+    0.0,
+    "SceneRobot_Arena"
+   ],
+   [
+    0,
+    -170,
+    0.0,
+    "SceneRobot_Arena"
+   ]
+  ]
+ }
+}

@@ -1,0 +1,10 @@
+{
+  "Crusher": "Trituradora",
+  "Smelter": "Fundicion",
+  "Storage": "Deposito",
+  "Scrap": "Chatarra",
+  "Fragments": "FragmentsBasic",
+  "Belt": "BeltBasic",
+  "Plate": "PlateBasic",
+  "note": "Temporary procedural pieces for the three ambiguous file roles; update after identification."
+}

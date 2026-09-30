@@ -1,0 +1,374 @@
+{
+  "passed": true,
+  "checks": {
+    "empty_world_camera_and_hud": {
+      "passed": true,
+      "state": {
+        "history": [],
+        "system_levels": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "profession": "<GrowProfession.APPRENTICE: 0>",
+        "creature_level": 0,
+        "complete": false,
+        "successful": false,
+        "creatures": [
+          {
+            "profession": "<GrowProfession.APPRENTICE: 0>",
+            "level": 0,
+            "species": "Robot"
+          },
+          {
+            "profession": "<GrowProfession.APPRENTICE: 0>",
+            "level": 0,
+            "species": "Robot"
+          },
+          {
+            "profession": "<GrowProfession.APPRENTICE: 0>",
+            "level": 0,
+            "species": "Robot"
+          }
+        ]
+      }
+    },
+    "hud_mouse_selection_and_keyboard_undo_restart": {
+      "passed": true,
+      "mouse_choices": 3
+    },
+    "keyboard_choice_transition_lock_and_duplicate_rejection": {
+      "passed": true
+    },
+    "undo_awakening_removes_role_and_hides_robots": {
+      "passed": true
+    },
+    "route_builder": {
+      "passed": true,
+      "profession": "<GrowProfession.BUILDER: 1>",
+      "creature_level": 3,
+      "system_levels": [
+        3,
+        3,
+        2,
+        3,
+        1,
+        3
+      ],
+      "visible_pieces": 101
+    },
+    "live_creatures_animate": {
+      "passed": true,
+      "actor_motion_cm": [
+        6.2059611481782,
+        181.36387162954352,
+        291.4597977682271
+      ],
+      "skeletal_pose_range_cm": [
+        31.365478620102316,
+        53.93625710499293,
+        53.935978843013395
+      ],
+      "activities": [
+        "Construyendo",
+        "Construyendo",
+        "Construyendo"
+      ]
+    },
+    "undo_and_replay_are_deterministic": {
+      "passed": true
+    },
+    "route_caretaker": {
+      "passed": true,
+      "profession": "<GrowProfession.CARETAKER: 2>",
+      "creature_level": 3,
+      "system_levels": [
+        3,
+        3,
+        1,
+        3,
+        2,
+        3
+      ],
+      "visible_pieces": 99
+    },
+    "route_courier": {
+      "passed": true,
+      "profession": "<GrowProfession.COURIER: 3>",
+      "creature_level": 3,
+      "system_levels": [
+        3,
+        2,
+        3,
+        3,
+        1,
+        3
+      ],
+      "visible_pieces": 114
+    },
+    "route_early_awakening": {
+      "passed": true,
+      "profession": "<GrowProfession.APPRENTICE: 0>",
+      "creature_level": 1,
+      "system_levels": [
+        3,
+        3,
+        2,
+        3,
+        1,
+        1
+      ],
+      "visible_pieces": 95
+    },
+    "same_six_choices_different_order_changes_profession_and_levels": {
+      "passed": true
+    },
+    "reset_restores_empty_world": {
+      "passed": true
+    },
+    "screenshots_written": {
+      "passed": true,
+      "count": 7
+    }
+  },
+  "routes": {
+    "builder": {
+      "history": [
+        "<GrowDecision.ENERGY: 3>",
+        "<GrowDecision.RECYCLING: 0>",
+        "<GrowDecision.AWAKEN: 5>",
+        "<GrowDecision.WATER: 1>",
+        "<GrowDecision.LOGISTICS: 2>",
+        "<GrowDecision.HABITAT: 4>"
+      ],
+      "system_levels": [
+        3,
+        3,
+        2,
+        3,
+        1,
+        3
+      ],
+      "profession": "<GrowProfession.BUILDER: 1>",
+      "creature_level": 3,
+      "complete": true,
+      "successful": true,
+      "creatures": [
+        {
+          "profession": "<GrowProfession.BUILDER: 1>",
+          "level": 3,
+          "species": "Robot"
+        },
+        {
+          "profession": "<GrowProfession.BUILDER: 1>",
+          "level": 3,
+          "species": "Robot"
+        },
+        {
+          "profession": "<GrowProfession.BUILDER: 1>",
+          "level": 3,
+          "species": "Robot"
+        }
+      ]
+    },
+    "caretaker": {
+      "history": [
+        "<GrowDecision.ENERGY: 3>",
+        "<GrowDecision.WATER: 1>",
+        "<GrowDecision.AWAKEN: 5>",
+        "<GrowDecision.RECYCLING: 0>",
+        "<GrowDecision.HABITAT: 4>",
+        "<GrowDecision.LOGISTICS: 2>"
+      ],
+      "system_levels": [
+        3,
+        3,
+        1,
+        3,
+        2,
+        3
+      ],
+      "profession": "<GrowProfession.CARETAKER: 2>",
+      "creature_level": 3,
+      "complete": true,
+      "successful": true,
+      "creatures": [
+        {
+          "profession": "<GrowProfession.CARETAKER: 2>",
+          "level": 3,
+          "species": "Robot"
+        },
+        {
+          "profession": "<GrowProfession.CARETAKER: 2>",
+          "level": 3,
+          "species": "Robot"
+        },
+        {
+          "profession": "<GrowProfession.CARETAKER: 2>",
+          "level": 3,
+          "species": "Robot"
+        }
+      ]
+    },
+    "courier": {
+      "history": [
+        "<GrowDecision.ENERGY: 3>",
+        "<GrowDecision.LOGISTICS: 2>",
+        "<GrowDecision.AWAKEN: 5>",
+        "<GrowDecision.RECYCLING: 0>",
+        "<GrowDecision.WATER: 1>",
+        "<GrowDecision.HABITAT: 4>"
+      ],
+      "system_levels": [
+        3,
+        2,
+        3,
+        3,
+        1,
+        3
+      ],
+      "profession": "<GrowProfession.COURIER: 3>",
+      "creature_level": 3,
+      "complete": true,
+      "successful": true,
+      "creatures": [
+        {
+          "profession": "<GrowProfession.COURIER: 3>",
+          "level": 3,
+          "species": "Robot"
+        },
+        {
+          "profession": "<GrowProfession.COURIER: 3>",
+          "level": 3,
+          "species": "Robot"
+        },
+        {
+          "profession": "<GrowProfession.COURIER: 3>",
+          "level": 3,
+          "species": "Robot"
+        }
+      ]
+    },
+    "early_awakening": {
+      "history": [
+        "<GrowDecision.AWAKEN: 5>",
+        "<GrowDecision.ENERGY: 3>",
+        "<GrowDecision.RECYCLING: 0>",
+        "<GrowDecision.WATER: 1>",
+        "<GrowDecision.LOGISTICS: 2>",
+        "<GrowDecision.HABITAT: 4>"
+      ],
+      "system_levels": [
+        3,
+        3,
+        2,
+        3,
+        1,
+        1
+      ],
+      "profession": "<GrowProfession.APPRENTICE: 0>",
+      "creature_level": 1,
+      "complete": true,
+      "successful": false,
+      "creatures": [
+        {
+          "profession": "<GrowProfession.APPRENTICE: 0>",
+          "level": 1,
+          "species": "Robot"
+        },
+        {
+          "profession": "<GrowProfession.APPRENTICE: 0>",
+          "level": 1,
+          "species": "Robot"
+        },
+        {
+          "profession": "<GrowProfession.APPRENTICE: 0>",
+          "level": 1,
+          "species": "Robot"
+        }
+      ]
+    }
+  },
+  "screenshots": [
+    "C:\\Users\\Usuario\\Desktop\\unreal Projects\\ArenaProject\\Saved\\GrowEvolutionWork\\Playtest-20260919-235145-398426Z\\01_initial.png",
+    "C:\\Users\\Usuario\\Desktop\\unreal Projects\\ArenaProject\\Saved\\GrowEvolutionWork\\Playtest-20260919-235145-398426Z\\02_builder_level3.png",
+    "C:\\Users\\Usuario\\Desktop\\unreal Projects\\ArenaProject\\Saved\\GrowEvolutionWork\\Playtest-20260919-235145-398426Z\\02_builder_level3_1280x720.png",
+    "C:\\Users\\Usuario\\Desktop\\unreal Projects\\ArenaProject\\Saved\\GrowEvolutionWork\\Playtest-20260919-235145-398426Z\\03_caretaker_level3.png",
+    "C:\\Users\\Usuario\\Desktop\\unreal Projects\\ArenaProject\\Saved\\GrowEvolutionWork\\Playtest-20260919-235145-398426Z\\04_courier_level3.png",
+    "C:\\Users\\Usuario\\Desktop\\unreal Projects\\ArenaProject\\Saved\\GrowEvolutionWork\\Playtest-20260919-235145-398426Z\\05_early_awakening_level1.png",
+    "C:\\Users\\Usuario\\Desktop\\unreal Projects\\ArenaProject\\Saved\\GrowEvolutionWork\\Playtest-20260919-235145-398426Z\\06_reset.png"
+  ],
+  "scope": "Rendered L_GrowRobots PIE; authored outcome examples, public decision/undo/reset APIs, actual keyboard input, live creature animation and screenshots.",
+  "screenshot_resolutions": {
+    "01_initial": [
+      1440,
+      900
+    ],
+    "02_builder_level3": [
+      1440,
+      900
+    ],
+    "02_builder_level3_1280x720": [
+      1280,
+      720
+    ],
+    "03_caretaker_level3": [
+      1440,
+      900
+    ],
+    "04_courier_level3": [
+      1440,
+      900
+    ],
+    "05_early_awakening_level1": [
+      1440,
+      900
+    ],
+    "06_reset": [
+      1440,
+      900
+    ]
+  },
+  "mouse_clicks": [
+    {
+      "card": 1,
+      "viewport": [
+        955,
+        502
+      ],
+      "position": [
+        244,
+        433
+      ],
+      "decision": "<GrowDecision.WATER: 1>"
+    },
+    {
+      "card": 0,
+      "viewport": [
+        955,
+        502
+      ],
+      "position": [
+        88,
+        433
+      ],
+      "decision": "<GrowDecision.RECYCLING: 0>"
+    },
+    {
+      "card": 3,
+      "viewport": [
+        955,
+        502
+      ],
+      "position": [
+        555,
+        433
+      ],
+      "decision": "<GrowDecision.ENERGY: 3>"
+    }
+  ],
+  "elapsed_seconds": 55.5
+}

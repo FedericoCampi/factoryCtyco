@@ -1,0 +1,36 @@
+{
+ "passed": true,
+ "checks": {
+  "plataforma": {
+   "lift_cm": 50.0,
+   "cintas": [
+    [
+     "Cinta_Fabrica_1",
+     4.0,
+     54.0,
+     "SM_FactoryBeltPlatform",
+     1.0
+    ],
+    [
+     "Cinta_Fabrica_2",
+     4.0,
+     54.0,
+     "SM_FactoryBeltPlatform",
+     1.0
+    ],
+    [
+     "Cinta_Fabrica_3",
+     4.0,
+     54.0,
+     "SM_FactoryBeltPlatform",
+     1.0
+    ]
+   ]
+  },
+  "material": {
+   "carga_z": 87.0,
+   "llego_a_trituradora": true
+  },
+  "captura": "C:\\Users\\Usuario\\Desktop\\unreal Projects\\ArenaProject\\Saved\\Screenshots\\belt_platform.png"
+ }
+}

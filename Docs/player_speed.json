@@ -1,0 +1,12 @@
+{
+ "passed": true,
+ "before": {
+  "walk_speed": 140.0,
+  "fast_walk_speed": 268.0,
+  "authored_walk_speed": 268.0
+ },
+ "after": {
+  "walk_speed": 240.0,
+  "fast_walk_speed": 368.0
+ }
+}

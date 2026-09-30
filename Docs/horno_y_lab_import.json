@@ -1,0 +1,46 @@
+{
+ "passed": true,
+ "dirty_before": [],
+ "horno": {
+  "size_cm": [
+   196,
+   161,
+   200
+  ],
+  "collisions": 1,
+  "triangles": 152177,
+  "materials": [
+   "Material_0"
+  ],
+  "location": [
+   0,
+   -500,
+   0
+  ]
+ },
+ "lab": {
+  "size_cm": [
+   2056,
+   1856,
+   516
+  ],
+  "triangles": 143278,
+  "materials": 26,
+  "collision": "<CollisionTraceFlag.CTF_USE_COMPLEX_AS_SIMPLE: 3>",
+  "location": [
+   3800,
+   0,
+   0
+  ]
+ },
+ "floor_probe": {
+  "lab_centro": [
+   -0.0,
+   "Lab1_Escena"
+  ],
+  "lab_borde": [
+   -0.0,
+   "Lab1_Escena"
+  ]
+ }
+}

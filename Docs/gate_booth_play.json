@@ -1,0 +1,44 @@
+{
+ "passed": true,
+ "checks": {
+  "hay_cabina_y_camion": {
+   "passed": true,
+   "gates": 1,
+   "trucks": 1
+  },
+  "e_afuera_no_abre": {
+   "passed": true
+  },
+  "frena_antes_de_la_barrera": {
+   "passed": true,
+   "gap_cm": 74.2
+  },
+  "barrera_baja": {
+   "passed": true
+  },
+  "adentro_de_la_cabina": {
+   "passed": true
+  },
+  "techo_oculto": {
+   "passed": true
+  },
+  "e_levanta": {
+   "passed": true
+  },
+  "barrera_arriba": {
+   "passed": true,
+   "openness": 1.0
+  },
+  "el_camion_pasa": {
+   "passed": true,
+   "moved_cm": 570
+  },
+  "baja_sola_despues": {
+   "passed": true,
+   "gap_cm": -565
+  },
+  "barrera_abajo": {
+   "passed": true
+  }
+ }
+}

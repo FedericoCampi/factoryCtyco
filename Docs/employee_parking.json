@@ -1,0 +1,66 @@
+{
+ "passed": true,
+ "sizes_m": {
+  "SM_EmpleadosPiso": [
+   62.0,
+   48.0
+  ],
+  "SM_EmpleadosDecor": [
+   54.1,
+   39.6
+  ],
+  "SM_AutoEmpleado_Rojo": [
+   4.3,
+   1.9
+  ],
+  "SM_AutoEmpleado_Azul": [
+   4.3,
+   1.9
+  ],
+  "SM_AutoEmpleado_Blanco": [
+   4.3,
+   1.9
+  ],
+  "SM_AutoEmpleado_Gris": [
+   4.3,
+   1.9
+  ]
+ },
+ "elevator": {
+  "world": [
+   -2500,
+   9000,
+   414
+  ],
+  "yaw": 180,
+  "source_z": 145
+ },
+ "arrival_stall_world": [
+  -3870,
+  8150
+ ],
+ "Nav_Empleados": {
+  "centre": [
+   -3800,
+   9000,
+   550
+  ],
+  "size_m": [
+   38.0,
+   30.0,
+   6.0
+  ]
+ },
+ "Nav_Estacionamiento": {
+  "centre": [
+   -3803,
+   -390,
+   210
+  ],
+  "size_m": [
+   26.0,
+   32.0,
+   8.0
+  ]
+ }
+}

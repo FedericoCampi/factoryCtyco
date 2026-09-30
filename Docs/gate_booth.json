@@ -1,0 +1,16 @@
+{
+ "passed": true,
+ "created": true,
+ "collisions": {
+  "SM_Cabina": 6,
+  "SM_CabinaTecho": 0,
+  "SM_BarreraPoste": 1,
+  "SM_BarreraBrazo": 0
+ },
+ "sound": true,
+ "location": [
+  -2903,
+  -140,
+  10
+ ]
+}

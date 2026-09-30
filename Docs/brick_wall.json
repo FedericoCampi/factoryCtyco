@@ -1,0 +1,9 @@
+{
+ "passed": true,
+ "mesh": "/Game/Arena/Environments/ParedLadrillo/SM_ParedLadrillo.SM_ParedLadrillo",
+ "material": "/Game/Arena/Environments/ParedLadrillo/M_LadrilloMundo.M_LadrilloMundo",
+ "collisions": 1,
+ "actors": [
+  "Pared_Ladrillo"
+ ]
+}

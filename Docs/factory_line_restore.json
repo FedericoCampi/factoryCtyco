@@ -1,0 +1,39 @@
+{
+ "passed": true,
+ "buildings": [
+  [
+   "Factory_0_Storage",
+   -600.0,
+   0
+  ],
+  [
+   "Factory_2_Crusher",
+   -200.0,
+   0
+  ],
+  [
+   "Factory_4_Smelter",
+   200.0,
+   0
+  ],
+  [
+   "Factory_6_Storage",
+   600.0,
+   0
+  ]
+ ],
+ "belt_guides": [
+  [
+   -400.0,
+   0
+  ],
+  [
+   0.0,
+   0
+  ],
+  [
+   400.0,
+   0
+  ]
+ ]
+}

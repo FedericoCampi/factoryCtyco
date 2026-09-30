@@ -1,0 +1,78 @@
+{
+  "passed": true,
+  "checks": {
+    "visible_pulse_moves_during_two_second_delay": {
+      "passed": true,
+      "travel_cm": {
+        "GrowLink_1_3_Pulse_0": 146.0113008932937
+      },
+      "countdown_from": 1.9666664600372314,
+      "countdown_to": 1.4333300590515137,
+      "source": "<GrowDecision.WATER: 1>",
+      "target": "<GrowDecision.ENERGY: 3>",
+      "samples": 17
+    },
+    "couriers_collect_carry_and_complete_station_trips": {
+      "passed": true,
+      "completed_trip_increases": [
+        1,
+        1,
+        1
+      ],
+      "delivery_samples": [
+        15,
+        8,
+        16
+      ],
+      "actor_motion_cm": [
+        87.8981432145398,
+        43.33456277847301,
+        94.23148958142205
+      ],
+      "station_pairs": [
+        [
+          [
+            "<GrowDecision.LOGISTICS: 2>",
+            "<GrowDecision.AWAKEN: 5>"
+          ]
+        ],
+        [
+          [
+            "<GrowDecision.LOGISTICS: 2>",
+            "<GrowDecision.AWAKEN: 5>"
+          ]
+        ],
+        [
+          [
+            "<GrowDecision.LOGISTICS: 2>",
+            "<GrowDecision.AWAKEN: 5>"
+          ]
+        ]
+      ],
+      "activities": [
+        [
+          "Colaborando en Robots",
+          "Repartiendo"
+        ],
+        [
+          "Colaborando en Robots",
+          "Repartiendo"
+        ],
+        [
+          "Colaborando en Robots",
+          "Repartiendo"
+        ]
+      ]
+    },
+    "idle_and_walk_animations_are_available": {
+      "passed": true,
+      "creatures": 3
+    }
+  },
+  "screenshots": [
+    "C:\\Users\\Usuario\\Desktop\\unreal Projects\\ArenaProject\\Saved\\GrowEvolutionWork\\Activity-20260920-001544-432166Z\\reaction_pulse_formed_station.png"
+  ],
+  "scope": "PIE delivery work and actual moving reaction meshes.",
+  "screenshot_countdown_at_request": 1.4333300590515137,
+  "elapsed_seconds": 12.3
+}

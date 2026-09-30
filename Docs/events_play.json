@@ -1,0 +1,17 @@
+{
+ "passed": true,
+ "checks": {
+  "sin_eventos_al_empezar": {
+   "passed": true,
+   "eventos": 0
+  },
+  "camion_en_el_porton_es_evento": {
+   "passed": true,
+   "eventos": 1
+  },
+  "cinta_llena_es_evento": {
+   "passed": true,
+   "eventos": 2
+  }
+ }
+}

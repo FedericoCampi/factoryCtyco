@@ -1,0 +1,19 @@
+{
+ "passed": true,
+ "parking": [
+  -3803.0,
+  -410.0,
+  0.0
+ ],
+ "attached_to_parking": [],
+ "elevator_parking": [
+  -2903.0,
+  -1410.0,
+  135.0
+ ],
+ "elevator_factory": [
+  -850.0,
+  90.0,
+  -0.0
+ ]
+}

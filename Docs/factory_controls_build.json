@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "jump_enabled": false,
+  "walk_speed_cm_s": 190,
+  "fast_walk_speed_cm_s": 300,
+  "fast_walk_keys": [
+    "LeftShift",
+    "RightShift"
+  ],
+  "jump_mappings_removed_from": [
+    "IMC_Default"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+ "passed": true,
+ "height_cm": 172,
+ "talk_seconds": 3.0,
+ "idle_seconds": 8.0,
+ "voice_seconds": 0.87,
+ "bottle": [
+  -4792,
+  8376,
+  400
+ ],
+ "actor": {
+  "world": [
+   -4855,
+   8370,
+   400
+  ],
+  "yaw": 0.0
+ }
+}

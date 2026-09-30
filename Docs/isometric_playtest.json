@@ -1,0 +1,41 @@
+{
+  "passed": true,
+  "checks": {
+    "spawn": {
+      "passed": true,
+      "skeleton_bones": 23,
+      "mesh": "/Game/Arena/Characters/Robot1/Rigged/SK_Robot1.SK_Robot1",
+      "animation_instance": "AnimSingleNodeInstance",
+      "position_cm": [
+        0.0,
+        960.0,
+        92.15
+      ]
+    },
+    "walk": {
+      "passed": true,
+      "distance_cm": 364.67,
+      "foot_motion_ranges_cm": [
+        0.04200000000000159,
+        52.08,
+        13.328999999999994
+      ],
+      "sample_count": 65
+    },
+    "fixed_camera": {
+      "passed": true,
+      "pitch": -54.99999999999984,
+      "yaw": -44.999999999999844
+    },
+    "stop": {
+      "passed": true,
+      "speed_cm_s": 0.0
+    },
+    "jump": {
+      "passed": true,
+      "rise_cm": 127.5,
+      "airborne_animation": true
+    }
+  },
+  "scope": "Automated PIE: skeletal pose changes, locomotion, camera, stop, jump and landing. Screenshots reviewed separately."
+}

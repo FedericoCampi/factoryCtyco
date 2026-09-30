@@ -1,0 +1,11 @@
+{
+ "passed": true,
+ "elevators": [
+  "Ascensor_Estacionamiento",
+  "Ascensor_Fabrica"
+ ],
+ "frame_height_cm": 441.2,
+ "frame_collisions": 4,
+ "floor": "/Game/Arena/Environments/Ascensor/SM_AscensorPiso.SM_AscensorPiso",
+ "frame": "/Game/Arena/Environments/Ascensor/SM_AscensorEstructura.SM_AscensorEstructura"
+}

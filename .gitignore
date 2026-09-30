@@ -1,0 +1,28 @@
+# Unreal: todo lo que se regenera
+Binaries/
+Intermediate/
+DerivedDataCache/
+Saved/
+.vs/
+.vscode/
+*.sln
+*.suo
+*.VC.db
+*.opensdf
+*.sdf
+
+# Plugins: se sube el codigo y las DLL para abrir el proyecto sin compilar, no lo intermedio
+Plugins/*/Intermediate/
+Plugins/*/Binaries/**/*.pdb
+
+# Archivos de trabajo de Blender y modelos originales (pesan ~2,4 GB; los originales estan en "3D assets")
+SourceAssets/
+
+# Python
+__pycache__/
+*.pyc
+
+# Sistema
+Thumbs.db
+Desktop.ini
+.DS_Store

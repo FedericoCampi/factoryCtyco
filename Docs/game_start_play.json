@@ -1,0 +1,52 @@
+{
+ "passed": true,
+ "checks": {
+  "bloqueados_ocultos": {
+   "passed": true,
+   "estado": {
+    "Despacho_Machine2": true,
+    "Despacho_Cajas2": true,
+    "Botonera_Cinta2": true,
+    "Camion_Recorrido2": true,
+    "Cinta_Carga4": true
+   }
+  },
+  "despacho1_activo": {
+   "passed": true
+  },
+  "rincon_visible": {
+   "passed": true
+  },
+  "cinta3_no_reparte_a_la_bloqueada": {
+   "passed": true,
+   "salidas": [
+    "Cinta_Carga2"
+   ]
+  },
+  "se_puede_contratar": {
+   "passed": true
+  },
+  "contratado": {
+   "passed": true
+  },
+  "encargado_llega_a_la_cabina": {
+   "passed": true,
+   "segundos": 28.5
+  },
+  "panel_cabina_abierto": {
+   "passed": true
+  },
+  "camion2_no_sale": {
+   "passed": true,
+   "distancia": 0.0
+  },
+  "encargado_levanta_la_barrera": {
+   "passed": true,
+   "levantadas": 1
+  },
+  "desbloqueo_despacho2": {
+   "passed": true,
+   "cambiados": 7
+  }
+ }
+}

@@ -1,0 +1,53 @@
+{
+ "passed": true,
+ "phase": 2,
+ "redirectors": {
+  "fixed": 0,
+  "deleted": 0
+ },
+ "components": [
+  "BP_FactoryRobot.ArenaCameraControls",
+  "BP_Robot1.ArenaCameraControls"
+ ],
+ "resaved": 503,
+ "maps": {
+  "/Game/FactoryCtyco/Maps/L_Recoleccion": {
+   "actors": 14,
+   "relabeled": [
+    "SceneRobot_Arena",
+    "Arena_SoftFill",
+    "Arena_Backdrop"
+   ]
+  },
+  "/Game/FactoryCtyco/Maps/L_FactoryDemo": {
+   "actors": 249,
+   "relabeled": [
+    "SceneRobot_Arena",
+    "Arena_SoftFill",
+    "Arena_Backdrop",
+    "Arena_Backdrop_Oeste",
+    "Arena_Backdrop_Este",
+    "Arena_Backdrop_PozoSur",
+    "Arena_Backdrop_PozoNorte"
+   ]
+  },
+  "/Game/FactoryCtyco/Maps/L_FactoryDemo_Completo": {
+   "actors": 238,
+   "relabeled": [
+    "SceneRobot_Arena",
+    "Arena_SoftFill",
+    "Arena_Backdrop",
+    "Arena_Backdrop_Oeste"
+   ]
+  },
+  "/Game/FactoryCtyco/Maps/L_GrowRobots": {
+   "actors": 8,
+   "relabeled": [
+    "Arena_SoftFill",
+    "Arena_Backdrop"
+   ]
+  }
+ },
+ "problems": [],
+ "left_in_old": []
+}

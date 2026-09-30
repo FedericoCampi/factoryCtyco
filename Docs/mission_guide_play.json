@@ -1,0 +1,97 @@
+{
+ "passed": true,
+ "checks": {
+  "hay_guia": {
+   "passed": true,
+   "cantidad": 1
+  },
+  "intro_tapa_y_frena": {
+   "passed": true,
+   "quieto": true,
+   "flecha": false
+  },
+  "arranca_el_paso_1": {
+   "passed": true,
+   "paso": 0,
+   "quieto": false
+  },
+  "flecha_sobre_la_puerta_del_ascensor": {
+   "passed": true,
+   "flecha": [
+    -3045,
+    8193,
+    1033
+   ],
+   "puerta": [
+    -3045,
+    8193,
+    890
+   ]
+  },
+  "piso_despacho": {
+   "passed": true,
+   "pisos": {
+    "Ascensor_Empleados": "EMPLEADOS",
+    "Ascensor_Estacionamiento": "DESPACHO",
+    "Ascensor_Fabrica": "FÁBRICA"
+   }
+  },
+  "contorno_listo": {
+   "passed": true,
+   "blendables": [
+    "MID_M_ContornoClic_0"
+   ]
+  },
+  "llegar_al_despacho_cumple_el_paso_1": {
+   "passed": true,
+   "segundos": 1.4
+  },
+  "flecha_sobre_la_botonera_del_porton": {
+   "passed": true,
+   "flecha": [
+    -4865,
+    10,
+    278
+   ],
+   "botonera": [
+    -4872,
+    10,
+    135
+   ]
+  },
+  "porton_abierto_cumple_el_paso_2": {
+   "passed": true,
+   "segundos": 3.6
+  },
+  "cinta_encendida_cumple_el_paso_3": {
+   "passed": true
+  },
+  "caja_en_mano_cumple_el_paso_4": {
+   "passed": true
+  },
+  "flecha_sobre_la_cinta_del_camion": {
+   "passed": true,
+   "flecha": [
+    -4121,
+    -664,
+    198
+   ],
+   "cinta": [
+    -4121,
+    -805,
+    10
+   ]
+  },
+  "caja_cargada_cumple_el_paso_5": {
+   "passed": true
+  },
+  "entregas_pagan_60_cada_una": {
+   "passed": true,
+   "antes": 0,
+   "despues": 1200
+  },
+  "20_entregados_terminan_la_guia": {
+   "passed": true
+  }
+ }
+}

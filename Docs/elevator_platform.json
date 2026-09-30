@@ -1,0 +1,19 @@
+{
+ "passed": true,
+ "collisions": {
+  "cabina": 5,
+  "piso": 1
+ },
+ "elevators": [
+  {
+   "label": "Ascensor_Fabrica",
+   "stop": "FÁBRICA",
+   "z": -0.0
+  },
+  {
+   "label": "Ascensor_Estacionamiento",
+   "stop": "ESTACIONAMIENTO",
+   "z": 145.0
+  }
+ ]
+}

@@ -1,0 +1,92 @@
+{
+ "passed": true,
+ "checks": {
+  "tres_pisos": {
+   "passed": true,
+   "pisos": [
+    "Ascensor_Fabrica",
+    "Ascensor_Estacionamiento",
+    "Ascensor_Empleados"
+   ]
+  },
+  "piso3_empleados": {
+   "passed": true
+  },
+  "elige_piso_3": {
+   "passed": true
+  },
+  "llega_al_piso_3": {
+   "passed": true,
+   "z": 398,
+   "segundos": 5.7
+  },
+  "contratado": {
+   "passed": true
+  },
+  "llega_en_auto": {
+   "passed": true
+  },
+  "encargado_en_la_cabina": {
+   "passed": true,
+   "donde": [
+    -2912,
+    408,
+    97
+   ],
+   "segundos": 31.0,
+   "saltos": 0,
+   "trabado_en": [
+    0,
+    0,
+    0
+   ]
+  }
+ },
+ "trip": [
+  {
+   "estado": "DRIVING",
+   "a_los_s": 0.3,
+   "donde": [
+    -6700,
+    9000,
+    490
+   ]
+  },
+  {
+   "estado": "WALKING",
+   "a_los_s": 8.3,
+   "donde": [
+    -3935,
+    8446,
+    487
+   ]
+  },
+  {
+   "estado": "RIDING",
+   "a_los_s": 17.3,
+   "donde": [
+    -2484,
+    8999,
+    501
+   ]
+  },
+  {
+   "estado": "WALKING",
+   "a_los_s": 20.3,
+   "donde": [
+    -2903,
+    -1390,
+    232
+   ]
+  },
+  {
+   "estado": "WORKING",
+   "a_los_s": 31.0,
+   "donde": [
+    -2912,
+    408,
+    97
+   ]
+  }
+ ]
+}

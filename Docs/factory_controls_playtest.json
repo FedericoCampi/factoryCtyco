@@ -1,0 +1,46 @@
+{
+  "passed": true,
+  "checks": {
+    "jump_disabled_in_character": {
+      "passed": true
+    },
+    "walk": {
+      "passed": true,
+      "speed_cm_s": 190.0,
+      "distance_cm": 141.93330635998305
+    },
+    "left_shift_fast_walk": {
+      "passed": true,
+      "speed_cm_s": 300.0,
+      "distance_cm": 209.6327267202346,
+      "foot_motion_cm": [
+        36.43153118457685,
+        36.48589432733297,
+        13.361693991516574
+      ]
+    },
+    "shift_release_restores_walk": {
+      "passed": true
+    },
+    "right_shift_fast_walk": {
+      "passed": true
+    },
+    "either_shift_keeps_fast_walk": {
+      "passed": true
+    },
+    "release_returns_to_idle": {
+      "passed": true
+    },
+    "space_and_direct_jump_do_not_jump": {
+      "passed": true,
+      "maximum_rise_cm": 0.0
+    },
+    "camera_zoom_and_angle_preserved": {
+      "passed": true
+    },
+    "camera_reset": {
+      "passed": true
+    }
+  },
+  "scope": "PIE with simulated input events through PlayerController; physical keyboard not manually tested."
+}

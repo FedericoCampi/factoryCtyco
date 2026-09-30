@@ -1,0 +1,19 @@
+{
+ "passed": true,
+ "mesh": "/Game/Arena/Environments/ExtractorSilicio/SK_ExtractorSilicio.SK_ExtractorSilicio",
+ "animation": "/Game/Arena/Environments/ExtractorSilicio/SK_ExtractorSilicio_Anim.SK_ExtractorSilicio_Anim",
+ "anim_seconds": 7.967,
+ "glow_material": "/Game/Arena/Environments/ExtractorSilicio/M_ExtractorMirilla_Glow.M_ExtractorMirilla_Glow",
+ "physics_asset": "<Object '/Game/Arena/Environments/ExtractorSilicio/SK_ExtractorSilicio_PhysicsAsset.SK_ExtractorSilicio_PhysicsAsset' (0x0000023E41716400) Class 'PhysicsAsset'>",
+ "height_cm": 249.9,
+ "actor": "Extractor_Silicio",
+ "location": [
+  -2303.0,
+  -410.0,
+  -2.9802322387695312e-05
+ ],
+ "materials": [
+  "M_Extractor",
+  "M_Mirilla"
+ ]
+}

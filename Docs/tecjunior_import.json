@@ -1,0 +1,23 @@
+{
+ "passed": true,
+ "mesh": "/Game/Arena/Characters/TecJunior/SK_TecJunior.SK_TecJunior",
+ "height_cm": 170.0,
+ "animations": {
+  "Idle": "/Game/Arena/Characters/TecJunior/A_TecJunior_Idle.A_TecJunior_Idle",
+  "Walk": "/Game/Arena/Characters/TecJunior/A_TecJunior_Walk.A_TecJunior_Walk",
+  "Run": "/Game/Arena/Characters/TecJunior/A_TecJunior_Run.A_TecJunior_Run",
+  "Airborne": "/Game/Arena/Characters/TecJunior/A_TecJunior_Airborne.A_TecJunior_Airborne"
+ },
+ "blendspace": "/Game/Arena/Characters/TecJunior/BS_TecJunior_Locomotion.BS_TecJunior_Locomotion",
+ "pawn": "/Game/Arena/Factory/BP_FactoryRobot",
+ "backup": "/Game/Arena/Factory/BP_FactoryRobot_Robot1Backup",
+ "capsule_cm": {
+  "radius": 35.0,
+  "half_height": 85
+ },
+ "walk_speed_cm_s": 140.0,
+ "run_speed_cm_s": 268.0,
+ "materials": [
+  "/Game/Arena/Characters/TecJunior/Material_0.Material_0"
+ ]
+}

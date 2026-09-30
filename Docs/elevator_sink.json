@@ -1,0 +1,15 @@
+{
+ "passed": true,
+ "elevators": [
+  [
+   "Ascensor_Estacionamiento",
+   -57.0,
+   -200.0
+  ],
+  [
+   "Ascensor_Fabrica",
+   -57.0,
+   -200.0
+  ]
+ ]
+}

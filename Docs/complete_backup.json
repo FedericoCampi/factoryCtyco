@@ -1,0 +1,16 @@
+{
+ "passed": true,
+ "unlocked": [
+  "Despacho_Machine2",
+  "Botonera_Cinta2",
+  "Despacho_Cajas2",
+  "Camion_Recorrido2",
+  "Cinta_Carga4"
+ ],
+ "removed": [
+  "Rincon_Tablones",
+  "Rincon_Volquete",
+  "Rincon_Pallet",
+  "Rincon_Bolsas"
+ ]
+}

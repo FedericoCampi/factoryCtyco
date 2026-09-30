@@ -1,0 +1,12 @@
+{
+ "passed": true,
+ "box": "/Game/Arena/Environments/DispatchBox/SM_CajaDespacho.SM_CajaDespacho",
+ "panel": "/Game/Arena/Environments/DispatchBox/SM_BotoneraDespacho.SM_BotoneraDespacho",
+ "button": "/Game/Arena/Environments/DispatchBox/M_BotonDespacho.M_BotonDespacho",
+ "sign": "/Game/Arena/Environments/DispatchBox/SM_CartelLleno.SM_CartelLleno",
+ "sign_material": "/Game/Arena/Environments/DispatchBox/M_CartelLleno.M_CartelLleno",
+ "belts": {
+  "Despacho_Cajas": "Despacho_Machine",
+  "Despacho_Cajas2": "Despacho_Machine2"
+ }
+}

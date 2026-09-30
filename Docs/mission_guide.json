@@ -1,0 +1,42 @@
+{
+ "guide": "Guia_Mision",
+ "slides": [
+  "La fábrica cerró sus puertas",
+  "Volvemos a abrir",
+  "Sos el gerente"
+ ],
+ "steps": [
+  {
+   "title": "Andá al despacho",
+   "arrow": "Guia_PuertaAscensor",
+   "goal": "<FactoryGuideGoal.REACH: 0>"
+  },
+  {
+   "title": "Abrí el portón de camiones",
+   "arrow": "Porton_Camiones",
+   "goal": "<FactoryGuideGoal.OPEN_GATE: 5>"
+  },
+  {
+   "title": "Encendé la cinta de despacho",
+   "arrow": "Botonera_Cinta1",
+   "goal": "<FactoryGuideGoal.SWITCH_ON_BELT: 1>"
+  },
+  {
+   "title": "Agarrá una caja",
+   "arrow": "Despacho_Cajas",
+   "goal": "<FactoryGuideGoal.CARRY_BOX: 2>"
+  },
+  {
+   "title": "Cargá la caja en la cinta del camión",
+   "arrow": "Cinta_Carga3",
+   "goal": "<FactoryGuideGoal.LOAD_BOX: 3>"
+  },
+  {
+   "title": "Despachá 20 paquetes",
+   "arrow": null,
+   "goal": "<FactoryGuideGoal.DELIVER: 4>"
+  }
+ ],
+ "parking_stop": "DESPACHO",
+ "saved": true
+}

@@ -1,0 +1,188 @@
+{
+  "passed": true,
+  "checks": {
+    "idle_starter_presentations_and_collision": {
+      "passed": true,
+      "buildings": {
+        "Starter_0": {
+          "decorative_primitives": 14,
+          "activity": 0.0,
+          "working": false,
+          "blocked": false
+        },
+        "Starter_2": {
+          "decorative_primitives": 27,
+          "activity": 0.0,
+          "working": false,
+          "blocked": false
+        },
+        "Starter_4": {
+          "decorative_primitives": 24,
+          "activity": 0.0,
+          "working": false,
+          "blocked": false
+        },
+        "Starter_6": {
+          "decorative_primitives": 14,
+          "activity": 0.0,
+          "working": false,
+          "blocked": false
+        }
+      }
+    },
+    "processors_animate_when_working": {
+      "passed": true,
+      "buildings": {
+        "Starter_0": {
+          "decorative_primitives": 14,
+          "activity": 0.0,
+          "working": false,
+          "blocked": false
+        },
+        "Starter_2": {
+          "decorative_primitives": 27,
+          "activity": 0.999,
+          "working": true,
+          "blocked": false
+        },
+        "Starter_4": {
+          "decorative_primitives": 24,
+          "activity": 0.999,
+          "working": true,
+          "blocked": false
+        },
+        "Starter_6": {
+          "decorative_primitives": 14,
+          "activity": 0.0,
+          "working": false,
+          "blocked": false
+        }
+      }
+    },
+    "decorative_animation_continues_without_mutating_paused_simulation": {
+      "passed": true
+    },
+    "blocked_output_stops_machine": {
+      "passed": true,
+      "activity": 0.0
+    },
+    "new_belts_get_presentations": {
+      "passed": true,
+      "buildings": {
+        "15567C0940C183C61A226A80FB63ED69": {
+          "decorative_primitives": 30,
+          "activity": 0.001,
+          "working": false,
+          "blocked": false
+        },
+        "4EB253BF4A5722E12A56FFB1B4A52D41": {
+          "decorative_primitives": 30,
+          "activity": 0.41,
+          "working": false,
+          "blocked": false
+        },
+        "DF0622E94B4B5A75FD2FA5B802002C3A": {
+          "decorative_primitives": 30,
+          "activity": 0.829,
+          "working": true,
+          "blocked": false
+        },
+        "Starter_0": {
+          "decorative_primitives": 14,
+          "activity": 0.0,
+          "working": false,
+          "blocked": false
+        },
+        "Starter_2": {
+          "decorative_primitives": 27,
+          "activity": 1.0,
+          "working": true,
+          "blocked": false
+        },
+        "Starter_4": {
+          "decorative_primitives": 24,
+          "activity": 1.0,
+          "working": true,
+          "blocked": false
+        },
+        "Starter_6": {
+          "decorative_primitives": 14,
+          "activity": 0.0,
+          "working": false,
+          "blocked": false
+        }
+      },
+      "belt_ids": [
+        "4EB253BF4A5722E12A56FFB1B4A52D41",
+        "DF0622E94B4B5A75FD2FA5B802002C3A",
+        "15567C0940C183C61A226A80FB63ED69"
+      ]
+    },
+    "production_and_conservation": {
+      "passed": true,
+      "mass": 76,
+      "plates_produced": 3
+    },
+    "save_load_recreates_all_presentations": {
+      "passed": true,
+      "buildings": {
+        "15567C0940C183C61A226A80FB63ED69": {
+          "decorative_primitives": 30,
+          "activity": 0.27,
+          "working": true,
+          "blocked": false
+        },
+        "4EB253BF4A5722E12A56FFB1B4A52D41": {
+          "decorative_primitives": 30,
+          "activity": 0.244,
+          "working": false,
+          "blocked": true
+        },
+        "DF0622E94B4B5A75FD2FA5B802002C3A": {
+          "decorative_primitives": 30,
+          "activity": 0.102,
+          "working": false,
+          "blocked": false
+        },
+        "Starter_0": {
+          "decorative_primitives": 14,
+          "activity": 0.0,
+          "working": false,
+          "blocked": false
+        },
+        "Starter_2": {
+          "decorative_primitives": 27,
+          "activity": 0.999,
+          "working": true,
+          "blocked": false
+        },
+        "Starter_4": {
+          "decorative_primitives": 24,
+          "activity": 0.999,
+          "working": true,
+          "blocked": false
+        },
+        "Starter_6": {
+          "decorative_primitives": 14,
+          "activity": 0.0,
+          "working": false,
+          "blocked": false
+        }
+      }
+    },
+    "screenshots_written": {
+      "passed": true,
+      "count": 5
+    }
+  },
+  "screenshots": [
+    "C:\\Users\\Usuario\\Desktop\\unreal Projects\\ArenaProject\\Saved\\VisualPolishWork\\Playtest-20260919-200253\\01_idle.png",
+    "C:\\Users\\Usuario\\Desktop\\unreal Projects\\ArenaProject\\Saved\\VisualPolishWork\\Playtest-20260919-200253\\02_processing.png",
+    "C:\\Users\\Usuario\\Desktop\\unreal Projects\\ArenaProject\\Saved\\VisualPolishWork\\Playtest-20260919-200253\\03_blocked.png",
+    "C:\\Users\\Usuario\\Desktop\\unreal Projects\\ArenaProject\\Saved\\VisualPolishWork\\Playtest-20260919-200253\\04_active_line.png",
+    "C:\\Users\\Usuario\\Desktop\\unreal Projects\\ArenaProject\\Saved\\VisualPolishWork\\Playtest-20260919-200253\\05_restored_line.png"
+  ],
+  "save_slot": "ArenaFactoryDemo_VisualSmoke_20260919-200253",
+  "scope": "Rendered PIE visual state, construction, production and save/load smoke. Test stock is injected through inventory APIs.",
+  "elapsed_seconds": 39.6
+}

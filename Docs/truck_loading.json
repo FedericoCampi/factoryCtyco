@@ -1,0 +1,17 @@
+{
+ "passed": true,
+ "truck_mesh": "/Game/Arena/Environments/Camion/SK_Camion.SK_Camion",
+ "belt_created": false,
+ "belt_location": [
+  -3551,
+  -345,
+  10
+ ],
+ "roller": true,
+ "belt_materials": [
+  "M_CintaAcero",
+  "M_CintaNaranja",
+  "M_CintaAmarillo",
+  "M_Rodillo"
+ ]
+}

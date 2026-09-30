@@ -1,0 +1,64 @@
+{
+ "passed": true,
+ "checks": {
+  "arranca_en_el_primer_punto": {
+   "passed": true,
+   "start": [
+    -6802.7,
+    160.0,
+    -55.0
+   ],
+   "first": [
+    -6803.0,
+    160.0,
+    -55.0
+   ]
+  },
+  "sobre_la_linea": {
+   "passed": true,
+   "loc": [
+    -5574.2,
+    160.0,
+    3.3
+   ],
+   "closest": [
+    -5574.2,
+    160.0,
+    3.3
+   ]
+  },
+  "on_line": {
+   "passed": true
+  },
+  "mira_hacia_adelante": {
+   "passed": true,
+   "forward": [
+    1.0,
+    0.0,
+    0.0
+   ],
+   "tangent": [
+    1.0,
+    0.0,
+    0.2
+   ]
+  },
+  "avanza": {
+   "passed": true,
+   "travelled": 1233.49755859375,
+   "expected": 1204
+  },
+  "ruedas_giran_hacia_adelante": {
+   "passed": true,
+   "samples": 1796,
+   "forward": 1796,
+   "backward": 0
+  },
+  "vuelve_a_empezar": {
+   "passed": true,
+   "after_s": 17.6,
+   "trip_s": 17.7
+  }
+ },
+ "length_cm": 5319
+}

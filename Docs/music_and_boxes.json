@@ -1,0 +1,20 @@
+{
+ "passed": true,
+ "carry_blendspace": "/Game/Arena/Characters/TecJunior/BS_TecJunior_Carry.BS_TecJunior_Carry",
+ "carry_animations": {
+  "CarryIdle": "/Game/Arena/Characters/TecJunior/A_TecJunior_CarryIdle.A_TecJunior_CarryIdle",
+  "CarryWalk": "/Game/Arena/Characters/TecJunior/A_TecJunior_CarryWalk.A_TecJunior_CarryWalk",
+  "CarryRun": "/Game/Arena/Characters/TecJunior/A_TecJunior_CarryRun.A_TecJunior_CarryRun"
+ },
+ "music": "/Game/Arena/Audio/S_MusicaFabrica.S_MusicaFabrica",
+ "music_volume": 0.35,
+ "music_seconds": 80.0,
+ "belts": [
+  "Despacho_Cajas",
+  "Despacho_Cajas2"
+ ],
+ "belt_capacity": {
+  "Despacho_Cajas": 8,
+  "Despacho_Cajas2": 8
+ }
+}

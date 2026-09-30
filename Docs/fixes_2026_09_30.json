@@ -1,0 +1,25 @@
+{
+ "passed": true,
+ "dirty_before": [],
+ "scene_mesh": {
+  "actors": [
+   "Empleados_Escena"
+  ],
+  "hulls": 214,
+  "triangles": 56100
+ },
+ "door_open_yaw": 60.0,
+ "guide_step1_arrow": "Ascensor_Empleados",
+ "belts": {
+  "Cinta_Carga": [
+   "Bloqueado",
+   "Camion2"
+  ],
+  "Cinta_Carga2": [
+   "Bloqueado",
+   "Camion2"
+  ],
+  "Cinta_Carga3": [],
+  "Cinta_Carga4": []
+ }
+}

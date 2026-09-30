@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "animations": {
+    "Idle": "/Game/Arena/Characters/Robot1/Rigged/A_Robot1_Idle.A_Robot1_Idle",
+    "Walk": "/Game/Arena/Characters/Robot1/Rigged/A_Robot1_Walk.A_Robot1_Walk",
+    "Airborne": "/Game/Arena/Characters/Robot1/Rigged/A_Robot1_Airborne.A_Robot1_Airborne"
+  },
+  "blendspace": "/Game/Arena/Characters/Robot1/Rigged/BS_Robot1_Locomotion.BS_Robot1_Locomotion",
+  "mesh": "/Game/Arena/Characters/Robot1/Rigged/SK_Robot1.SK_Robot1",
+  "skeleton": "/Game/Arena/Characters/Robot1/Rigged/SK_Robot1_Skeleton.SK_Robot1_Skeleton",
+  "camera": {
+    "pitch": -55,
+    "yaw": -45,
+    "arm_cm": 2450,
+    "fov": 35,
+    "fixed": true
+  },
+  "walk_speed_cm_s": 190
+}

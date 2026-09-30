@@ -1,0 +1,32 @@
+{
+ "passed": true,
+ "created": [
+  "Cinta_Fabrica_1",
+  "Cinta_Fabrica_2",
+  "Cinta_Fabrica_3"
+ ],
+ "removed_guides": 3,
+ "belts": [
+  [
+   "Cinta_Fabrica_1",
+   -400.0,
+   0.0,
+   4.0,
+   0.0
+  ],
+  [
+   "Cinta_Fabrica_2",
+   0.0,
+   0.0,
+   4.0,
+   0.0
+  ],
+  [
+   "Cinta_Fabrica_3",
+   400.0,
+   0.0,
+   4.0,
+   0.0
+  ]
+ ]
+}

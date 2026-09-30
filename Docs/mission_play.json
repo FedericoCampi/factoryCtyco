@@ -1,0 +1,33 @@
+{
+ "passed": true,
+ "checks": {
+  "mision_empieza_en_cero": {
+   "passed": true
+  },
+  "sonidos_de_cajas": {
+   "passed": true
+  },
+  "apoya_al_comienzo_de_la_larga": {
+   "passed": true
+  },
+  "con_el_1_lleno_va_al_camion_2": {
+   "passed": true,
+   "antes": {
+    "c2": 0,
+    "c4": 0
+   },
+   "cinta2": 0,
+   "camion2": 1
+  },
+  "barrera_arriba": {
+   "passed": true
+  },
+  "pasa_la_barrera_y_cuenta_10": {
+   "passed": true,
+   "entregados": 10
+  },
+  "mision_cumplida": {
+   "passed": true
+  }
+ }
+}

@@ -1,0 +1,25 @@
+{
+  "passed": true,
+  "arena": {
+    "asset": "/Game/Arena/Environments/SceneRobot/SM_SceneRobot.SM_SceneRobot",
+    "convex_collisions": 82,
+    "materials": 13,
+    "triangles": 213934
+  },
+  "robot": {
+    "asset": "/Game/Arena/Characters/Robot1/SM_Robot1.SM_Robot1",
+    "source_height_cm": 100.0,
+    "display_height_cm": 180,
+    "triangles": 697531,
+    "rigged": false,
+    "animations": 0
+  },
+  "level": "/Game/Arena/Maps/L_Arena.L_Arena",
+  "player_start_cm": [
+    0.0,
+    960.0000381469727,
+    100.0
+  ],
+  "player_start_floor_z": 0.0,
+  "scope": "Import, saved level, character configuration and collision floor. Gameplay verification is separate."
+}

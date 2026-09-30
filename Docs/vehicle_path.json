@@ -1,0 +1,9 @@
+{
+ "passed": true,
+ "created": true,
+ "removed": [
+  "Camion_Loop"
+ ],
+ "points": 8,
+ "length_cm": 5318.7
+}

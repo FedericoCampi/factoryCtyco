@@ -1,0 +1,59 @@
+{
+ "passed": true,
+ "elevators": [
+  {
+   "label": "Ascensor_Estacionamiento",
+   "location": [
+    -2903.0,
+    -1390.0,
+    145.0000023841858
+   ],
+   "moved_from": [
+    -2903.0,
+    -1390.0,
+    145.0000023841858
+   ],
+   "parent": "Parking_Estacionamiento",
+   "parent_location": [
+    -3803.0,
+    -390.0,
+    10.0
+   ],
+   "yaw": 180.0,
+   "travel_depth": 259.3999938964844
+  },
+  {
+   "label": "Ascensor_Fabrica",
+   "location": [
+    820.0,
+    -370.0,
+    -7.450580596923828e-07
+   ],
+   "moved_from": [
+    820.0,
+    -370.0,
+    -7.450580596923828e-07
+   ],
+   "parent": "SceneRobot_Arena",
+   "parent_location": [
+    20.0,
+    0.0,
+    0.0
+   ],
+   "yaw": 180.0,
+   "travel_depth": 259.3999938964844
+  }
+ ],
+ "cabin_collisions": 6,
+ "meshes": {
+  "Cabina": "/Game/Arena/Environments/Ascensor2/SM_Ascensor2Cabina.SM_Ascensor2Cabina",
+  "Techo": "/Game/Arena/Environments/Ascensor2/SM_Ascensor2Techo.SM_Ascensor2Techo",
+  "Puerta": "/Game/Arena/Environments/Ascensor2/SM_Ascensor2Puerta.SM_Ascensor2Puerta",
+  "Tubo": "/Game/Arena/Environments/Ascensor2/SM_Ascensor2Tubo.SM_Ascensor2Tubo"
+ },
+ "sounds": {
+  "motor": "/Game/Arena/Environments/Ascensor2/S_Ascensor_Motor.S_Ascensor_Motor",
+  "golpe": "/Game/Arena/Environments/Ascensor2/S_Ascensor_Golpe.S_Ascensor_Golpe",
+  "puerta": "/Game/Arena/Environments/Ascensor2/S_Ascensor_Puerta.S_Ascensor_Puerta"
+ }
+}

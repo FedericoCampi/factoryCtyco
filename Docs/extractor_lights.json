@@ -1,0 +1,21 @@
+{
+ "passed": true,
+ "attached_to": "Extractor_Silicio",
+ "actors": [
+  "Extractor_LuzMirilla",
+  "Extractor_LuzBaliza",
+  "Extractor_Baliza",
+  "Extractor_Pantalla",
+  "Extractor_Interruptor"
+ ],
+ "switch_world": [
+  -1981.5,
+  -543.9,
+  177.1
+ ],
+ "screen_world": [
+  -1951.5,
+  -543.9,
+  177.1
+ ]
+}

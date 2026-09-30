@@ -1,0 +1,49 @@
+{
+ "passed": false,
+ "checks": {
+  "dos_camiones_y_cuatro_cintas": {
+   "passed": true,
+   "trucks": [
+    "Camion_Recorrido",
+    "Camion_Recorrido2"
+   ],
+   "belts": [
+    "Cinta_Carga",
+    "Cinta_Carga2",
+    "Cinta_Carga3",
+    "Cinta_Carga4"
+   ]
+  },
+  "cadena_de_tres": {
+   "passed": true,
+   "chain": {
+    "Cinta_Carga": null,
+    "Cinta_Carga2": "Cinta_Carga",
+    "Cinta_Carga3": "Cinta_Carga2",
+    "Cinta_Carga4": null
+   }
+  },
+  "primero_en_la_cadena": {
+   "passed": true,
+   "dock": "Cinta_Carga"
+  },
+  "segundo_en_la_suelta": {
+   "passed": true,
+   "dock": "Cinta_Carga4"
+  },
+  "apoya_en_el_medio_de_la_cadena": {
+   "passed": true
+  },
+  "llegan_por_la_cadena": {
+   "passed": false,
+   "cargo": 1,
+   "on": [
+    0,
+    0,
+    0
+   ]
+  }
+ },
+ "min_gap_cm": 45,
+ "error": "Traceback (most recent call last):\n  File \"C:/Users/Usuario/Desktop/unreal Projects/ArenaProject/Scripts/playtest_two_trucks.py\", line 78, in tick\n    step()\n  File \"C:/Users/Usuario/Desktop/unreal Projects/ArenaProject/Scripts/playtest_two_trucks.py\", line 136, in step\n    check(\"llegan_por_la_cadena\", False, cargo=state[\"t1\"].get_cargo_count(),\n  File \"C:/Users/Usuario/Desktop/unreal Projects/ArenaProject/Scripts/playtest_two_trucks.py\", line 35, in check\n    raise RuntimeError(f\"{name}: {values}\")\nRuntimeError: llegan_por_la_cadena: {'cargo': 1, 'on': [0, 0, 0]}\n"
+}

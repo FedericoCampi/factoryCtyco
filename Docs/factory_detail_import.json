@@ -1,0 +1,103 @@
+{
+  "passed": true,
+  "assets": [
+    {
+      "path": "/Game/Arena/Factory/Models/VisualPolish/SM_FactoryBeveledBox.SM_FactoryBeveledBox",
+      "import_yaw": 0,
+      "triangles": 188,
+      "materials": [
+        {
+          "slot": 0,
+          "name": "M_FactorySteel",
+          "material": "/Game/Arena/Factory/Materials/MI_FactorySteel.MI_FactorySteel"
+        }
+      ],
+      "dimensions_cm": [
+        100.00000762939453,
+        100.00000762939453,
+        100.0
+      ],
+      "min_cm": [
+        -50.000003814697266,
+        -50.000003814697266,
+        -50.0
+      ],
+      "max_cm": [
+        50.000003814697266,
+        50.000003814697266,
+        50.0
+      ]
+    },
+    {
+      "path": "/Game/Arena/Factory/Models/VisualPolish/SM_FactoryMachinedCylinder.SM_FactoryMachinedCylinder",
+      "import_yaw": 0,
+      "triangles": 764,
+      "materials": [
+        {
+          "slot": 0,
+          "name": "M_FactorySteel",
+          "material": "/Game/Arena/Factory/Materials/MI_FactorySteel.MI_FactorySteel"
+        }
+      ],
+      "dimensions_cm": [
+        100.0,
+        100.0,
+        100.0
+      ],
+      "min_cm": [
+        -50.0,
+        -50.0,
+        -50.0
+      ],
+      "max_cm": [
+        50.0,
+        50.0,
+        50.0
+      ]
+    },
+    {
+      "path": "/Game/Arena/Factory/Models/VisualPolish/SM_FactoryBeltFrame.SM_FactoryBeltFrame",
+      "import_yaw": 0,
+      "triangles": 5048,
+      "materials": [
+        {
+          "slot": 0,
+          "name": "M_FactoryGraphite",
+          "material": "/Game/Arena/Factory/Materials/MI_FactoryGraphite.MI_FactoryGraphite"
+        },
+        {
+          "slot": 1,
+          "name": "M_FactorySteel",
+          "material": "/Game/Arena/Factory/Materials/MI_FactorySteel.MI_FactorySteel"
+        },
+        {
+          "slot": 2,
+          "name": "M_FactorySafetyOrange",
+          "material": "/Game/Arena/Factory/Materials/MI_FactorySafetyOrange.MI_FactorySafetyOrange"
+        }
+      ],
+      "dimensions_cm": [
+        200.00001525878906,
+        140.00001525878906,
+        30.000001907348633
+      ],
+      "min_cm": [
+        -100.00000762939453,
+        -70.00000762939453,
+        0.0
+      ],
+      "max_cm": [
+        100.00000762939453,
+        70.00000762939453,
+        30.000001907348633
+      ]
+    }
+  ],
+  "definitions": [
+    "/Game/Arena/Factory/Definitions/DB_Crusher.DB_Crusher",
+    "/Game/Arena/Factory/Definitions/DB_Smelter.DB_Smelter",
+    "/Game/Arena/Factory/Definitions/DB_Storage.DB_Storage",
+    "/Game/Arena/Factory/Definitions/DB_Belt.DB_Belt"
+  ],
+  "backup": "C:\\Users\\Usuario\\Desktop\\unreal Projects\\ArenaProject\\Saved\\VisualPolishWork\\20260919-230229-152007Z"
+}

@@ -1,0 +1,18 @@
+{
+ "passed": true,
+ "parking": {
+  "passed": true,
+  "triangles": 70192,
+  "convex_collisions": 274,
+  "bounds_cm": [
+   -1143.0,
+   -1243.0,
+   1190.0,
+   1043.0
+  ]
+ },
+ "removed": [],
+ "car": "/Game/Arena/Environments/AutoBasico/SK_AutoBasico.SK_AutoBasico",
+ "animation": "/Game/Arena/Environments/AutoBasico/SK_AutoBasico_Anim.SK_AutoBasico_Anim",
+ "anim_seconds": 9.87
+}

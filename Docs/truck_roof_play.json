@@ -1,0 +1,49 @@
+{
+ "passed": true,
+ "samples": [
+  {
+   "tag": "cerrada",
+   "door": 0.0,
+   "roof_hidden": false,
+   "roof_loc": "<Struct 'Vector' (0x000002133C75C510) {x: 89.127994, y: 0.000000, z: 230.559301}>",
+   "roof_cs": "<Struct 'Transform' (0x000002133C727030) {rotation: {x: 0.000000, y: -0.000000, z: 0.000000, w: -1.000000}, translation: {x: 89.127994, y: 0.000000, z: 230.559301}, scale3d: {x: 100.000000, y: 100.000000, z: 100.000000}}>",
+   "roof_ref_local": "<Struct 'Transform' (0x000002133C727030) {rotation: {x: 0.000000, y: -0.000000, z: 0.000000, w: -1.000000}, translation: {x: 0.891280, y: -0.000000, z: 2.305593}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>",
+   "door_ref_local": "<Struct 'Transform' (0x000002133C727030) {rotation: {x: 0.000000, y: -0.000000, z: 0.000000, w: -1.000000}, translation: {x: 1.073280, y: -0.774800, z: 1.015993}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>",
+   "bones": [
+    "Camion",
+    "Root",
+    "Camion1",
+    "Rueda_DI",
+    "Rueda_DD",
+    "Rueda_TI",
+    "Rueda_TD",
+    "Puerta",
+    "Puerta_Borde",
+    "Techo"
+   ],
+   "lods": null
+  },
+  {
+   "tag": "abierta",
+   "door": 1.0,
+   "roof_hidden": true,
+   "roof_loc": "<Struct 'Vector' (0x000002133C75CAB0) {x: 89.127994, y: 0.000000, z: 230.559301}>",
+   "roof_cs": "<Struct 'Transform' (0x000002133C727B70) {rotation: {x: 0.000000, y: -0.000000, z: 0.000000, w: -1.000000}, translation: {x: 89.127994, y: 0.000000, z: 230.559301}, scale3d: {x: 100.000000, y: 100.000000, z: 100.000000}}>",
+   "roof_ref_local": "<Struct 'Transform' (0x000002133C727B70) {rotation: {x: 0.000000, y: -0.000000, z: 0.000000, w: -1.000000}, translation: {x: 0.891280, y: -0.000000, z: 2.305593}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>",
+   "door_ref_local": "<Struct 'Transform' (0x000002133C727B70) {rotation: {x: 0.000000, y: -0.000000, z: 0.000000, w: -1.000000}, translation: {x: 1.073280, y: -0.774800, z: 1.015993}, scale3d: {x: 1.000000, y: 1.000000, z: 1.000000}}>",
+   "bones": [
+    "Camion",
+    "Root",
+    "Camion1",
+    "Rueda_DI",
+    "Rueda_DD",
+    "Rueda_TI",
+    "Rueda_TD",
+    "Puerta",
+    "Puerta_Borde",
+    "Techo"
+   ],
+   "lods": null
+  }
+ ]
+}

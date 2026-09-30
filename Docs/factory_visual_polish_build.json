@@ -1,0 +1,101 @@
+{
+  "passed": true,
+  "map": "/Game/Arena/Maps/L_FactoryDemo",
+  "materials": [
+    {
+      "path": "/Game/Arena/Factory/Materials/M_FactoryDetail",
+      "parameters": {
+        "BaseColor": [
+          0.07,
+          0.1,
+          0.12,
+          1
+        ],
+        "Emission": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "Roughness": 0.42,
+        "Metallic": 0.65
+      }
+    },
+    {
+      "path": "/Game/Arena/Factory/Models/BeltBasic/M_BeltBasic",
+      "color": [
+        0.035,
+        0.052,
+        0.065,
+        1
+      ],
+      "roughness": 0.62,
+      "metallic": 0.18
+    },
+    {
+      "path": "/Game/Arena/Factory/Models/PlateBasic/M_PlateBasic",
+      "color": [
+        0.56,
+        0.61,
+        0.65,
+        1
+      ],
+      "roughness": 0.28,
+      "metallic": 0.86
+    },
+    {
+      "path": "/Game/Arena/Factory/Models/FragmentsBasic/M_FragmentsBasic",
+      "color": [
+        0.29,
+        0.36,
+        0.4,
+        1
+      ],
+      "roughness": 0.44,
+      "metallic": 0.8
+    }
+  ],
+  "definitions": [
+    "/Game/Arena/Factory/Definitions/DB_Crusher.DB_Crusher",
+    "/Game/Arena/Factory/Definitions/DB_Smelter.DB_Smelter",
+    "/Game/Arena/Factory/Definitions/DB_Storage.DB_Storage",
+    "/Game/Arena/Factory/Definitions/DB_Belt.DB_Belt"
+  ],
+  "backup": "C:\\Users\\Usuario\\Desktop\\unreal Projects\\ArenaProject\\Saved\\VisualPolishWork\\20260919-225716-336240Z",
+  "belt_slot_marking": "Thin turquoise outline with visible original floor",
+  "lighting": [
+    {
+      "actor": "Sun",
+      "before": {
+        "intensity": 4.599999904632568,
+        "color": "<Struct 'Color' (0x0000026937FF70B8) {b: 255, g: 239, r: 218, a: 255}>"
+      },
+      "after": {
+        "intensity": 4.6,
+        "color": "<Struct 'Color' (0x00000267C4D21DE0) {b: 218, g: 239, r: 255, a: 255}>"
+      }
+    },
+    {
+      "actor": "SkyFill",
+      "before_intensity": 0.550000011920929,
+      "intensity": 0.55
+    },
+    {
+      "actor": "PostProcessVolume0",
+      "before_saturation": "<Struct 'Vector4' (0x0000026934FFBAF0) {x: 1.040000, y: 1.040000, z: 1.040000, w: 1.000000}>",
+      "saturation": 1.04
+    },
+    {
+      "actor": "Arena_SoftFill",
+      "before": {
+        "intensity": 0.949999988079071,
+        "color": "<Struct 'Color' (0x0000026937FFFCB8) {b: 200, g: 233, r: 245, a: 255}>"
+      },
+      "after": {
+        "intensity": 0.95,
+        "color": "<Struct 'Color' (0x00000267C4D21260) {b: 245, g: 233, r: 200, a: 255}>"
+      }
+    }
+  ],
+  "actor_count": 22
+}

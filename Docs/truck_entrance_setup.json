@@ -1,0 +1,51 @@
+{
+ "passed": true,
+ "backdrop_west": [
+  -10000,
+  0,
+  -55
+ ],
+ "steps": {
+  "parking_reimport.json": {
+   "passed": true,
+   "triangles": 51695,
+   "convex_collisions": 199,
+   "bounds_cm": [
+    -2130.0,
+    -1243.0,
+    1190.0,
+    1043.0
+   ]
+  },
+  "truck_loop.json": {
+   "passed": true,
+   "removed": [
+    "Camion_Loop"
+   ],
+   "mesh": "/Game/Arena/Environments/Camion/SK_Camion.SK_Camion",
+   "animation": "/Game/Arena/Environments/Camion/SK_Camion_Anim.SK_Camion_Anim",
+   "anim_seconds": 16.53,
+   "length_cm": 520.4,
+   "bones": [
+    "Root",
+    "Camion",
+    "Rueda_DI",
+    "Rueda_DD",
+    "Rueda_TI",
+    "Rueda_TD"
+   ],
+   "materials": [
+    "Material_0",
+    "M_CamionTuerca"
+   ]
+  },
+  "belt_buttons.json": {
+   "passed": true,
+   "created": {
+    "Botonera_Cinta1": "Despacho_Cajas",
+    "Botonera_Cinta2": "Despacho_Cajas2"
+   },
+   "kept": {}
+  }
+ }
+}

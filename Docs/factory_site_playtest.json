@@ -1,0 +1,496 @@
+{
+  "passed": true,
+  "checks": {
+    "initial_original_factory_and_locked_landmarks": {
+      "passed": true,
+      "landmarks": {
+        "1": {
+          "name": "Site_Taller",
+          "alpha": 0.0,
+          "visible": false,
+          "solid": true
+        },
+        "2": {
+          "name": "Site_Carga",
+          "alpha": 0.0,
+          "visible": false,
+          "solid": false
+        },
+        "3": {
+          "name": "Site_Expansion",
+          "alpha": 0.0,
+          "visible": false,
+          "solid": false
+        }
+      }
+    },
+    "annex_floor_and_character_access": {
+      "passed": true,
+      "floor_samples": 198,
+      "floor_z_range": [
+        0.0,
+        0.0
+      ],
+      "walked_cm": 1390.681439554386,
+      "character_z_range": [
+        92.15000200271606,
+        92.15000200271606
+      ]
+    },
+    "real_conveyor_circuit_ready": {
+      "passed": true,
+      "machines": 7,
+      "injected_scrap": 50,
+      "total_mass": 260
+    },
+    "save_load_preserves_pending_reveal_and_factory": {
+      "passed": true,
+      "state": {
+        "inventory": {
+          "Scrap": 4
+        },
+        "piles": {
+          "Scrap_01": 30,
+          "Scrap_02": 30,
+          "Scrap_03": 30,
+          "Scrap_04": 30,
+          "Scrap_05": 30,
+          "Scrap_06": 30,
+          "Scrap_07": 30
+        },
+        "produced": 5,
+        "delivered": 4,
+        "site_stage": 0,
+        "site_remaining": 1.6,
+        "buildings": {
+          "89A74351489BA99B1754CCBE0A209F52": {
+            "input": {
+              "Scrap": 1
+            },
+            "output": {},
+            "progress": 0.7,
+            "paid": 2,
+            "filter": "Scrap",
+            "yaw": 0.0,
+            "position": [
+              -400.0,
+              0.0,
+              4.0
+            ]
+          },
+          "CD157F6642FE66CA7DBDEC80D8FEF83B": {
+            "input": {
+              "Fragments": 1
+            },
+            "output": {},
+            "progress": 0.2,
+            "paid": 2,
+            "filter": "Scrap",
+            "yaw": 0.0,
+            "position": [
+              0.0,
+              0.0,
+              4.0
+            ]
+          },
+          "D4015EC940B41A1D61201F8970CD02FD": {
+            "input": {
+              "Plate": 1
+            },
+            "output": {},
+            "progress": 0.4,
+            "paid": 2,
+            "filter": "Scrap",
+            "yaw": 0.0,
+            "position": [
+              400.0,
+              0.0,
+              4.0
+            ]
+          },
+          "Starter_0": {
+            "input": {
+              "Scrap": 10
+            },
+            "output": {},
+            "progress": 0.0,
+            "paid": 0,
+            "filter": "Scrap",
+            "yaw": 0.0,
+            "position": [
+              -600.0,
+              0.0,
+              4.0
+            ]
+          },
+          "Starter_2": {
+            "input": {
+              "Scrap": 13
+            },
+            "output": {},
+            "progress": 1.1,
+            "paid": 0,
+            "filter": "Scrap",
+            "yaw": 0.0,
+            "position": [
+              -200.0,
+              0.0,
+              4.0
+            ]
+          },
+          "Starter_4": {
+            "input": {
+              "Fragments": 5
+            },
+            "output": {},
+            "progress": 0.4,
+            "paid": 0,
+            "filter": "Scrap",
+            "yaw": 0.0,
+            "position": [
+              200.0,
+              0.0,
+              4.0
+            ]
+          },
+          "Starter_6": {
+            "input": {
+              "Plate": 4
+            },
+            "output": {},
+            "progress": 0.0,
+            "paid": 0,
+            "filter": "Plate",
+            "yaw": 0.0,
+            "position": [
+              600.0,
+              0.0,
+              4.0
+            ]
+          }
+        }
+      }
+    },
+    "earned_workshop": {
+      "passed": true,
+      "produced": 5,
+      "delivered": 5,
+      "landmarks": {
+        "1": {
+          "name": "Site_Taller",
+          "alpha": 1.0,
+          "visible": true,
+          "solid": true
+        },
+        "2": {
+          "name": "Site_Carga",
+          "alpha": 0.0,
+          "visible": false,
+          "solid": false
+        },
+        "3": {
+          "name": "Site_Expansion",
+          "alpha": 0.0,
+          "visible": false,
+          "solid": false
+        }
+      }
+    },
+    "earned_charging_station": {
+      "passed": true,
+      "produced": 10,
+      "delivered": 10,
+      "landmarks": {
+        "1": {
+          "name": "Site_Taller",
+          "alpha": 1.0,
+          "visible": true,
+          "solid": true
+        },
+        "2": {
+          "name": "Site_Carga",
+          "alpha": 1.0,
+          "visible": true,
+          "solid": false
+        },
+        "3": {
+          "name": "Site_Expansion",
+          "alpha": 0.0,
+          "visible": false,
+          "solid": false
+        }
+      }
+    },
+    "earned_expansion": {
+      "passed": true,
+      "produced": 20,
+      "delivered": 20,
+      "landmarks": {
+        "1": {
+          "name": "Site_Taller",
+          "alpha": 1.0,
+          "visible": true,
+          "solid": true
+        },
+        "2": {
+          "name": "Site_Carga",
+          "alpha": 1.0,
+          "visible": true,
+          "solid": false
+        },
+        "3": {
+          "name": "Site_Expansion",
+          "alpha": 1.0,
+          "visible": true,
+          "solid": false
+        }
+      }
+    },
+    "thirty_six_annex_cells_unlock_with_existing_floor_and_overlap_checks": {
+      "passed": true,
+      "cells": 36
+    },
+    "three_central_corridor_cells_unlock_at_stage_three": {
+      "passed": true,
+      "cells": [
+        [
+          0,
+          1000,
+          4
+        ],
+        [
+          0,
+          1200,
+          4
+        ],
+        [
+          0,
+          1400,
+          4
+        ]
+      ]
+    },
+    "annex_construction_occupancy_and_refund": {
+      "passed": true
+    },
+    "withdrawing_earned_plates_does_not_regress_site": {
+      "passed": true
+    },
+    "old_yard_to_annex_conveyor_delivery": {
+      "passed": true,
+      "connector_y": [
+        1000,
+        1200,
+        1400
+      ],
+      "elapsed_seconds": 2.422,
+      "source_y": 800,
+      "destination_y": 1600,
+      "orientation_degrees": 90,
+      "additional_deliveries": 1
+    },
+    "connector_circuit_dismantles_without_material_loss": {
+      "passed": true
+    },
+    "continuation_restores_earned_native_final_save": {
+      "passed": true,
+      "source_slot": "ArenaFactorySite_20260920-005457-678808Z_final_v2",
+      "total_mass": 286
+    },
+    "earned_legacy_workshop": {
+      "passed": true,
+      "produced": 20,
+      "delivered": 21,
+      "landmarks": {
+        "1": {
+          "name": "Site_Taller",
+          "alpha": 1.0,
+          "visible": true,
+          "solid": true
+        },
+        "2": {
+          "name": "Site_Carga",
+          "alpha": 0.0,
+          "visible": false,
+          "solid": false
+        },
+        "3": {
+          "name": "Site_Expansion",
+          "alpha": 0.0,
+          "visible": false,
+          "solid": false
+        }
+      }
+    },
+    "earned_legacy_charging": {
+      "passed": true,
+      "produced": 20,
+      "delivered": 21,
+      "landmarks": {
+        "1": {
+          "name": "Site_Taller",
+          "alpha": 1.0,
+          "visible": true,
+          "solid": true
+        },
+        "2": {
+          "name": "Site_Carga",
+          "alpha": 1.0,
+          "visible": true,
+          "solid": false
+        },
+        "3": {
+          "name": "Site_Expansion",
+          "alpha": 0.0,
+          "visible": false,
+          "solid": false
+        }
+      }
+    },
+    "earned_legacy_expansion": {
+      "passed": true,
+      "produced": 20,
+      "delivered": 21,
+      "landmarks": {
+        "1": {
+          "name": "Site_Taller",
+          "alpha": 1.0,
+          "visible": true,
+          "solid": true
+        },
+        "2": {
+          "name": "Site_Carga",
+          "alpha": 1.0,
+          "visible": true,
+          "solid": false
+        },
+        "3": {
+          "name": "Site_Expansion",
+          "alpha": 1.0,
+          "visible": true,
+          "solid": false
+        }
+      }
+    },
+    "version_one_save_replays_earned_reveals_without_economic_changes": {
+      "passed": true,
+      "fixture": "ArenaFactorySite_20260920-010244-843753Z_legacy_v1"
+    },
+    "malformed_version_two_saves_rejected_before_world_mutation": {
+      "passed": true,
+      "cases": [
+        "stage_out_of_range",
+        "completed_with_pending_timer",
+        "unearned_pending_reveal"
+      ]
+    },
+    "pending_reload_keeps_occupied_workshop_nonblocking_until_exit": {
+      "passed": true,
+      "restored_remaining": 1.5999999046325684,
+      "exit_distance_cm": 250.66818245050422
+    }
+  },
+  "reveals": [
+    {
+      "label": "workshop",
+      "stage": 1,
+      "remaining_at_observation": 1.5999999046325684,
+      "wall_seconds": 1.625,
+      "game_seconds": 1.6,
+      "alpha_range": [
+        0.2166668176651001,
+        0.9333404302597046
+      ],
+      "checkpoint": true
+    },
+    {
+      "label": "charging_station",
+      "stage": 2,
+      "remaining_at_observation": 2.0,
+      "wall_seconds": 1.984,
+      "game_seconds": 2.0,
+      "alpha_range": [
+        0.050067901611328125,
+        0.9334061741828918
+      ],
+      "checkpoint": false
+    },
+    {
+      "label": "expansion",
+      "stage": 3,
+      "remaining_at_observation": 2.0,
+      "wall_seconds": 2.0,
+      "game_seconds": 2.0,
+      "alpha_range": [
+        0.050201475620269775,
+        0.9335399866104126
+      ],
+      "checkpoint": false
+    },
+    {
+      "label": "legacy_workshop",
+      "stage": 1,
+      "remaining_at_observation": 2.0,
+      "wall_seconds": 2.0,
+      "game_seconds": 2.0,
+      "alpha_range": [
+        0.05422234535217285,
+        0.9375603199005127
+      ],
+      "checkpoint": false
+    },
+    {
+      "label": "legacy_charging",
+      "stage": 2,
+      "remaining_at_observation": 2.0,
+      "wall_seconds": 2.0,
+      "game_seconds": 2.0,
+      "alpha_range": [
+        0.05422782897949219,
+        0.9375659823417664
+      ],
+      "checkpoint": false
+    },
+    {
+      "label": "legacy_expansion",
+      "stage": 3,
+      "remaining_at_observation": 2.0,
+      "wall_seconds": 2.0,
+      "game_seconds": 2.0,
+      "alpha_range": [
+        0.05423325300216675,
+        0.9375714659690857
+      ],
+      "checkpoint": false
+    }
+  ],
+  "screenshots": [
+    "C:\\Users\\Usuario\\Desktop\\unreal Projects\\ArenaProject\\Saved\\SiteProgressWork\\Playtest-20260920-005457-678808Z\\01_initial_reserved_annex.png",
+    "C:\\Users\\Usuario\\Desktop\\unreal Projects\\ArenaProject\\Saved\\SiteProgressWork\\Playtest-20260920-005457-678808Z\\02_workshop_earned.png",
+    "C:\\Users\\Usuario\\Desktop\\unreal Projects\\ArenaProject\\Saved\\SiteProgressWork\\Playtest-20260920-005457-678808Z\\03_charging_station_earned.png",
+    "C:\\Users\\Usuario\\Desktop\\unreal Projects\\ArenaProject\\Saved\\SiteProgressWork\\Playtest-20260920-005457-678808Z\\04_expansion_earned.png",
+    "C:\\Users\\Usuario\\Desktop\\unreal Projects\\ArenaProject\\Saved\\SiteProgressWork\\Playtest-20260920-005457-678808Z\\05_building_in_new_sector.png",
+    "C:\\Users\\Usuario\\Desktop\\unreal Projects\\ArenaProject\\Saved\\SiteProgressWork\\Playtest-20260920-005457-678808Z\\06_connected_yard_and_annex.png"
+  ],
+  "save_slots": [
+    "ArenaFactorySite_20260920-005457-678808Z_pending",
+    "ArenaFactorySite_20260920-005457-678808Z_final_v2",
+    "ArenaFactorySite_20260920-010244-843753Z_legacy_v1",
+    "ArenaFactorySite_20260920-010244-843753Z_invalid_stage_out_of_range",
+    "ArenaFactorySite_20260920-010244-843753Z_invalid_completed_with_pending_timer",
+    "ArenaFactorySite_20260920-010244-843753Z_invalid_unearned_pending_reveal",
+    "ArenaFactorySite_20260920-010244-843753Z_pending_occupied_workshop"
+  ],
+  "scope": "Original L_FactoryDemo; real production and conveyor milestones, timed scenery, persistence and annex access. Persistence and occupied-workshop continuation from the recorded native-production run.",
+  "acceleration": "None. Native processor cycles, belt travel and site timers.",
+  "prior_runs": [
+    {
+      "report": "C:\\Users\\Usuario\\Desktop\\unreal Projects\\ArenaProject\\Saved\\SiteProgressWork\\Playtest-20260920-005457-678808Z\\report.json",
+      "passed": false,
+      "elapsed_seconds": 123.5,
+      "error": "Traceback (most recent call last):\n  File \"C:/Users/Usuario/Desktop/unreal Projects/ArenaProject//Scripts/playtest_factory_site.py\", line 483, in tick\n    next(STATE[\"steps\"])\n  File \"C:/Users/Usuario/Desktop/unreal Projects/ArenaProject//Scripts/playtest_factory_site.py\", line 421, in run\n    assert data and data.get_editor_property(\"version\") == 2\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nException: FactoryDemoSave: Property 'Version' for attribute 'version' on 'FactoryDemoSave' is protected and cannot be read\n"
+    }
+  ],
+  "elapsed_seconds": 15.3,
+  "combined_elapsed_seconds": 138.8
+}

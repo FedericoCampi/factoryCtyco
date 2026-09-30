@@ -1,0 +1,83 @@
+{
+ "/Game/Arena/Maps/L_Arena": {
+  "actors": 14,
+  "classes": {
+   "StaticMeshActor": 2,
+   "PlayerStart": 1,
+   "DirectionalLight": 2,
+   "SkyLight": 1,
+   "PostProcessVolume": 1,
+   "FactoryResourcePile": 7
+  }
+ },
+ "/Game/Arena/Maps/L_FactoryDemo": {
+  "actors": 249,
+  "classes": {
+   "StaticMeshActor": 204,
+   "DirectionalLight": 2,
+   "SkyLight": 1,
+   "PostProcessVolume": 1,
+   "FactoryDemoWorld": 1,
+   "FactorySiteLandmark": 3,
+   "FactoryBuilding": 7,
+   "AmbientSound": 1,
+   "FactoryBeltButton": 2,
+   "FactoryWorkerSpawn": 1,
+   "RecastNavMesh": 1,
+   "FactoryElevator": 3,
+   "NavMeshBoundsVolume": 2,
+   "FactoryGuide": 1,
+   "TargetPoint": 1,
+   "FactoryNpc": 1,
+   "PlayerStart": 1,
+   "SkeletalMeshActor": 1,
+   "FactoryDispatchBelt": 2,
+   "FactoryVehiclePath": 2,
+   "FactoryGateBarrier": 1,
+   "FactoryLoadingBelt": 5,
+   "FactoryRollDoor": 1,
+   "FactoryAutoDoor": 1,
+   "PointLight": 2,
+   "FactoryMachineSwitch": 1
+  }
+ },
+ "/Game/Arena/Maps/L_FactoryDemo_Completo": {
+  "actors": 238,
+  "classes": {
+   "StaticMeshActor": 200,
+   "DirectionalLight": 2,
+   "SkyLight": 1,
+   "PostProcessVolume": 1,
+   "FactoryDemoWorld": 1,
+   "FactorySiteLandmark": 3,
+   "FactoryBuilding": 4,
+   "AmbientSound": 1,
+   "FactoryBeltButton": 2,
+   "FactoryWorkerSpawn": 1,
+   "RecastNavMesh": 1,
+   "FactoryElevator": 3,
+   "NavMeshBoundsVolume": 2,
+   "PlayerStart": 1,
+   "SkeletalMeshActor": 1,
+   "FactoryDispatchBelt": 2,
+   "FactoryVehiclePath": 2,
+   "FactoryGateBarrier": 1,
+   "FactoryLoadingBelt": 4,
+   "FactoryRollDoor": 1,
+   "TextRenderActor": 1,
+   "PointLight": 2,
+   "FactoryMachineSwitch": 1
+  }
+ },
+ "/Game/Arena/Maps/L_GrowRobots": {
+  "actors": 8,
+  "classes": {
+   "DirectionalLight": 2,
+   "SkyLight": 1,
+   "PostProcessVolume": 1,
+   "StaticMeshActor": 2,
+   "GrowEvolutionWorld": 1,
+   "PlayerStart": 1
+  }
+ }
+}

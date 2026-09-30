@@ -1,0 +1,83 @@
+{
+ "passed": true,
+ "checks": {
+  "dos_cintas": {
+   "passed": true,
+   "found": 2
+  },
+  "Despacho_Cajas_desordenadas": {
+   "passed": true,
+   "distinct": 22,
+   "sample": [
+    -66,
+    -65,
+    -64,
+    -59,
+    -58,
+    -52,
+    -24,
+    -21,
+    -18,
+    -16,
+    -14,
+    -12
+   ]
+  },
+  "Despacho_Cajas_sin_encimarse": {
+   "passed": true,
+   "overlaps": []
+  },
+  "Despacho_Cajas_giros_distintos": {
+   "passed": true,
+   "distinct": 13
+  },
+  "Despacho_Cajas_llena_y_detenida": {
+   "passed": true,
+   "boxes": 24
+  },
+  "Despacho_Cajas2_desordenadas": {
+   "passed": true,
+   "distinct": 22,
+   "sample": [
+    -68,
+    -66,
+    -65,
+    -64,
+    -60,
+    -44,
+    -33,
+    -26,
+    -23,
+    -18,
+    -8,
+    -6
+   ]
+  },
+  "Despacho_Cajas2_sin_encimarse": {
+   "passed": true,
+   "overlaps": []
+  },
+  "Despacho_Cajas2_giros_distintos": {
+   "passed": true,
+   "distinct": 15
+  },
+  "Despacho_Cajas2_llena_y_detenida": {
+   "passed": true,
+   "boxes": 23
+  }
+ },
+ "belts": {
+  "Despacho_Cajas": {
+   "boxes": 24,
+   "capacity_hint": 36,
+   "distinct_sides_cm": 22,
+   "distinct_yaws": 13
+  },
+  "Despacho_Cajas2": {
+   "boxes": 23,
+   "capacity_hint": 36,
+   "distinct_sides_cm": 22,
+   "distinct_yaws": 15
+  }
+ }
+}

@@ -1,0 +1,119 @@
+{
+  "passed": true,
+  "map": "/Game/Arena/Maps/L_GrowRobots",
+  "species": "/Game/Arena/Grow/DA_RobotSpecies.DA_RobotSpecies",
+  "accessories": [
+    {
+      "role": "Builder",
+      "mesh": "/Game/Arena/Grow/Models/SM_GrowBuilderPack.SM_GrowBuilderPack",
+      "decision": "recycling",
+      "import_yaw": 0,
+      "triangles": 3076,
+      "material_slots": [
+        {
+          "slot": 0,
+          "material": "/Game/Arena/Grow/Materials/MI_GrowGraphite.MI_GrowGraphite"
+        },
+        {
+          "slot": 1,
+          "material": "/Game/Arena/Grow/Materials/MI_GrowBuilderRole.MI_GrowBuilderRole"
+        },
+        {
+          "slot": 2,
+          "material": "/Game/Arena/Grow/Materials/MI_GrowBuilderEmission.MI_GrowBuilderEmission"
+        }
+      ],
+      "dimensions_cm": [
+        30.700000762939453,
+        54.000003814697266,
+        65.5
+      ],
+      "min_cm": [
+        -15.350000381469727,
+        -27.000001907348633,
+        -32.75
+      ],
+      "max_cm": [
+        15.350000381469727,
+        27.000001907348633,
+        32.75
+      ]
+    },
+    {
+      "role": "Caretaker",
+      "mesh": "/Game/Arena/Grow/Models/SM_GrowCaretakerPack.SM_GrowCaretakerPack",
+      "decision": "water",
+      "import_yaw": 0,
+      "triangles": 4236,
+      "material_slots": [
+        {
+          "slot": 0,
+          "material": "/Game/Arena/Grow/Materials/MI_GrowGraphite.MI_GrowGraphite"
+        },
+        {
+          "slot": 1,
+          "material": "/Game/Arena/Grow/Materials/MI_GrowCaretakerRole.MI_GrowCaretakerRole"
+        },
+        {
+          "slot": 2,
+          "material": "/Game/Arena/Grow/Materials/MI_GrowCaretakerEmission.MI_GrowCaretakerEmission"
+        }
+      ],
+      "dimensions_cm": [
+        29.500004768371582,
+        51.0,
+        66.88888549804688
+      ],
+      "min_cm": [
+        -14.750001907348633,
+        -25.5,
+        -33.44444274902344
+      ],
+      "max_cm": [
+        14.75000286102295,
+        25.5,
+        33.44444274902344
+      ]
+    },
+    {
+      "role": "Courier",
+      "mesh": "/Game/Arena/Grow/Models/SM_GrowCourierPack.SM_GrowCourierPack",
+      "decision": "transport",
+      "import_yaw": 0,
+      "triangles": 2536,
+      "material_slots": [
+        {
+          "slot": 0,
+          "material": "/Game/Arena/Grow/Materials/MI_GrowGraphite.MI_GrowGraphite"
+        },
+        {
+          "slot": 1,
+          "material": "/Game/Arena/Grow/Materials/MI_GrowCourierRole.MI_GrowCourierRole"
+        },
+        {
+          "slot": 2,
+          "material": "/Game/Arena/Grow/Materials/MI_GrowCourierEmission.MI_GrowCourierEmission"
+        }
+      ],
+      "dimensions_cm": [
+        30.900004386901855,
+        55.000003814697266,
+        67.5
+      ],
+      "min_cm": [
+        -15.45000171661377,
+        -27.500001907348633,
+        -33.75
+      ],
+      "max_cm": [
+        15.450002670288086,
+        27.500001907348633,
+        33.75
+      ]
+    }
+  ],
+  "mode": "/Script/ArenaRuntime.GrowEvolutionGameMode",
+  "decisions": 6,
+  "professions": 3,
+  "scope": "First playable: three robot professions, order-sensitive evolution, undo and reset."
+}

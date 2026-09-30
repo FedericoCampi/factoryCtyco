@@ -1,0 +1,23 @@
+{
+ "passed": true,
+ "checks": {
+  "walk_factory_to_parking": true,
+  "walk_into_parking_centre": true,
+  "walk_back_to_factory_centre": true,
+  "factory_wall_blocks_north_of_door": true,
+  "factory_wall_blocks_south_of_door": true,
+  "parking_outer_wall_blocks": true,
+  "doorway_floor_flush": true
+ },
+ "doorway_floor_z_cm": {
+  "-1400": -0.0,
+  "-1250": -0.0,
+  "-1190": 1.0,
+  "-1175": 1.0,
+  "-1160": 1.0,
+  "-1145": 1.0,
+  "-1125": 1.0,
+  "-1100": -0.0,
+  "-1000": -0.0
+ }
+}

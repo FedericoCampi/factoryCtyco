@@ -1,0 +1,37 @@
+{
+ "passed": true,
+ "checks": {
+  "hay_porton": {
+   "passed": true
+  },
+  "porton_cerrado_al_empezar": {
+   "passed": true
+  },
+  "camion_frena_antes_del_porton": {
+   "passed": true,
+   "gap_cm": 71.9
+  },
+  "e_abre_el_porton": {
+   "passed": true
+  },
+  "no_cierra_sobre_el_camion": {
+   "passed": true
+  },
+  "camion_pasa": {
+   "passed": true,
+   "moved_cm": 618
+  },
+  "e_cierra_el_porton": {
+   "passed": true
+  },
+  "estilo_1": {
+   "passed": true
+  },
+  "estilo_2": {
+   "passed": true
+  },
+  "estilo_3": {
+   "passed": true
+  }
+ }
+}

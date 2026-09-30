@@ -1,0 +1,56 @@
+{
+  "passed": true,
+  "checks": {
+    "spawn_and_hud": {
+      "passed": true,
+      "piles": 7,
+      "capacity": 200,
+      "world_quantity": 210
+    },
+    "inventory_opens_and_target_is_highlighted": {
+      "passed": true
+    },
+    "e_collects_and_depletes": {
+      "passed": true,
+      "quantity": 30,
+      "remaining_world": 180
+    },
+    "exhausted_pile_cannot_duplicate": {
+      "passed": true
+    },
+    "out_of_range_cannot_collect": {
+      "passed": true
+    },
+    "wall_blocks_collection": {
+      "passed": true
+    },
+    "collection_resumes_after_obstruction_removed": {
+      "passed": true
+    },
+    "partial_pickup_conserves_resources": {
+      "passed": true,
+      "inventory": 200,
+      "pile_remainder": 25,
+      "total": 345,
+      "injected_test_stock": 135
+    },
+    "full_inventory_keeps_world_resources": {
+      "passed": true
+    },
+    "inventory_rejects_invalid_amounts_and_clamps_removal": {
+      "passed": true
+    },
+    "remaining_scrap_can_be_collected": {
+      "passed": true,
+      "inventory": 90,
+      "total_resources": 210
+    },
+    "fast_walk_works_with_inventory_open": {
+      "passed": true
+    },
+    "inventory_closes_and_camera_zoom_works": {
+      "passed": true
+    }
+  },
+  "scope": "Rendered PIE with PlayerController input events; screenshots reviewed separately. Inventory is session-only."
+}

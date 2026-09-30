@@ -1,0 +1,54 @@
+{
+  "passed": true,
+  "checks": {
+    "wheel_zoom_in": {
+      "passed": true,
+      "distance_cm": 2205.004150390625
+    },
+    "wheel_zoom_out": {
+      "passed": true,
+      "distance_cm": 2449.999267578125
+    },
+    "zoom_minimum": {
+      "passed": true,
+      "distance_cm": 1100.0001220703125
+    },
+    "zoom_maximum": {
+      "passed": true,
+      "distance_cm": 3799.999755859375
+    },
+    "middle_mouse_drag": {
+      "passed": true,
+      "offset_cm": [
+        -89.46793048264549,
+        -22.366981576040697,
+        0.0
+      ]
+    },
+    "mouse_release_stops_pan": {
+      "passed": true
+    },
+    "pan_limit": {
+      "passed": true,
+      "distance_cm": 1249.9999999999998
+    },
+    "home_recenters_and_resets_zoom": {
+      "passed": true
+    },
+    "keyboard_movement": {
+      "passed": true,
+      "distance_cm": 219.0012792553749,
+      "animation_speed": 190.0
+    },
+    "keyboard_jump": {
+      "passed": true,
+      "rise_cm": 127.50002897864255
+    },
+    "isometric_angle_preserved": {
+      "passed": true,
+      "pitch": -54.99999999999997,
+      "yaw": -44.999999999999964
+    }
+  },
+  "scope": "Rendered PIE; simulated mouse and keyboard events through the real PlayerController input stack. Physical mouse interaction not manually tested."
+}

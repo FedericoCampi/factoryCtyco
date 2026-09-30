@@ -1,0 +1,33 @@
+{
+ "passed": true,
+ "mesh": "/Game/Arena/Factory/Models/CintaEsquina/SM_CintaEsquinaFabrica.SM_CintaEsquinaFabrica",
+ "definition": "/Game/Arena/Factory/Definitions/DB_BeltCorner",
+ "catalog": [
+  "Crusher",
+  "Smelter",
+  "Storage",
+  "Belt",
+  "BeltCorner"
+ ],
+ "corner": "Cinta_Fabrica_Esquina",
+ "location": [
+  -600,
+  600,
+  4
+ ],
+ "belts_with_steel_posts": [
+  "Cinta_Fabrica_1",
+  "Cinta_Fabrica_3",
+  "Cinta_Fabrica_Esquina"
+ ],
+ "input_point": [
+  -700,
+  600,
+  37
+ ],
+ "output_point": [
+  -600,
+  500,
+  37
+ ]
+}

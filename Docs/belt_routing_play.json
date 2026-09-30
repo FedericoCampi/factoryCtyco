@@ -1,0 +1,79 @@
+{
+ "passed": true,
+ "checks": {
+  "cruce_con_dos_salidas": {
+   "passed": true,
+   "outputs": {
+    "Cinta_Carga": [],
+    "Cinta_Carga2": [
+     "Cinta_Carga"
+    ],
+    "Cinta_Carga3": [
+     "Cinta_Carga2",
+     "Cinta_Carga4"
+    ],
+    "Cinta_Carga4": []
+   }
+  },
+  "acepta_sin_camion": {
+   "passed": true,
+   "camiones": [
+    false,
+    false
+   ]
+  },
+  "sin_camion_van_por_la_de_adelante": {
+   "passed": true,
+   "counts": {
+    "Cinta_Carga": 0,
+    "Cinta_Carga2": 2,
+    "Cinta_Carga3": 0,
+    "Cinta_Carga4": 0
+   }
+  },
+  "van_al_camion_que_espera": {
+   "passed": true,
+   "before": 2,
+   "after": 4,
+   "counts": {
+    "Cinta_Carga": 2,
+    "Cinta_Carga2": 2,
+    "Cinta_Carga3": 0,
+    "Cinta_Carga4": 0
+   }
+  },
+  "acepta_con_camion_lleno": {
+   "passed": true,
+   "cargo": 10,
+   "en_cinta": 2
+  },
+  "lleno_sigue_derecho_al_otro": {
+   "passed": true,
+   "before": 0,
+   "after": 1,
+   "counts": {
+    "Cinta_Carga": 2,
+    "Cinta_Carga2": 0,
+    "Cinta_Carga3": 0,
+    "Cinta_Carga4": 1
+   }
+  },
+  "m_silencia": {
+   "passed": true
+  },
+  "m_devuelve_el_sonido": {
+   "passed": true
+  }
+ },
+ "log": [
+  {
+   "despues_del_cruce": {
+    "Cinta_Carga": 2,
+    "Cinta_Carga2": 2,
+    "Cinta_Carga3": 0,
+    "Cinta_Carga4": 0
+   },
+   "t2_docked": false
+  }
+ ]
+}

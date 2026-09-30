@@ -1,0 +1,41 @@
+{
+  "passed": true,
+  "map": "/Game/Arena/Maps/L_FactoryDemo",
+  "backup": "C:\\Users\\Usuario\\Desktop\\unreal Projects\\ArenaProject\\Saved\\VisualPolishWork\\20260920-005309-121940Z",
+  "initial_buildings_preserved": 4,
+  "piles_preserved": 7,
+  "expansion_min": [
+    -950,
+    1500
+  ],
+  "expansion_max": [
+    950,
+    2350
+  ],
+  "build_cells": 36,
+  "connector_cells": [
+    [
+      0,
+      1000
+    ],
+    [
+      0,
+      1200
+    ],
+    [
+      0,
+      1400
+    ]
+  ],
+  "thresholds": [
+    5,
+    10,
+    20
+  ],
+  "reveal_seconds": 2,
+  "decorative_landmarks": [
+    "Taller",
+    "Carga"
+  ],
+  "functional_unlock": "36 construction cells"
+}

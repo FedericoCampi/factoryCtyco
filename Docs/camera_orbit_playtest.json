@@ -1,0 +1,42 @@
+{
+  "passed": true,
+  "checks": {
+    "no_orbit_without_ctrl_and_right_button": {
+      "passed": true
+    },
+    "left_ctrl_horizontal_orbit_preserves_pitch_pawn_and_build_mode": {
+      "passed": true,
+      "yaw": -34.967831022017656
+    },
+    "plain_right_click_still_cancels_build_mode": {
+      "passed": true
+    },
+    "right_ctrl_and_reverse_orbit": {
+      "passed": true,
+      "yaw": -44.93504806946534
+    },
+    "release_stops_orbit": {
+      "passed": true
+    },
+    "middle_button_pan_preserved": {
+      "passed": true,
+      "distance": 34.69413721032952
+    },
+    "orbit_pivot_is_pawn_even_after_pan": {
+      "passed": true,
+      "yaw": 53.940177979857154
+    },
+    "wasd_follows_orbit_heading": {
+      "passed": true,
+      "alignment": 0.9999999998817148
+    },
+    "zoom_preserved": {
+      "passed": true
+    },
+    "home_restores_heading_zoom_and_framing": {
+      "passed": true
+    }
+  },
+  "scope": "Rendered L_FactoryDemo PIE, simulated PlayerController input. No physical mouse test.",
+  "elapsed_seconds": 21.7
+}

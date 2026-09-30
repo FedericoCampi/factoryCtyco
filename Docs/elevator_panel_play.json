@@ -1,0 +1,158 @@
+{
+ "passed": true,
+ "checks": {
+  "dos_pisos_en_orden": {
+   "passed": true,
+   "fabrica": 1,
+   "estacionamiento": 2
+  },
+  "puertas_cerradas_por_defecto": {
+   "passed": true,
+   "fabrica": 0.0,
+   "estacionamiento": 0.0
+  },
+  "se_abren_al_acercarse": {
+   "passed": true,
+   "abiertas": 1.0
+  },
+  "e_abre_el_panel": {
+   "passed": true
+  },
+  "e_cierra_el_panel": {
+   "passed": true
+  },
+  "elige_piso_2": {
+   "passed": true
+  },
+  "subiendo_el_piso_sube": {
+   "passed": true,
+   "max_z": 150.0
+  },
+  "se_cierran_al_subir_y_abren_al_llegar": {
+   "passed": true,
+   "salida": [
+    151.7,
+    0.0,
+    0.0
+   ],
+   "llegada": [
+    -0.0,
+    219.8
+   ]
+  },
+  "llega_desde_abajo": {
+   "passed": true,
+   "min_z": -259.4,
+   "end": 0.0
+  },
+  "queda_en_el_estacionamiento": {
+   "passed": true
+  },
+  "puede_caminar": {
+   "passed": true
+  },
+  "panel_en_el_estacionamiento": {
+   "passed": true
+  },
+  "elige_piso_1": {
+   "passed": true
+  },
+  "bajando_el_piso_baja": {
+   "passed": true,
+   "min_z": -259.4
+  },
+  "llega_desde_arriba": {
+   "passed": true,
+   "max_z": 149.9,
+   "end": 0.0
+  },
+  "queda_en_la_fabrica": {
+   "passed": true
+  },
+  "cabina_y_puertas_quietas": {
+   "passed": true
+  },
+  "el_de_arriba_cierra_sin_nadie": {
+   "passed": true,
+   "abiertas": 0.0
+  },
+  "se_cierran_al_alejarse": {
+   "passed": true,
+   "abiertas": 0.0
+  }
+ },
+ "platform_z": {
+  "sale_estacionamiento": [
+   -259.4,
+   0.1
+  ],
+  "llega_fabrica": [
+   0.0,
+   149.9
+  ]
+ },
+ "door_gap": {
+  "sale_estacionamiento": [
+   151.7,
+   36.7,
+   -0.0,
+   -0.0,
+   -0.0,
+   -0.0,
+   -0.0,
+   -0.0,
+   -0.0,
+   -0.0,
+   -0.0,
+   -0.0,
+   -0.0,
+   -0.0,
+   -0.0,
+   -0.0,
+   -0.0,
+   -0.0,
+   -0.0,
+   -0.0,
+   -0.0,
+   -0.0,
+   -0.0,
+   -0.0,
+   -0.0,
+   -0.0,
+   -0.0,
+   -0.0,
+   -0.0
+  ],
+  "llega_fabrica": [
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   68.1,
+   183.3,
+   219.8,
+   219.8,
+   219.8,
+   219.8,
+   219.8,
+   219.8,
+   219.8
+  ]
+ }
+}

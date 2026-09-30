@@ -1,0 +1,23 @@
+{
+ "passed": true,
+ "mesh": "/Game/Arena/Environments/DespachoMachine/SM_DespachoMachine.SM_DespachoMachine",
+ "height_cm": 173.0,
+ "collisions": 2,
+ "actor": "Despacho_Machine",
+ "copies": [
+  "Despacho_Machine",
+  "Despacho_Machine2"
+ ],
+ "roller_material": "/Game/Arena/Environments/DespachoMachine/M_DespachoRodillo.M_DespachoRodillo",
+ "location": [
+  -4782.0,
+  -981.9,
+  -0.0
+ ],
+ "materials": [
+  "Material_0",
+  "M_Rodillo",
+  "M_BarreraAcero",
+  "M_BarreraNaranja"
+ ]
+}

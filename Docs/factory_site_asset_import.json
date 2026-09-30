@@ -1,0 +1,114 @@
+{
+  "passed": true,
+  "assets": [
+    {
+      "path": "/Game/Arena/Factory/Models/SiteProgress/SM_FactoryWorkshop.SM_FactoryWorkshop",
+      "import_yaw": 0,
+      "triangles": 17676,
+      "simple_collision_count": 1,
+      "collision": "BOX",
+      "front": "-Y",
+      "rear": "+Y",
+      "material_slots": [
+        {
+          "slot": 0,
+          "key": "Graphite",
+          "material": "/Game/Arena/Factory/Materials/MI_FactoryGraphite.MI_FactoryGraphite"
+        },
+        {
+          "slot": 1,
+          "key": "Steel",
+          "material": "/Game/Arena/Factory/Materials/MI_FactorySteel.MI_FactorySteel"
+        },
+        {
+          "slot": 2,
+          "key": "SafetyOrange",
+          "material": "/Game/Arena/Factory/Materials/MI_FactorySafetyOrange.MI_FactorySafetyOrange"
+        },
+        {
+          "slot": 3,
+          "key": "SiteCyan",
+          "material": "/Game/Arena/Factory/Materials/MI_FactorySiteCyan.MI_FactorySiteCyan"
+        }
+      ],
+      "dimensions_cm": [
+        300.0000305175781,
+        180.00001525878906,
+        220.0
+      ],
+      "min_cm": [
+        -150.00001525878906,
+        -90.00000762939453,
+        0.0
+      ],
+      "max_cm": [
+        150.00001525878906,
+        90.00000762939453,
+        220.0
+      ]
+    },
+    {
+      "path": "/Game/Arena/Factory/Models/SiteProgress/SM_FactoryChargeStation.SM_FactoryChargeStation",
+      "import_yaw": 0,
+      "triangles": 8984,
+      "simple_collision_count": 0,
+      "collision": "none",
+      "front": "-Y",
+      "rear": "+Y",
+      "material_slots": [
+        {
+          "slot": 0,
+          "key": "Graphite",
+          "material": "/Game/Arena/Factory/Materials/MI_FactoryGraphite.MI_FactoryGraphite"
+        },
+        {
+          "slot": 1,
+          "key": "Steel",
+          "material": "/Game/Arena/Factory/Materials/MI_FactorySteel.MI_FactorySteel"
+        },
+        {
+          "slot": 2,
+          "key": "SafetyOrange",
+          "material": "/Game/Arena/Factory/Materials/MI_FactorySafetyOrange.MI_FactorySafetyOrange"
+        },
+        {
+          "slot": 3,
+          "key": "SiteCyan",
+          "material": "/Game/Arena/Factory/Materials/MI_FactorySiteCyan.MI_FactorySiteCyan"
+        }
+      ],
+      "dimensions_cm": [
+        240.00003051757812,
+        240.00003051757812,
+        150.0
+      ],
+      "min_cm": [
+        -120.00001525878906,
+        -120.00001525878906,
+        0.0
+      ],
+      "max_cm": [
+        120.00001525878906,
+        120.00001525878906,
+        150.0
+      ]
+    }
+  ],
+  "materials": {
+    "Graphite": "/Game/Arena/Factory/Materials/MI_FactoryGraphite.MI_FactoryGraphite",
+    "Steel": "/Game/Arena/Factory/Materials/MI_FactorySteel.MI_FactorySteel",
+    "SafetyOrange": "/Game/Arena/Factory/Materials/MI_FactorySafetyOrange.MI_FactorySafetyOrange",
+    "SiteCyan": "/Game/Arena/Factory/Materials/MI_FactorySiteCyan.MI_FactorySiteCyan"
+  },
+  "backup": "C:\\Users\\Usuario\\Desktop\\unreal Projects\\ArenaProject\\Saved\\VisualPolishWork\\20260920-004014-214480Z",
+  "contract": {
+    "pivot": "floor and XY centre",
+    "front": "-Y",
+    "rear": "+Y",
+    "units_unreal": "cm",
+    "scope": "decorative milestone assets; no battery simulation",
+    "charge_pad_top_cm": 20,
+    "authoring": "metres, FBX scale converted to centimetres"
+  },
+  "shared_import_yaw": 0
+}
