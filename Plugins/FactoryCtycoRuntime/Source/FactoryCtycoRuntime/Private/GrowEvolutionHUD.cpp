@@ -51,7 +51,7 @@ void AGrowEvolutionHUD::DrawHUD()
     const FLinearColor Muted(.61f, .71f, .76f, 1);
     const FLinearColor Quiet(.38f, .48f, .53f, 1);
     const FLinearColor Mint(.32f, .91f, .77f, 1);
-    const FLinearColor Amber(1.0f, .70f, .34f, 1);
+    const FLinearColor HudAmber(1.0f, .70f, .34f, 1);
     const bool bResolving = World->bResolving;
     const bool bWaiting = bResolving || World->TransitionRemaining > 0.0f;
     const float UpgradeDelay = FMath::Max(World->UpgradeDelaySeconds, .1f);
@@ -89,24 +89,24 @@ void AGrowEvolutionHUD::DrawHUD()
     {
         TArray<FString> Words;
         Value.ParseIntoArrayWS(Words);
-        TArray<FString> Lines;
+        TArray<FString> WrappedLines;
         FString Line;
         for (const FString& Word : Words)
         {
             const FString Candidate = Line.IsEmpty() ? Word : Line + TEXT(" ") + Word;
             if (!Line.IsEmpty() && WidthOf(Candidate, Scale) > Width)
             {
-                Lines.Add(Line);
+                WrappedLines.Add(Line);
                 Line = Word;
             }
             else Line = Candidate;
         }
-        if (!Line.IsEmpty()) Lines.Add(Line);
-        const int32 Count = FMath::Min(MaxLines, Lines.Num());
+        if (!Line.IsEmpty()) WrappedLines.Add(Line);
+        const int32 Count = FMath::Min(MaxLines, WrappedLines.Num());
         for (int32 Index = 0; Index < Count; ++Index)
         {
-            FString Display = Lines[Index];
-            if (Index == MaxLines - 1 && Lines.Num() > MaxLines)
+            FString Display = WrappedLines[Index];
+            if (Index == MaxLines - 1 && WrappedLines.Num() > MaxLines)
             {
                 while (!Display.IsEmpty() && WidthOf(Display + TEXT("..."), Scale) > Width) Display.LeftChopInline(1);
                 Display += TEXT("...");
@@ -175,7 +175,7 @@ void AGrowEvolutionHUD::DrawHUD()
     const float SideW = 292;
     const FLinearColor RoleColor = bAwake ? AGrowEvolutionWorld::ProfessionColor(World->Profession) : Mint;
     Box(SideX, SideY, SideW, 462, Border);
-    Rect(bComplete ? (bSuccessful ? Mint : Amber) : RoleColor, SideX, SideY, SideW, 3);
+    Rect(bComplete ? (bSuccessful ? Mint : HudAmber) : RoleColor, SideX, SideY, SideW, 3);
     Text(bComplete ? TEXT("TU MUNDO / RESULTADO") : TEXT("LA COLONIA"), SideX + 18, SideY + 20, .93f, White);
     Text(bAwake ? TEXT("PROFESIÓN ACTUAL") : TEXT("ROBOTS EN REPOSO"), SideX + 18, SideY + 58, .68f, Muted);
     FitText(bAwake ? AGrowEvolutionWorld::ProfessionName(World->Profession) : TEXT("Un futuro por despertar"),
@@ -200,10 +200,10 @@ void AGrowEvolutionHUD::DrawHUD()
     else if (bComplete)
     {
         FitText(bSuccessful ? TEXT("COLONIA EN PLENITUD") : TEXT("OTRO FUTURO ES POSIBLE"),
-            SideX + 18, SideY + 195, SideW - 36, .90f, bSuccessful ? Mint : Amber);
+            SideX + 18, SideY + 195, SideW - 36, .90f, bSuccessful ? Mint : HudAmber);
         Wrap(World->OutcomeText(), SideX + 18, SideY + 222, SideW - 36, .85f, 19, bSuccessful ? 5 : 2, White);
         if (!bSuccessful)
-            Wrap(World->ProgressHint(), SideX + 18, SideY + 274, SideW - 36, .78f, 17, 3, Amber);
+            Wrap(World->ProgressHint(), SideX + 18, SideY + 274, SideW - 36, .78f, 17, 3, HudAmber);
     }
     else if (!bAwake)
     {

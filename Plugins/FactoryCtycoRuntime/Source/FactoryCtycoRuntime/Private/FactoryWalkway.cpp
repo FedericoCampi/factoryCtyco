@@ -8,7 +8,7 @@ namespace
     constexpr float MinArm = 30.0f;     // an L's arm past the inner corner
     constexpr float MinLength = 60.0f;  // a straight walkway
 
-    UInstancedStaticMeshComponent* MakePieces(AActor* Owner, const TCHAR* Name, USceneComponent* Root)
+    UInstancedStaticMeshComponent* MakeWalkwayPieces(AActor* Owner, const TCHAR* Name, USceneComponent* Root)
     {
         auto* Pieces = Owner->CreateDefaultSubobject<UInstancedStaticMeshComponent>(Name);
         Pieces->SetupAttachment(Root);
@@ -22,10 +22,10 @@ AFactoryWalkway::AFactoryWalkway()
 {
     PrimaryActorTick.bCanEverTick = false;
     RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
-    Deck = MakePieces(this, TEXT("Deck"), RootComponent);
-    Rails = MakePieces(this, TEXT("Rails"), RootComponent);
-    Posts = MakePieces(this, TEXT("Posts"), RootComponent);
-    Legs = MakePieces(this, TEXT("Legs"), RootComponent);
+    Deck = MakeWalkwayPieces(this, TEXT("Deck"), RootComponent);
+    Rails = MakeWalkwayPieces(this, TEXT("Rails"), RootComponent);
+    Posts = MakeWalkwayPieces(this, TEXT("Posts"), RootComponent);
+    Legs = MakeWalkwayPieces(this, TEXT("Legs"), RootComponent);
 }
 
 void AFactoryWalkway::OnConstruction(const FTransform& Transform)
