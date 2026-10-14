@@ -1,6 +1,0 @@
-# FactoryCtyco uses local Unreal automation only.
-[mcp_servers.runpod]
-enabled = false
-
-[plugins."runpod@runpod"]
-enabled = false

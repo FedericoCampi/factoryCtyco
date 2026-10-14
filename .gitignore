@@ -26,3 +26,6 @@ __pycache__/
 Thumbs.db
 Desktop.ini
 .DS_Store
+
+# Configuracion personal de Codex (depende de la config global de cada uno)
+.codex/
