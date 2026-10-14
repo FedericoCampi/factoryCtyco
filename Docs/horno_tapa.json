@@ -1,0 +1,19 @@
+{
+ "passed": true,
+ "pivot_cm": [
+  -21.3,
+  -66.7,
+  132.6
+ ],
+ "lid_rest_deg": 38.0,
+ "lid_sign": -1.0,
+ "closed_top_cm": {
+  "1.0": 675.8,
+  "-1.0": 530.8
+ },
+ "liquid": "/Game/FactoryCtyco/Factory/Materials/M_LiquidoFundido.M_LiquidoFundido",
+ "crushed_size_cm": [
+  14.4,
+  19.2
+ ]
+}

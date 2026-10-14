@@ -1,0 +1,21 @@
+{
+ "passed": true,
+ "material_slots": [
+  "M_PlataformaChapa",
+  "M_PlataformaBorde"
+ ],
+ "ejemplo": "Plataforma_Elevadora_1",
+ "recibe": [
+  1600,
+  250,
+  37
+ ],
+ "entrega": [
+  1800,
+  250,
+  237
+ ],
+ "es_elevador": true,
+ "segundos": 2.38,
+ "choca_con": []
+}

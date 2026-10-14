@@ -1,0 +1,68 @@
+{
+ "passed": true,
+ "esquina_horno_gap_cm": 15.6,
+ "ids_corregidos": [
+  "Cinta_Fabrica_2",
+  "Cinta_Fabrica_Esquina2",
+  "Cinta_Cuarzo_Triturar3"
+ ],
+ "corta": {
+  "in": [
+   2009,
+   85,
+   126
+  ],
+  "out": [
+   2009,
+   457,
+   126
+  ]
+ },
+ "esquina": {
+  "in": [
+   2009,
+   457,
+   126
+  ],
+  "out": [
+   1807,
+   659,
+   126
+  ],
+  "gap_cm": 14.7
+ },
+ "chain": [
+  {
+   "from": "Cinta_Cuarzo_Triturar3",
+   "to": "Cinta_Fabrica_Esquina2"
+  },
+  {
+   "from": "Cinta_Fabrica_Esquina2",
+   "to": "Cinta_Cuarzo_Triturar"
+  },
+  {
+   "from": "Cinta_Cuarzo_Triturar",
+   "to": "Plataforma_Elevadora_1"
+  },
+  {
+   "from": "Plataforma_Elevadora_1",
+   "to": "Trituradora_Cuarzo"
+  },
+  {
+   "from": "Trituradora_Cuarzo",
+   "to": "Cinta_Fabrica_2"
+  },
+  {
+   "from": "Cinta_Fabrica_2",
+   "to": "Cinta_Fabrica_Esquina"
+  },
+  {
+   "from": "Cinta_Fabrica_Esquina",
+   "to": "Cinta_Fabrica_1"
+  },
+  {
+   "from": "Cinta_Fabrica_1",
+   "to": null
+  }
+ ]
+}

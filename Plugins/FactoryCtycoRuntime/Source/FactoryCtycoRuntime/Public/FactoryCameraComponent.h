@@ -76,6 +76,24 @@ public:
 
     UFUNCTION(BlueprintCallable, Category="Factory Camera")
     void ResetCamera();
+
+    /** First person: the camera goes to the character's eyes (its body hides) and the mouse looks around (the cursor
+     *  hides and stays in the window); WASD walks where it looks. Off: back to the isometric camera as it was, with the
+     *  cursor. Key V or the button next to mute. */
+    UFUNCTION(BlueprintCallable, Category="Factory Camera")
+    void SetFirstPerson(bool bOn);
+    UFUNCTION(BlueprintCallable, Category="Factory Camera")
+    void ToggleFirstPerson() { SetFirstPerson(!bFirstPerson); }
+    UFUNCTION(BlueprintCallable, Category="Factory Camera")
+    bool IsFirstPerson() const { return bFirstPerson; }
+    /** Eyes over the character's middle (its capsule centre), cm. */
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Factory Camera|First Person")
+    float EyeHeight = 65.0f;
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Factory Camera|First Person", meta=(ClampMin="30", ClampMax="120"))
+    float FirstPersonFov = 85.0f;
+    /** First person: degrees the view turns per processed mouse-axis unit. */
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Factory Camera|First Person", meta=(ClampMin="0.1"))
+    float LookSensitivity = 2.0f;
     /** Mouse movement since the right button went down; a right drag orbits instead of clicking. */
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Factory Camera")
     float RightDragSincePress = 0.0f;
@@ -107,6 +125,15 @@ private:
     FRotator InitialRotation = FRotator::ZeroRotator;
     /** Free camera: the arm is placed in the world at Focus (+ its offset over the pawn) instead of riding along. */
     bool bFree = false;
+    bool bFirstPerson = false;
+    /** First person: looking up (+) or down (-), degrees. */
+    float LookPitch = 0.0f;
+    /** The arm's place on the pawn and the camera's field of view, to put back after first person. */
+    FVector ArmRelative = FVector::ZeroVector;
+    float IsometricFov = 90.0f;
+    bool bWasFree = false;
+    bool bArmCollided = false;
+    FVector ArmSocket = FVector::ZeroVector;
     TWeakObjectPtr<AActor> FollowTarget;
     FVector Focus = FVector::ZeroVector;
     FVector ArmOverPawn = FVector::ZeroVector;

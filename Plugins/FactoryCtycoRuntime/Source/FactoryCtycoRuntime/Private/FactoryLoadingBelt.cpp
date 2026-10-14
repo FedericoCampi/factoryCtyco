@@ -1,6 +1,7 @@
 #include "FactoryLoadingBelt.h"
 #include "FactoryBeltSupports.h"
 #include "Camera/PlayerCameraManager.h"
+#include "Components/ArrowComponent.h"
 #include "Components/InstancedStaticMeshComponent.h"
 #include "Components/SplineComponent.h"
 #include "Components/StaticMeshComponent.h"
@@ -10,6 +11,7 @@
 #include "EngineUtils.h"
 #include "FactoryCarry.h"
 #include "FactoryMission.h"
+#include "FactoryTruckBay.h"
 #include "FactoryVehiclePath.h"
 #include "GameFramework/Pawn.h"
 #include "GameFramework/PlayerController.h"
@@ -42,6 +44,22 @@ AFactoryLoadingBelt::AFactoryLoadingBelt()
     Supports->SetCollisionProfileName(TEXT("BlockAll"));
     static ConstructorHelpers::FObjectFinder<UStaticMesh> Cube(TEXT("/Engine/BasicShapes/Cube.Cube"));
     if (Cube.Succeeded()) SupportMesh = Cube.Object;
+    Route = CreateDefaultSubobject<USplineComponent>(TEXT("Route"));
+    Route->SetupAttachment(RootComponent);
+    Route->SetDrawDebug(true);
+    Route->SetUnselectedSplineSegmentColor(FLinearColor::White);
+    Route->SetSelectedSplineSegmentColor(FLinearColor::White);
+    Route->SetHiddenInGame(true);
+    RouteArrow = CreateDefaultSubobject<UArrowComponent>(TEXT("RouteArrow"));
+    RouteArrow->SetupAttachment(RootComponent);
+    RouteArrow->SetArrowColor(FLinearColor::White);
+    RouteArrow->ArrowSize = 0.6f;
+    RouteArrow->ArrowLength = 60.0f;
+    // Placed in the world (BuildRoute): the same size on a stretched belt, and not mirrored with a mirrored one.
+    RouteArrow->SetUsingAbsoluteLocation(true);
+    RouteArrow->SetUsingAbsoluteRotation(true);
+    RouteArrow->SetUsingAbsoluteScale(true);
+    RouteArrow->SetHiddenInGame(true);
 }
 
 FVector AFactoryLoadingBelt::LocalAt(float LocalAlong, float* OutYaw) const
@@ -68,7 +86,117 @@ FVector AFactoryLoadingBelt::WorldAt(float Along) const
 void AFactoryLoadingBelt::OnConstruction(const FTransform& Transform)
 {
     Super::OnConstruction(Transform);
+    ApplySlope();
+    BuildRoute();
     BuildSupports();
+}
+
+void AFactoryLoadingBelt::ApplySlope()
+{
+    const FVector InEnd = LocalAt(0.0f), OutEnd = LocalAt(Length);
+    if (FMath::Abs(TurnDegrees) >= 0.5f)
+    {
+        InputEndHandle = PlacedIn = InEnd;
+        OutputEndHandle = PlacedOut = OutEnd;
+        return;
+    }
+    const FTransform& T = GetActorTransform();
+    const FVector Forward = FRotator(0, GetActorRotation().Yaw, 0).Vector();
+    auto Dragged = [](const FVector& Handle, const FVector& Placed) { return !Placed.IsZero() && !Handle.Equals(Placed, 0.5f); };
+    // The end that stays where it is (world), and the slope wanted.
+    float Wanted = Slope;
+    FVector Pivot = InEnd;
+    bool bHandle = false;
+    if (Dragged(OutputEndHandle, PlacedOut))
+    {
+        // The far end dragged: from the load end to it.
+        const FVector Delta = T.TransformPosition(OutputEndHandle) - T.TransformPosition(InEnd);
+        const float Along = FVector::DotProduct(Delta, Forward);
+        if (Along > 1.0f) { Wanted = FMath::RadiansToDegrees(FMath::Atan2(Delta.Z, Along)); bHandle = true; }
+    }
+    else if (Dragged(InputEndHandle, PlacedIn))
+    {
+        // The load end dragged: from it to the far end, which stays.
+        const FVector Delta = T.TransformPosition(OutEnd) - T.TransformPosition(InputEndHandle);
+        const float Along = FVector::DotProduct(Delta, Forward);
+        if (Along > 1.0f) { Wanted = FMath::RadiansToDegrees(FMath::Atan2(Delta.Z, Along)); bHandle = true; Pivot = OutEnd; }
+    }
+    InputEndHandle = PlacedIn = InEnd;
+    OutputEndHandle = PlacedOut = OutEnd;
+    if (!bHandle && FMath::IsNearlyEqual(Slope, AppliedSlope, 0.01f))
+    {
+        // Slope untouched: the actor was turned in pitch some other way (gizmo, level, script); Slope follows it.
+        Slope = AppliedSlope = GetActorRotation().Pitch;
+        return;
+    }
+    Wanted = FMath::Clamp(Wanted, -60.0f, 60.0f);
+    const FVector PivotWorld = T.TransformPosition(Pivot);
+    FRotator Rotation = GetActorRotation();
+    Rotation.Pitch = Wanted;
+    SetActorRotation(Rotation);
+    SetActorLocation(GetActorLocation() + PivotWorld - GetActorTransform().TransformPosition(Pivot));
+    Slope = AppliedSlope = Wanted;
+}
+
+void AFactoryLoadingBelt::ReverseDirection()
+{
+    const FTransform Old = GetActorTransform();
+    const float Span = Length;
+    // The old centre line (world): the new one must run along it the other way.
+    const FVector OldStart = Old.TransformPosition(LocalAt(0.0f)), OldMiddle = Old.TransformPosition(LocalAt(Span / 2));
+    const FVector OldEnd = Old.TransformPosition(LocalAt(Span));
+    float Heading = 0.0f;
+    FVector EndBase = LocalAt(Span, &Heading);
+    EndBase.Z = 0.0f;
+    // Facing back along the line at the old far end.
+    const FVector Back = -Old.TransformVector(FRotator(0, Heading, 0).Vector()).GetSafeNormal();
+    FRotator Rotation = Back.Rotation();
+    Rotation.Roll = Old.Rotator().Roll;
+    const FVector S = Old.GetScale3D();
+    // A straight belt keeps its scale; a corner's arc comes back the other way with its two scales swapped and mirrored.
+    // Of the candidates, the one whose line runs from the old far end through the old middle to the old load end.
+    const bool bCorner = FMath::Abs(TurnDegrees) >= 0.5f;
+    TArray<FVector> Scales;
+    if (bCorner) { Scales.Add(FVector(FMath::Abs(S.Y), -S.X, S.Z)); Scales.Add(FVector(FMath::Abs(S.Y), S.X, S.Z)); }
+    else { Scales.Add(S); }
+    FTransform Best;
+    float BestError = TNumericLimits<float>::Max();
+    for (const FVector& Scale : Scales)
+    {
+        const FTransform Candidate(Rotation, Old.TransformPosition(EndBase), Scale);
+        const float Error = FVector::Dist(Candidate.TransformPosition(LocalAt(0.0f)), OldEnd)
+            + FVector::Dist(Candidate.TransformPosition(LocalAt(Span / 2)), OldMiddle)
+            + FVector::Dist(Candidate.TransformPosition(LocalAt(Span)), OldStart);
+        if (Error < BestError) { BestError = Error; Best = Candidate; }
+    }
+    Modify();
+    SetActorTransform(Best);
+    Slope = AppliedSlope = GetActorRotation().Pitch;
+    PlacedIn = PlacedOut = FVector::ZeroVector;
+#if WITH_EDITOR
+    RerunConstructionScripts();
+#else
+    BuildRoute();
+    BuildSupports();
+#endif
+}
+
+void AFactoryLoadingBelt::BuildRoute()
+{
+    // Over the rollers (a little above, so it shows), every 20 cm on a curve; local and unscaled, like LocalAt.
+    constexpr float Over = 3.0f;
+    const int32 Steps = FMath::Abs(TurnDegrees) < 0.5f ? 1 : FMath::Clamp(FMath::CeilToInt(Length / 20.0f), 2, 100);
+    Route->ClearSplinePoints(false);
+    for (int32 I = 0; I <= Steps; ++I)
+        Route->AddSplinePoint(LocalAt(Length * I / Steps) + FVector(0, 0, Over), ESplineCoordinateSpace::Local, false);
+    Route->UpdateSpline();
+    // The arrow ends at the far end, pointing the way the boxes go there (in the world: the belt may be stretched or
+    // mirrored).
+    float Heading = 0.0f;
+    const FTransform& T = GetActorTransform();
+    const FVector End = T.TransformPosition(LocalAt(Length, &Heading) + FVector(0, 0, Over));
+    const FVector Dir = T.TransformVector(FRotator(0, Heading, 0).Vector()).GetSafeNormal();
+    RouteArrow->SetWorldLocationAndRotation(End - Dir * RouteArrow->ArrowLength, Dir.Rotation());
 }
 
 void AFactoryLoadingBelt::BuildSupports()
@@ -101,6 +229,43 @@ void AFactoryLoadingBelt::BeginPlay()
     if (RollerMaterial) RollerMaterial->SetScalarParameterValue(TEXT("Velocidad"), 0.0f);
     RefreshLinks();
     BuildSupports();
+    FindDockDoor();
+}
+
+void AFactoryLoadingBelt::FindDockDoor()
+{
+    HoldBay.Reset();
+    HoldAt = -1.0f;
+    if (!bHoldAtDockDoors) return;
+    const float Span = WorldLength();
+    const int32 Steps = FMath::Clamp(FMath::CeilToInt(Span / 10.0f), 2, 400);
+    for (TActorIterator<AFactoryTruckBay> It(GetWorld()); It; ++It)
+    {
+        const AActor* Door = It->DockDoor;
+        if (!Door) continue;
+        // The door's plane: through the door, across its thin side (the door mesh is thin along its Y); the belt
+        // crosses it within the door's width (its X).
+        FVector Origin, Extent;
+        Door->GetActorBounds(false, Origin, Extent);
+        const FVector Across = Door->GetActorRightVector(), Along = Door->GetActorForwardVector();
+        const float HalfWidth = FMath::Abs(FVector::DotProduct(Extent, Along.GetAbs())) + 10.0f;
+        float Prev = 0.0f;
+        for (int32 I = 0; I <= Steps; ++I)
+        {
+            const float A = Span * I / Steps;
+            const FVector P = WorldAt(A);
+            const float Side = FVector::DotProduct(P - Origin, Across);
+            if (I > 0 && (Side > 0.0f) != (Prev > 0.0f) && FMath::Abs(FVector::DotProduct(P - Origin, Along)) < HalfWidth)
+            {
+                // Where it crosses (between the two samples), less the gap.
+                const float Cross = A - Span / Steps * FMath::Abs(Side) / FMath::Max(FMath::Abs(Side - Prev), KINDA_SMALL_NUMBER);
+                HoldBay = *It;
+                HoldAt = FMath::Max(Cross - DoorHoldGap, 0.0f);
+                return;
+            }
+            Prev = Side;
+        }
+    }
 }
 
 void AFactoryLoadingBelt::RefreshLinks()
@@ -255,24 +420,46 @@ bool AFactoryLoadingBelt::RoomAt(float Along) const
     return true;
 }
 
-void AFactoryLoadingBelt::AddBox(UStaticMesh* Mesh, float Along, float Yaw)
+FTransform AFactoryLoadingBelt::BoxTransformAt(float Along, float Yaw) const
+{
+    // In the world: the heading follows the belt even when it is stretched, mirrored or tilted.
+    float Heading = 0.0f;
+    const FTransform& T = GetActorTransform();
+    const FVector Spot = T.TransformPosition(LocalAt(Along / Stretch(), &Heading));
+    // The full transform (scale too): a mirrored belt can be stored as mirrored in X and turned round instead of
+    // mirrored in Y, and only the whole transform gives the true direction of its line either way.
+    const FVector Dir = T.TransformVector(FRotator(0, Heading, 0).Vector()).GetSafeNormal();
+    FRotator Rotation = Dir.Rotation();
+    Rotation.Yaw += Yaw;
+    return FTransform(Rotation, Spot);
+}
+
+void AFactoryLoadingBelt::AddBox(UStaticMesh* Mesh, float Along, float Yaw, const FTransform* From)
 {
     auto* Box = NewObject<UStaticMeshComponent>(this);
     Box->SetStaticMesh(Mesh);
     Box->SetMobility(EComponentMobility::Movable);
     Box->SetCollisionEnabled(ECollisionEnabled::NoCollision);
-    Box->SetUsingAbsoluteScale(true);   // the belt may be stretched; the box is not
+    // Placed in the world every frame: the belt may be stretched (the box is not) or mirrored (a mirrored parent would
+    // mirror the box's turn too).
+    Box->SetUsingAbsoluteLocation(true);
+    Box->SetUsingAbsoluteRotation(true);
+    Box->SetUsingAbsoluteScale(true);
     Box->SetupAttachment(RootComponent);
     Box->RegisterComponent();
-    float Heading = 0.0f;
-    const FVector Spot = LocalAt(Along / Stretch(), &Heading);
-    Box->SetRelativeLocationAndRotation(Spot, FRotator(0, Heading + Yaw, 0));
+    const FTransform Spot = BoxTransformAt(Along, Yaw);
+    // Handed over: it starts where it was and settles onto this belt as it moves on.
+    const FVector Offset = From ? From->GetLocation() - Spot.GetLocation() : FVector::ZeroVector;
+    const float YawOffset = From ? FRotator::NormalizeAxis(From->Rotator().Yaw - Spot.Rotator().Yaw) : 0.0f;
+    Box->SetWorldLocationAndRotation(Spot.GetLocation() + Offset, Spot.Rotator() + FRotator(0, YawOffset, 0));
     // Keep them ordered furthest first: each box stops behind the one before it.
     int32 Index = 0;
     while (Index < Travelled.Num() && Travelled[Index] > Along) ++Index;
     Boxes.Insert(Box, Index);
     Travelled.Insert(Along, Index);
     Jitter.Insert(Yaw, Index);
+    HandoffOffset.Insert(Offset, Index);
+    HandoffYaw.Insert(YawOffset, Index);
 }
 
 bool AFactoryLoadingBelt::TryLoad(AActor* User)
@@ -314,18 +501,26 @@ void AFactoryLoadingBelt::Tick(float DeltaSeconds)
                     const float Gap = FVector::Dist2D(EndPoint, Other->GetComponentLocation());
                     if (Gap < BoxSpacing) FrontLimit = FMath::Min(FrontLimit, End - (BoxSpacing - Gap));
                 }
+    // A dock door on the way that is not fully up: boxes not past it yet wait just before it.
+    const AFactoryTruckBay* Bay = HoldBay.Get();
+    const bool bDoorShut = Bay && HoldAt >= 0.0f && Bay->GetDoorOpenness() < 0.99f;
     bool bMoving = false;
     for (int32 Index = 0; Index < Boxes.Num(); ++Index)
     {
-        const float Limit = Index == 0 ? FMath::Max(FrontLimit, 0.0f) : Travelled[Index - 1] - BoxSpacing;
+        float Limit = Index == 0 ? FMath::Max(FrontLimit, 0.0f) : Travelled[Index - 1] - BoxSpacing;
+        if (bDoorShut && Travelled[Index] <= HoldAt + 0.5f) Limit = FMath::Min(Limit, HoldAt);
         const float Before = Travelled[Index];
         Travelled[Index] = FMath::Max(Before, FMath::Min(Before + Speed * DeltaSeconds, Limit));
         bMoving |= Travelled[Index] > Before + KINDA_SMALL_NUMBER;
+        // What is left of the handover offset fades with the distance the box moves.
+        const float Fade = FMath::Max(0.0f, 1.0f - (Travelled[Index] - Before) / HandoffBlend);
+        HandoffOffset[Index] *= Fade;
+        HandoffYaw[Index] *= Fade;
+        if (HandoffOffset[Index].SizeSquared() < 0.01f) HandoffOffset[Index] = FVector::ZeroVector;
         if (Boxes[Index])
         {
-            float Heading = 0.0f;
-            const FVector Spot = LocalAt(Travelled[Index] / Stretch(), &Heading);
-            Boxes[Index]->SetRelativeLocationAndRotation(Spot, FRotator(0, Heading + Jitter[Index], 0));
+            const FTransform Spot = BoxTransformAt(Travelled[Index], Jitter[Index]);
+            Boxes[Index]->SetWorldLocationAndRotation(Spot.GetLocation() + HandoffOffset[Index], Spot.Rotator() + FRotator(0, HandoffYaw[Index], 0));
         }
     }
     if (Boxes.Num() > 0 && Travelled[0] >= End - 0.5f && Boxes[0])
@@ -336,7 +531,8 @@ void AFactoryLoadingBelt::Tick(float DeltaSeconds)
         {
             if (AFactoryLoadingBelt* Output = ChooseOutput())
             {
-                Output->AddBox(Mesh, 0.0f, Jitter[0]);
+                const FTransform Seen = Boxes[0]->GetComponentTransform();
+                Output->AddBox(Mesh, 0.0f, Jitter[0], &Seen);
                 bHanded = true;
             }
         }
@@ -348,6 +544,8 @@ void AFactoryLoadingBelt::Tick(float DeltaSeconds)
             Boxes.RemoveAt(0);
             Travelled.RemoveAt(0);
             Jitter.RemoveAt(0);
+            HandoffOffset.RemoveAt(0);
+            HandoffYaw.RemoveAt(0);
         }
     }
     if (bMoving != bRunning && RollerMaterial)

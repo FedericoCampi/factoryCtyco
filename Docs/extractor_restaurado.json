@@ -1,0 +1,24 @@
+{
+ "passed": true,
+ "creado": true,
+ "lugar": [
+  1885,
+  -1530,
+  20
+ ],
+ "alto_cm": 427,
+ "caja": [
+  1728,
+  -1683,
+  2042,
+  -1359
+ ],
+ "enganchados": [
+  "Extractor_Baliza",
+  "Extractor_Pantalla",
+  "Extractor_Interruptor",
+  "Extractor_LuzBaliza",
+  "Extractor_LuzMirilla"
+ ],
+ "escena": "Fabrica"
+}

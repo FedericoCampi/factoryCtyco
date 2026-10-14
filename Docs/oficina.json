@@ -1,0 +1,38 @@
+{
+ "passed": true,
+ "oficina": [
+  1000,
+  6500,
+  1100
+ ],
+ "tamano_cm": [
+  1180,
+  1280,
+  385
+ ],
+ "triangulos": 24244,
+ "materiales": 26,
+ "ascensor": {
+  "lugar": [
+   1420,
+   6655,
+   1100
+  ],
+  "yaw": -90,
+  "parada": "ADMINISTRACIÓN"
+ },
+ "escena": {
+  "centro": [
+   1543,
+   6031,
+   1125
+  ],
+  "medio": [
+   690,
+   864,
+   475
+  ],
+  "oficina": "Oficina",
+  "ascensor": "Oficina"
+ }
+}

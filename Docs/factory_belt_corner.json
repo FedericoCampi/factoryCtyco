@@ -1,7 +1,7 @@
 {
  "passed": true,
- "mesh": "/Game/Arena/Factory/Models/CintaEsquina/SM_CintaEsquinaFabrica.SM_CintaEsquinaFabrica",
- "definition": "/Game/Arena/Factory/Definitions/DB_BeltCorner",
+ "mesh": "/Game/FactoryCtyco/Factory/Models/CintaEsquina/SM_CintaEsquinaFabrica.SM_CintaEsquinaFabrica",
+ "definition": "/Game/FactoryCtyco/Factory/Definitions/DB_BeltCorner",
  "catalog": [
   "Crusher",
   "Smelter",
@@ -21,13 +21,13 @@
   "Cinta_Fabrica_Esquina"
  ],
  "input_point": [
-  -700,
+  -675,
   600,
-  37
+  538
  ],
  "output_point": [
-  -600,
-  500,
-  37
+  -473,
+  331,
+  538
  ]
 }

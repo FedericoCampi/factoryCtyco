@@ -1,0 +1,17 @@
+{
+ "passed": true,
+ "music": "/Game/FactoryCtyco/Audio/S_MusicaFabrica",
+ "music_class": "/Game/FactoryCtyco/Audio/SC_Musica.SC_Musica",
+ "sounds_class": "/Game/FactoryCtyco/Audio/SC_Sonidos.SC_Sonidos",
+ "sounds": [
+  "S_Ascensor_Golpe",
+  "S_Ascensor_Motor",
+  "S_Ascensor_Puerta",
+  "S_CajaAgarrar",
+  "S_CajaSoltar",
+  "S_CintaApagar",
+  "S_CintaEncender",
+  "S_MisionCompleta",
+  "S_Vagabundo_YElla"
+ ]
+}

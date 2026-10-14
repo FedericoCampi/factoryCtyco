@@ -1,0 +1,85 @@
+{
+ "passed": true,
+ "checks": {
+  "cargado": {
+   "passed": true,
+   "trozos": 48
+  },
+  "camionero_sentado": {
+   "passed": true,
+   "camiones": [
+    {
+     "camion": "Camion_Volcador",
+     "malla": "SK_TecJunior",
+     "animando": true,
+     "cabeza_cm": [
+      331,
+      -38,
+      154
+     ]
+    },
+    {
+     "camion": "Camion_Recorrido",
+     "malla": "SK_TecJunior",
+     "animando": true,
+     "cabeza_cm": [
+      332,
+      -38,
+      154
+     ]
+    }
+   ]
+  },
+  "garita": {
+   "passed": true,
+   "personaje_x": -4579,
+   "pared_este_x": -4613
+  },
+  "estaciona_en_la_plataforma": {
+   "passed": true,
+   "eje_trasero": [
+    -1920,
+    1196,
+    210
+   ],
+   "cajon": [
+    -1920,
+    1196,
+    210
+   ],
+   "inclinacion_max_en_rampa": 11.8,
+   "segundos_reales": 17.3
+  },
+  "levanta_la_caja": {
+   "passed": true,
+   "caja_max": 1.0,
+   "persiana_max": 1.0,
+   "angulo": 50.0
+  },
+  "cuarzo_en_la_tolva": {
+   "passed": true,
+   "trozos": 48,
+   "cayeron": 48,
+   "dentro_de_la_boca": 48,
+   "afuera": [],
+   "boca": [
+    -2070,
+    -1770,
+    854,
+    1126,
+    280
+   ],
+   "muestras": 10
+  },
+  "sale_a_la_linea": {
+   "passed": true,
+   "distancia_en_linea": 1200
+  },
+  "camiones_de_cajas_no_usan_el_volcado": {
+   "passed": true,
+   "cajones": [
+    "Cajon_Muelle_1"
+   ]
+  }
+ }
+}

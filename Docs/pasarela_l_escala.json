@@ -1,0 +1,25 @@
+{
+ "passed": true,
+ "piezas": {
+  "SM_PasarelaLPiso": [
+   127.0,
+   138.3,
+   42.3
+  ],
+  "SM_PasarelaLBaranda": [
+   127.0,
+   28.0,
+   93.5
+  ],
+  "SM_PasarelaLPoste": [
+   23.0,
+   29.5,
+   97.5
+  ]
+ },
+ "pasarelas": [
+  "Pasarela_L",
+  "Pasarela_L2"
+ ],
+ "alto_cm": 139.8
+}

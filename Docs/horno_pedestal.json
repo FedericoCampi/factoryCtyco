@@ -1,0 +1,31 @@
+{
+ "passed": true,
+ "check": {
+  "z": 236.7,
+  "elevation_antes": 236.7,
+  "elevation_subido": 336.7,
+  "bloque_visible": true,
+  "bloque_colision": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>",
+  "bloque_z": [
+   0.0,
+   336.7
+  ],
+  "placa_abajo_z": 336.0,
+  "placa_escala": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "bloque_xy_cm": [
+   359,
+   372
+  ],
+  "placa_xy_cm": [
+   363,
+   377
+  ],
+  "elevation_vuelto": 236.7,
+  "ok": true
+ },
+ "pedestal_mesh": "/Engine/BasicShapes/Cube.Cube"
+}

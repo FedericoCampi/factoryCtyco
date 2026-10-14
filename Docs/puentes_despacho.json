@@ -1,0 +1,59 @@
+{
+ "passed": true,
+ "puentes": [
+  {
+   "cinta": "Cinta_Puente2",
+   "desde": [
+    -4407,
+    -432,
+    98
+   ],
+   "hasta": [
+    -4121,
+    -465,
+    98
+   ],
+   "falta_cm": 0.0
+  },
+  {
+   "cinta": "Cinta_Puente1",
+   "desde": [
+    -4407,
+    -982,
+    98
+   ],
+   "hasta": [
+    -4298,
+    -982,
+    98
+   ],
+   "falta_cm": 0.0
+  },
+  {
+   "cinta": "Cinta_Puente1_Curva",
+   "desde": [
+    -4298,
+    -982,
+    98
+   ],
+   "hasta": [
+    -4121,
+    -805,
+    98
+   ],
+   "falta_cm": 0.0
+  }
+ ],
+ "desde_despacho": {
+  "Despacho_Cajas": [
+   -4407,
+   -982,
+   75
+  ],
+  "Despacho_Cajas2": [
+   -4407,
+   -432,
+   75
+  ]
+ }
+}

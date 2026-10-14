@@ -1,0 +1,70 @@
+{
+ "passed": true,
+ "checks": {
+  "Puerta_Recepcion_lado_mas": {
+   "passed": true,
+   "giro": 60.0,
+   "apertura": 1.0
+  },
+  "Puerta_Recepcion_lado_menos": {
+   "passed": true,
+   "giro": -60.0,
+   "apertura": 1.0
+  },
+  "Puerta_Recepcion_gira_al_reves_segun_el_lado": {
+   "passed": true,
+   "giros": {
+    "1": 60.0,
+    "-1": -60.0
+   }
+  },
+  "Puerta_Muelle_Personal_0_lado_mas": {
+   "passed": true,
+   "giro": 95.0,
+   "apertura": 1.0
+  },
+  "Puerta_Muelle_Personal_0_lado_menos": {
+   "passed": true,
+   "giro": -95.0,
+   "apertura": 1.0
+  },
+  "Puerta_Muelle_Personal_0_gira_al_reves_segun_el_lado": {
+   "passed": true,
+   "giros": {
+    "1": 95.0,
+    "-1": -95.0
+   }
+  },
+  "Puerta_Muelle_Personal_1_lado_mas": {
+   "passed": true,
+   "giro": 95.0,
+   "apertura": 1.0
+  },
+  "Puerta_Muelle_Personal_1_lado_menos": {
+   "passed": true,
+   "giro": -95.0,
+   "apertura": 1.0
+  },
+  "Puerta_Muelle_Personal_1_gira_al_reves_segun_el_lado": {
+   "passed": true,
+   "giros": {
+    "1": 95.0,
+    "-1": -95.0
+   }
+  }
+ },
+ "giros": {
+  "Puerta_Recepcion": {
+   "1": 60.0,
+   "-1": -60.0
+  },
+  "Puerta_Muelle_Personal_0": {
+   "1": 95.0,
+   "-1": -95.0
+  },
+  "Puerta_Muelle_Personal_1": {
+   "1": 95.0,
+   "-1": -95.0
+  }
+ }
+}

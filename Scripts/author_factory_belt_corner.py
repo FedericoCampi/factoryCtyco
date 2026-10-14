@@ -21,7 +21,7 @@ SRC = Path(r"C:/Users/Usuario/Desktop/3D assets/GLBs/esquinaCinta-complete.glb")
 OUT = Path(__file__).resolve().parent.parent / "SourceAssets/CintaEsquinaFabrica"
 NAME = "SM_CintaEsquinaFabrica"
 WIDTH, HEIGHT = 1.40, 0.30      # como la cinta recta de la fabrica (DB_Belt: 200 x 140 x 30 cm)
-RADIUS = 1.00                   # eje de la curva: del medio del borde de atras al medio del borde del costado
+RADIUS = None                   # None: la curva del modelo, sin cerrarla (30/09: cerrada a 1 m se veia mal)
 DECIMATE = 0.18
 
 bpy.ops.wm.read_factory_settings(use_empty=True)
@@ -49,17 +49,19 @@ old_r = radius_n * s
 # 1) entrada del eje en (-1, 0) de Blender (Unreal (-100, 0)), ancho de 140 cm, 30 cm de alto
 place = Matrix.Translation((-1.0, 0, 0)) @ Matrix.Diagonal((s, s, sz, 1)) @ Matrix.Translation((-xmin, -entry_c, 0))
 o.data.transform(place)
-# 2) radio de 100 cm: cada punto se acerca al centro de la curva lo que sobra de radio
-old_c = Vector((-1.0, old_r))
-new_c = Vector((-1.0, RADIUS))
-for v in o.data.vertices:
-    d = Vector((v.co.x, v.co.y)) - old_c
-    r = d.length
-    if r < 1e-6:
-        continue
-    p = new_c + d / r * max(r - (old_r - RADIUS), 0.0)
-    v.co.x, v.co.y = p.x, p.y
-o.data.update()
+# 2) si se pide otro radio, cada punto se acerca al centro de la curva lo que sobra de radio
+if RADIUS is not None:
+    old_c = Vector((-1.0, old_r))
+    new_c = Vector((-1.0, RADIUS))
+    for v in o.data.vertices:
+        d = Vector((v.co.x, v.co.y)) - old_c
+        r = d.length
+        if r < 1e-6:
+            continue
+        p = new_c + d / r * max(r - (old_r - RADIUS), 0.0)
+        v.co.x, v.co.y = p.x, p.y
+    o.data.update()
+radius = RADIUS if RADIUS is not None else old_r
 dec = o.modifiers.new("Decimate", "DECIMATE")
 dec.ratio = DECIMATE
 bpy.ops.object.modifier_apply(modifier=dec.name)
@@ -75,7 +77,7 @@ bpy.ops.export_scene.fbx(filepath=str(OUT / f"{NAME}.fbx"), use_selection=True, 
                          apply_unit_scale=True, apply_scale_options="FBX_SCALE_UNITS", mesh_smooth_type="FACE",
                          path_mode="COPY", embed_textures=True, axis_forward="-Y", axis_up="Z")
 (OUT / "build.json").write_text(json.dumps({
-    "source": str(SRC), "width_m": WIDTH, "height_m": HEIGHT, "radius_m": RADIUS, "model_radius_m": round(old_r, 3),
+    "source": str(SRC), "width_m": WIDTH, "height_m": HEIGHT, "radius_m": round(radius, 3), "turn_radius_cm": round(radius * 100, 1), "model_radius_m": round(old_r, 3),
     "turn_degrees_unreal": -90, "bounds_blender_m": [lo, hi],
     "triangles": sum(len(p.vertices) - 2 for p in o.data.polygons),
     "materials": [m.name for m in o.data.materials if m]}, indent=1), encoding="utf-8")

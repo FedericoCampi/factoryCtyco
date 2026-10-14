@@ -1,0 +1,29 @@
+{
+ "passed": true,
+ "checks": {
+  "isometrica_adentro_sin_techo": {
+   "passed": true,
+   "adentro": true,
+   "techo": false
+  },
+  "primera_persona_adentro_con_techo": {
+   "passed": true,
+   "techo": true,
+   "primera_persona": true
+  },
+  "afuera_con_techo": {
+   "passed": true,
+   "techo": true
+  },
+  "paredes_cerradas": {
+   "passed": true
+  },
+  "viaje_empieza": {
+   "passed": true
+  },
+  "techo_viaja_con_el_piso": {
+   "passed": true,
+   "piso_max_cm": 150.0
+  }
+ }
+}

@@ -1,0 +1,41 @@
+{
+ "passed": true,
+ "SM_HornoFundicion_Base": {
+  "min_cm": [
+   -98.0,
+   -81.0,
+   -0.3
+  ],
+  "max_cm": [
+   69.5,
+   80.4,
+   10.0
+  ]
+ },
+ "SM_HornoFundicion_Cuerpo": {
+  "min_cm": [
+   -97.7,
+   -71.2,
+   2.1
+  ],
+  "max_cm": [
+   98.4,
+   69.5,
+   200.0
+  ]
+ },
+ "actor": "Horno_Fundicion",
+ "cls": "FactoryRaisedProp",
+ "folder": "Fabrica",
+ "location": [
+  -771.7,
+  -677.6,
+  -3.3
+ ],
+ "scale": [
+  2.25,
+  2.25,
+  2.25
+ ],
+ "elevation": 0.0
+}

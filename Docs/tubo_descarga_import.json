@@ -1,0 +1,31 @@
+{
+ "passed": true,
+ "horno_elevable": {
+  "z": 36.7,
+  "elevation_antes": 36.7,
+  "elevation_subido": 136.7,
+  "base_abajo_z": 0.0,
+  "base_escala_z": 7.082,
+  "elevation_vuelto": 36.7,
+  "ok": true
+ },
+ "tubo": {
+  "size_cm": [
+   200,
+   62,
+   91
+  ],
+  "collisions": 1,
+  "triangles": 153927,
+  "materials": [
+   "Material_0"
+  ],
+  "actor": "Tubo_Descarga",
+  "folder": "Fabrica",
+  "location": [
+   -302,
+   -688,
+   0
+  ]
+ }
+}

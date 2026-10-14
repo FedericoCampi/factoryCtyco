@@ -1,0 +1,27 @@
+{
+ "passed": true,
+ "actor": "Muelles_Carga",
+ "location": [
+  -3503,
+  2043,
+  -10
+ ],
+ "bounds_min": [
+  -5348,
+  318,
+  -80
+ ],
+ "bounds_max": [
+  -1658,
+  3738,
+  720
+ ],
+ "size_cm": [
+  4920,
+  4560,
+  800
+ ],
+ "triangles": 12715,
+ "materials": 13,
+ "collision": "<CollisionTraceFlag.CTF_USE_COMPLEX_AS_SIMPLE: 3>"
+}

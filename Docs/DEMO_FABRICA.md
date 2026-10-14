@@ -161,3 +161,46 @@ Los resultados de la aceptación de la línea de producción se registran en
   `Scripts/playtest_factory_belts.py`: depósito → cinta estirada que sube 10° → esquina → cinta en altura → depósito
   (armada solo para la prueba en el piso del laboratorio). Pasó las 5 comprobaciones el 30/09
   (`Docs/factory_belts_play.json`).
+
+### Patas y esquina abierta (30/09, más tarde)
+- **Estirar en Z ya no estira la cinta**: la sube. El estiramiento pasa a la propiedad `Elevation` (cm; 34 cm por cada
+  unidad de escala, el alto de la cinta) y la escala Z vuelve a 1. Abajo aparecen patas a los dos costados (cerca de
+  cada punta y cada `SupportSpacing`). Solo chocan la cinta y las patas: debajo se puede pasar. Una cinta elevada
+  entrega y recibe a su altura (33 cm + `Elevation`).
+- **Esquina**: conserva la curva del modelo del usuario (radio 269 cm, `TurnRadius` en `DB_BeltCorner`); antes se
+  cerraba a 1 m y se deformaba. Choca con su propia malla (*complex as simple*), así que el hueco de la curva queda libre.
+- Prueba: `Scripts/playtest_factory_belts.py`, ahora con una cinta estirada ×4 en Z (queda a 102 cm, escala 1,
+  4 patas). Pasó las 6 comprobaciones.
+
+### Cinta recta elevada y menos patas (01/10)
+- Una cinta recta elevada (`Elevation` > 0) queda igual que la esquina: sobre patas, **sin la plataforma** de
+  `DB_Belt` (antes la plataforma se estiraba hasta el piso y tapaba el hueco). La cinta va a la altura `Elevation`,
+  la misma en la que entrega y recibe.
+- Menos patas: un par cerca de cada punta y otro cada 400 cm (`SupportSpacing`, antes 250). La esquina pasa de 6 a 4
+  patas; `Cinta_Fabrica_1` (×5) de 10 a 8.
+- En el editor, si al armar una cinta el piso todavía no estaba cargado, las patas no aparecían hasta moverla; ahora
+  se reintenta sola (hasta 10 veces, cada medio segundo).
+- Prueba: `Scripts/playtest_factory_belts.py` suma `sin_plataforma_y_menos_patas`. Pasó las 7 comprobaciones el 01/10.
+
+### Inclinación personalizable (01/10)
+- **En el visor**: con una cinta recta seleccionada aparecen dos rombos, uno en cada punta (`InputEndHandle`,
+  `OutputEndHandle`). Arrastrar uno hacia arriba o abajo inclina la cinta alrededor de su centro; al soltarlo vuelve
+  a su punta. Desde el medio la cinta se mueve como siempre (gizmo de mover).
+- **En el panel**: **Slope** (Factory Demo › Belt, grados, de −60 a 60; positivo: la salida queda más alta).
+- Las dos cosas giran el actor en *pitch* alrededor del centro de la cinta (así una cinta estirada en X no se
+  deforma), y girar el actor en *pitch* con el gizmo actualiza Slope. Las patas siguen la pendiente y la carga sube o
+  baja con ella. La esquina no se inclina.
+- F5/F9 guarda también `Elevation` y `Slope` (guardado versión 4; antes, al cargar, una cinta elevada volvía al piso).
+- Prueba: `Scripts/playtest_factory_belts.py` suma `inclinacion_slope` (cinta a 100 cm inclinada 15°: la salida sube
+  52 cm y el centro no se mueve). Las cintas sueltas de la prueba ahora buscan solas un lugar con piso. Pasó las
+  8 comprobaciones el 01/10.
+- Prueba (01/10, más tarde): suma `inclinacion_con_manija` (subir 36,4 cm la manija de la salida de una cinta a 1 m
+  la deja en 20°, centrada, y la manija vuelve a su punta) y `horno_elevable` (ver `Docs/HORNO_Y_LAB.md`). Pasó las
+  10 comprobaciones.
+
+### Puntas de la cinta parejas (01/10)
+- En `SM_FactoryBeltFrame` las barras naranjas de las puntas llegaban al borde de la celda (±100 cm) y los rodillos y
+  la banda no (±97 / ±96): sobresalían, más en una cinta estirada. Ahora rodillos (x ±89, radio 11) y banda (178 cm)
+  llegan a ±100, parejos con las barras. Mismas medidas (200 × 140 × 30) y materiales.
+- `Scripts/author_factory_detail_meshes.py` (`_belt`); importado solo ese modelo con `_import_and_finish` de
+  `Scripts/import_factory_details.py`. Respaldo: `Saved/Respaldos/2026-10-01_cinta_puntas`.

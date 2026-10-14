@@ -1,0 +1,38 @@
+{
+ "passed": true,
+ "rampa": {
+  "lugar": [
+   -1920,
+   1136,
+   -10
+  ],
+  "giro": 90.0,
+  "piso_z": -10.0,
+  "plataforma_z": 210.0,
+  "boca_tolva_z": 280.0,
+  "borde_caja_sobre_boca_cm": 10.0
+ },
+ "cajon": {
+  "lugar": [
+   -1920,
+   1196,
+   210
+  ],
+  "maniobra_cm": 2279,
+  "radio_curva_cm": 481,
+  "union_linea": [
+   -1438,
+   3177,
+   -25
+  ],
+  "union_a_cm_de_la_linea": 1.2
+ },
+ "camion": {
+  "actor": "Camion_Volcador",
+  "malla": "/Game/FactoryCtyco/Environments/Camion/Volcador/SK_CamionVolcador",
+  "huesos": "/Game/FactoryCtyco/Environments/Camion/Volcador/SK_CamionVolcador_Skeleton.SK_CamionVolcador_Skeleton",
+  "carga": 48,
+  "sale_a_los_s": 14.0,
+  "escena": "Despacho"
+ }
+}

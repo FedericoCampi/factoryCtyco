@@ -220,13 +220,15 @@ void UFactoryPresentationComponent::TickComponent(float DeltaSeconds, ELevelTick
     if (B->Definition->Kind == EFactoryBuildingKind::Belt)
     {
         const float Offset = FMath::Fmod(MotionPhase * (156.0f / BeltSeconds), 16.0f);
-        for (int32 Index = 0; Index < Slats.Num(); ++Index)
-            Slats[Index]->SetRelativeLocation(FVector(-88 + Index * 16 + Offset - 8, 0, 30.5f + B->Lift()));
         if (B->Cargo->IsVisible() && B->Input->GetTotal() > 0)
         {
             const float Substep = Factory.IsValid() ? Factory->VisualSubstepSeconds() : 0;
             B->PlaceCargo((B->ProgressSeconds + Substep) / B->TravelSeconds());
         }
+        else B->LowerPlatform(DeltaSeconds);
+        // On a lift the slats ride the platform.
+        for (int32 Index = 0; Index < Slats.Num(); ++Index)
+            Slats[Index]->SetRelativeLocation(FVector(-88 + Index * 16 + Offset - 8, 0, 30.5f + B->Lift() + B->PlatformRise));
         return;
     }
 

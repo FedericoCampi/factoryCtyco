@@ -1,0 +1,81 @@
+{
+ "passed": true,
+ "checks": {
+  "en_Fabrica": {
+   "passed": true,
+   "visibles": [
+    "Fabrica"
+   ],
+   "otras_ocultas": {
+    "Despacho": true,
+    "Laboratorio": true,
+    "Empleados": true
+   },
+   "la_propia_oculta": false,
+   "compartidas_ocultas": {
+    "Piso_Exterior": false,
+    "Cielo_Horizonte": false
+   },
+   "ocultos": 154
+  },
+  "en_Despacho": {
+   "passed": true,
+   "visibles": [
+    "Despacho"
+   ],
+   "otras_ocultas": {
+    "Fabrica": true,
+    "Laboratorio": true,
+    "Empleados": true
+   },
+   "la_propia_oculta": false,
+   "compartidas_ocultas": {
+    "Piso_Exterior": false,
+    "Cielo_Horizonte": false
+   },
+   "ocultos": 419
+  },
+  "en_Laboratorio": {
+   "passed": true,
+   "visibles": [
+    "Laboratorio"
+   ],
+   "otras_ocultas": {
+    "Fabrica": true,
+    "Despacho": true,
+    "Empleados": true
+   },
+   "la_propia_oculta": false,
+   "compartidas_ocultas": {
+    "Piso_Exterior": false,
+    "Cielo_Horizonte": false
+   },
+   "ocultos": 424
+  },
+  "en_Empleados": {
+   "passed": true,
+   "visibles": [
+    "Empleados"
+   ],
+   "otras_ocultas": {
+    "Fabrica": true,
+    "Despacho": true,
+    "Laboratorio": true
+   },
+   "la_propia_oculta": false,
+   "compartidas_ocultas": {
+    "Piso_Exterior": false,
+    "Cielo_Horizonte": false
+   },
+   "ocultos": 427
+  },
+  "techo_isometrica": {
+   "passed": true,
+   "oculto": false
+  },
+  "techo_primera_persona": {
+   "passed": true,
+   "oculto": false
+  }
+ }
+}

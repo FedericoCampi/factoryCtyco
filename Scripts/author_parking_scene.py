@@ -143,6 +143,22 @@ for o in [o for o in bpy.context.scene.objects if o.type == 'MESH' and o.name.st
 print("SOUTH_GATE_CLOSED stripes", len(stripes), "fill pieces", len(gate_fill))
 print("TRUCK_OPENING cut pieces", cut_opening(TRUCK_OPENING))
 
+# Requested 2026-10-05: the old east gateway (to the factory, y -7..-3 between piers 11 -7 and 11 -3; in Unreal only an
+# invisible blocker closed it) is closed with a wall like the next one: a copy of Perimeter 07 (footing, brick infill,
+# coping, rails and uprights, y -3..2) squeezed into y -7..-3, and its yellow floor stripes go.
+EAST_GATE = (-7.0, -3.0)
+east_stripes = [o.name for o in bpy.context.scene.objects if o.name.startswith("East gateway yellow stripe")]
+for name in east_stripes: bpy.data.objects.remove(bpy.data.objects[name])
+east_fill = []
+_k = (EAST_GATE[1] - EAST_GATE[0]) / 5.0          # Perimeter 07 is 5 m long (y -3..2)
+_squeeze = Matrix.Translation((0, EAST_GATE[0] + 3.0 * _k, 0)) @ Matrix.Diagonal((1, _k, 1, 1))
+for o in [o for o in bpy.context.scene.objects if o.type == 'MESH' and o.name.startswith("Perimeter 07 ")]:
+    copy = o.copy(); copy.data = o.data.copy(); copy.name = o.name.replace("Perimeter 07", "Perimeter east gate fill")
+    bpy.context.scene.collection.objects.link(copy)
+    copy.matrix_world = _squeeze @ o.matrix_world
+    east_fill.append(copy.name)
+print("EAST_GATE_CLOSED stripes", len(east_stripes), "fill pieces", len(east_fill))
+
 # Outside the opening the ground (Piso_Exterior) is 65 cm lower: a concrete driveway, level for
 # 6 m and then sloping down 4 m, so the truck reaches the opening level (climbing right at the wall
 # it tipped up and its cab touched the lintel). Only the truck uses it: no collision (IGNORE).
@@ -164,6 +180,32 @@ def driveway():
     if concrete: me.materials.append(concrete)
     bpy.context.scene.collection.objects.link(bpy.data.objects.new(me.name, me))
 driveway()
+
+# Requested 2026-10-03: the parking joins the loading docks (Muelles_Carga, built against its north side in
+# Unreal, which is -Y here). The low perimeter walls along that side (brick infill, coping, railings and piers, the
+# gate fill included; GLB y < -6.9) go, and a concrete slab fills the strip up to the docks' yard (y -11.05, past
+# the GLB's edge at -10.43) at floor level: between both the outside ground is 65 cm lower.
+north_wall = [o.name for o in bpy.context.scene.objects
+              if o.type == 'MESH' and o.name.startswith("Perimeter") and max((o.matrix_world @ Vector(c)).y for c in o.bound_box) <= -6.9]
+for name in north_wall: bpy.data.objects.remove(bpy.data.objects[name])
+def slab(name, lo, hi, material):
+    me = bpy.data.meshes.new(name)
+    b = bmesh.new(); uv = b.loops.layers.uv.new("UVMap")
+    vs = bmesh.ops.create_cube(b, size=1.0)["verts"]
+    lo, hi = Vector(lo), Vector(hi)
+    for v in vs: v.co = Vector((v.co.x * (hi.x - lo.x), v.co.y * (hi.y - lo.y), v.co.z * (hi.z - lo.z))) + (lo + hi) / 2
+    for f in b.faces:   # world-sized UVs (2 m per tile), so the texture keeps its scale
+        for loop in f.loops:
+            c = loop.vert.co
+            loop[uv].uv = (c.x / 2, c.y / 2) if abs(f.normal.z) > 0.5 else ((c.x + c.y) / 2, c.z / 2)
+    b.to_mesh(me); b.free()
+    if material: me.materials.append(material)
+    bpy.context.scene.collection.objects.link(bpy.data.objects.new(name, me))
+paving = next((o.data.materials[0] for o in bpy.context.scene.objects if o.name.startswith("Offset front paving") and o.data.materials), None)
+NORTH_JOIN = -11.05
+slab("North join slab west", (-11.0, NORTH_JOIN, -0.43), (0.0, -8.0, 0.0), paving)
+slab("North join slab east", (0.0, NORTH_JOIN, -0.43), (11.3, -10.0, 0.0), paving)
+print("NORTH_WALL removed", len(north_wall), "join slab to y", NORTH_JOIN)
 _, hole_cut = floor_holes.cut_visuals([o for o in bpy.context.scene.objects if o.type == 'MESH'], "parking")
 meshes = [o for o in bpy.context.scene.objects if o.type == 'MESH']
 

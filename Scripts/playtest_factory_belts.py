@@ -48,8 +48,62 @@ b1 = put("B1", d["Belt"], unreal.Rotator(roll=0, pitch=10, yaw=0), unreal.Vector
 c1 = put("C1", d["BeltCorner"], unreal.Rotator(0, 0, 0), unreal.Vector(1, 1, 1), b1)
 b2 = put("B2", d["Belt"], unreal.Rotator(0, 0, -90), unreal.Vector(1, 1, 1), c1)
 s2 = put("S2", d["Storage"], unreal.Rotator(0, 0, -90), unreal.Vector(1, 1, 1), b2)
+def floor_spot(*offsets):
+    """El primer lugar (START + offset) con piso a la altura de START debajo de toda la cinta."""
+    w = unreal.get_editor_subsystem(unreal.UnrealEditorSubsystem).get_editor_world()
+    for off in offsets:
+        if any(abs(off.x - u.x) < 300 and abs(off.y - u.y) < 300 for u in USED):
+            continue
+        ok = True
+        for dx in (-120, 0, 120):
+            for dy in (-80, 80):
+                top = START + off + unreal.Vector(dx, dy, 400)
+                hit = unreal.SystemLibrary.line_trace_single(w, top, top - unreal.Vector(0, 0, 800), unreal.TraceTypeQuery.TRACE_TYPE_QUERY1, False, [], unreal.DrawDebugTrace.NONE, True)
+                ok = ok and bool(hit) and abs(hit.to_tuple()[4].z - START.z) < 20
+        if ok:
+            USED.append(off)
+            return START + off
+    raise RuntimeError("No hay piso libre para las cintas sueltas de la prueba")
+
+
+USED = []
+SPOTS = [unreal.Vector(x, y, 0) for y in (600, 900, -900, 1200) for x in (300, 0, 600, -300)]
+# una cinta suelta estirada en Z (como en el editor): tiene que quedar arriba sobre patas, sin estirarse
+tall = actors.spawn_actor_from_class(unreal.FactoryBuilding, floor_spot(*SPOTS), unreal.Rotator(0, 0, 0))   # dentro del piso del laboratorio
+tall.set_actor_label("Alta")
+tall.set_editor_property("persistent_id", "Prueba_Alta")
+tall.set_editor_property("definition", d["Belt"])
+tall.set_actor_scale3d(unreal.Vector(1, 1, 4))
+TEST.append(tall)
+# una cinta elevada e inclinada 15 grados con la propiedad Slope (01/10): sube alrededor de su centro
+TILT_SPOT = floor_spot(*SPOTS)
+tilted = actors.spawn_actor_from_class(unreal.FactoryBuilding, TILT_SPOT, unreal.Rotator(0, 0, 0))
+tilted.set_actor_label("Inclinada")
+tilted.set_editor_property("persistent_id", "Prueba_Inclinada")
+tilted.set_editor_property("definition", d["Belt"])
+tilted.set_editor_property("elevation", 100.0)
+tilted.set_editor_property("slope", 15.0)
+TEST.append(tilted)
+# otra igual, inclinada arrastrando la manija de su salida 36,4 cm hacia arriba (tan 20 grados x 100 cm)
+HANDLE_SPOT = floor_spot(*SPOTS)
+handled = actors.spawn_actor_from_class(unreal.FactoryBuilding, HANDLE_SPOT, unreal.Rotator(0, 0, 0))
+handled.set_actor_label("Manija")
+handled.set_editor_property("persistent_id", "Prueba_Manija")
+handled.set_editor_property("definition", d["Belt"])
+handled.set_editor_property("elevation", 100.0)
+handled.set_editor_property("output_end_handle", unreal.Vector(100, 0, 133 + 36.4))
+TEST.append(handled)
+# un horno (FactoryRaisedProp) a escala 2,25 estirado en Z a 2,25 x 1,25: sube y la base de abajo se estira (01/10)
+OVEN_SPOT = floor_spot(*SPOTS)
+oven = actors.spawn_actor_from_class(unreal.FactoryRaisedProp, OVEN_SPOT, unreal.Rotator(0, 0, 0))
+oven.set_actor_label("HornoPrueba")
+oven.set_editor_property("body_mesh", unreal.load_asset("/Game/FactoryCtyco/Environments/HornoFundicion/SM_HornoFundicion_Cuerpo"))
+oven.set_editor_property("base_mesh", unreal.load_asset("/Game/FactoryCtyco/Environments/HornoFundicion/SM_HornoFundicion_Base"))
+oven.set_actor_scale3d(unreal.Vector(2.25, 2.25, 2.25 * 1.25))
+oven.refresh()
+TEST.append(oven)
 report["layout"] = {a.get_actor_label(): {"in": [round(v) for v in a.input_point().to_tuple()], "out": [round(v) for v in a.output_point().to_tuple()]}
-                    for a in TEST}
+                    for a in TEST if isinstance(a, unreal.FactoryBuilding)}
 
 
 def phase(name):
@@ -103,9 +157,42 @@ def step():
               connected={n: pie[n].get_editor_property("connected") for n in chain + ["S2"]})
         # 2. postes
         posts = {n: pie[n].get_component_by_class(unreal.InstancedStaticMeshComponent).get_instance_count() for n in ("B1", "C1", "B2")}
-        check("postes", posts["C1"] >= 1 and posts["B2"] >= 1 and posts["B1"] >= 1, postes=posts,
+        check("postes", posts["C1"] >= 2 and posts["B2"] >= 2 and posts["B1"] >= 2, postes=posts,
               alto_cm={n: round(pie[n].get_actor_location().z) for n in ("B1", "C1", "B2")})
         # 4. tiempos
+        tall = pie["Alta"]
+        legs = tall.get_component_by_class(unreal.InstancedStaticMeshComponent).get_instance_count()
+        check("estirar_en_z_sube_sobre_patas", abs(tall.get_actor_scale3d().z - 1) < 0.01 and abs(tall.get_editor_property("elevation") - 102) < 1
+              and legs == 4 and tall.get_component_by_class(unreal.BoxComponent).get_editor_property("relative_location").z > 100,
+              escala_z=tall.get_actor_scale3d().z, elevacion=tall.get_editor_property("elevation"), patas=legs)
+        # sin plataforma: en altura va sobre patas (01/10); la cinta del nivel (x5) lleva 8 patas, la esquina 4
+        level_legs = {n: pie[n].get_component_by_class(unreal.InstancedStaticMeshComponent).get_instance_count()
+                      for n in ("Cinta_Fabrica_1", "Cinta_Fabrica_Esquina")}
+        bases = {n: str(pie[n].get_editor_property("base").static_mesh) for n in ("Alta", "Cinta_Fabrica_1")}
+        check("sin_plataforma_y_menos_patas", all(v == "None" for v in bases.values()) and level_legs["Cinta_Fabrica_1"] == 8
+              and level_legs["Cinta_Fabrica_Esquina"] == 4, plataformas=bases, patas_nivel=level_legs)
+        tl = pie["Inclinada"]
+        rise = tl.output_point().z - tl.input_point().z
+        mid = (tl.output_point() + tl.input_point()) / 2 - TILT_SPOT
+        pitch = tl.get_actor_rotation().pitch
+        check("inclinacion_slope", abs(rise - 200 * 0.2588) < 3 and abs(mid.z - 133) < 3 and abs(mid.x) < 3 and abs(pitch - 15) < 0.5,
+              sube_cm=round(rise, 1), centro_cm=[round(v, 1) for v in mid.to_tuple()], pitch_actor=round(pitch, 1),
+              patas=tl.get_component_by_class(unreal.InstancedStaticMeshComponent).get_instance_count())
+        hd = pie["Manija"]
+        hmid = (hd.output_point() + hd.input_point()) / 2 - HANDLE_SPOT
+        back = hd.get_editor_property("output_end_handle")
+        check("inclinacion_con_manija", abs(hd.get_editor_property("slope") - 20) < 0.5 and abs(hd.get_actor_rotation().pitch - 20) < 0.5
+              and abs(hmid.z - 133) < 3 and abs(back.z - 133) < 1 and abs(back.x - 100) < 1,
+              slope=round(hd.get_editor_property("slope"), 1), centro_cm=[round(v, 1) for v in hmid.to_tuple()], manija_vuelve_a=back.to_tuple())
+        ov = next(a for a in unreal.GameplayStatics.get_all_actors_of_class(w, unreal.FactoryRaisedProp) if a.get_actor_label() == "HornoPrueba")
+        base_top = ov.base.get_world_transform().transform_location(unreal.Vector(0, 0, 10)).z - OVEN_SPOT.z
+        base_bottom = ov.base.get_world_transform().transform_location(unreal.Vector(0, 0, 0)).z - OVEN_SPOT.z
+        body_z = ov.body.get_world_location().z - OVEN_SPOT.z
+        # 0,25 de escala de mas x 10 cm de base = 2,5 cm... en el mundo: (2,8125 - 2,25) x 10 = 5,6 cm de elevacion
+        check("horno_elevable", abs(ov.get_actor_scale3d().z - 2.25) < 0.01 and abs(ov.get_editor_property("elevation") - 5.625) < 0.1
+              and abs(body_z - 5.625) < 0.5 and abs(base_top - (22.5 + 5.625)) < 0.5 and abs(base_bottom) < 0.5,
+              escala_z=ov.get_actor_scale3d().z, elevacion=ov.get_editor_property("elevation"), cuerpo_cm=round(body_z, 2),
+              base_cm=[round(base_bottom, 2), round(base_top, 2)])
         times = {n: round(pie[n].travel_seconds(), 2) for n in ("B1", "C1", "B2")}
         check("tiempos", abs(times["B2"] - 0.8) < 0.05 and times["B1"] > 1.1, segundos=times)
         pie["S1"].input.add_item(factory.resource("Scrap"), 6)

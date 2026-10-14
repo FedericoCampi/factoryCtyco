@@ -1,0 +1,241 @@
+{
+ "passed": false,
+ "resources": [
+  "DA_Scrap",
+  "DA_Fragments",
+  "DA_Plate",
+  "DA_Quartz",
+  "DA_SiliconIngot",
+  "DA_QuartzSand",
+  "DA_WashedQuartz",
+  "DA_Stone",
+  "DA_StoneBlock",
+  "DA_CrushedStone",
+  "DA_SiliconIngotCut"
+ ],
+ "tunel": {
+  "actor": "StaticMeshActor",
+  "malla": "SM_LavadoraTunel"
+ },
+ "chain": [
+  {
+   "from": "Deposito_Cuarzo",
+   "to": null
+  },
+  {
+   "from": "Cinta_Cuarzo_Triturar",
+   "to": "Plataforma_Elevadora_1"
+  },
+  {
+   "from": "Plataforma_Elevadora_1",
+   "to": "Trituradora_Cuarzo"
+  },
+  {
+   "from": "Trituradora_Cuarzo",
+   "to": "Cinta_Fabrica_2"
+  },
+  {
+   "from": "Cinta_Fabrica_2",
+   "to": null
+  },
+  {
+   "from": "Cinta_Fabrica_Esquina",
+   "to": null
+  },
+  {
+   "from": "Cinta_Fabrica_1",
+   "to": null
+  }
+ ],
+ "deposito": {
+  "cuarzo": 100,
+  "salida": [
+   1866,
+   -1159,
+   126
+  ]
+ },
+ "cinta_a_trituradora": {
+  "in": [
+   1820,
+   651,
+   126
+  ],
+  "out": [
+   959,
+   661,
+   126
+  ],
+  "slope": -0.0
+ },
+ "trituradora": {
+  "entra": [
+   759,
+   661,
+   237
+  ],
+  "sale": [
+   454,
+   651,
+   46
+  ],
+  "tapa": [
+   479,
+   651,
+   53
+  ]
+ },
+ "plataforma": {
+  "recibe": [
+   959,
+   661,
+   126
+  ],
+  "entrega": [
+   759,
+   661,
+   237
+  ],
+  "sube_cm": 111
+ },
+ "riser_overlaps": [],
+ "canos": {
+  "tramos": 4,
+  "largo_cm": 126.2,
+  "desde": [
+   -314,
+   -734,
+   248
+  ],
+  "hasta": [
+   -314,
+   -1239,
+   214
+  ]
+ },
+ "process": {
+  "actor": "Proceso_Fundicion",
+  "path": [
+   [
+    -562,
+    -658,
+    385
+   ],
+   [
+    -582,
+    -658,
+    265
+   ],
+   [
+    -558,
+    -658,
+    264
+   ],
+   [
+    -402,
+    -658,
+    249
+   ],
+   [
+    -363,
+    -662,
+    247
+   ],
+   [
+    -336,
+    -677,
+    245
+   ],
+   [
+    -320,
+    -700,
+    243
+   ],
+   [
+    -314,
+    -734,
+    241
+   ],
+   [
+    -314,
+    -860,
+    234
+   ],
+   [
+    -314,
+    -986,
+    227
+   ],
+   [
+    -314,
+    -1112,
+    221
+   ],
+   [
+    -314,
+    -1239,
+    214
+   ],
+   [
+    -314,
+    -1239,
+    212
+   ],
+   [
+    -314,
+    -1239,
+    207
+   ],
+   [
+    -314,
+    -1239,
+    198
+   ],
+   [
+    -314,
+    -1239,
+    186
+   ],
+   [
+    -314,
+    -1239,
+    170
+   ],
+   [
+    -314,
+    -1239,
+    150
+   ],
+   [
+    -314,
+    -1239,
+    127
+   ],
+   [
+    -314,
+    -1239,
+    100
+   ],
+   [
+    -314,
+    -1239,
+    70
+   ],
+   [
+    -314,
+    -1239,
+    36
+   ]
+  ],
+  "feed": "Cinta_Fabrica_1"
+ },
+ "guia_en_pausa": true,
+ "player_start": [
+  "PlayerStart_Robot1",
+  [
+   -250,
+   -380,
+   110
+  ]
+ ]
+}

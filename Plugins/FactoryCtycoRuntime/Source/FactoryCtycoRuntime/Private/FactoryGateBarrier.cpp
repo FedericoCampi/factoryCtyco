@@ -25,8 +25,9 @@ AFactoryGateBarrier::AFactoryGateBarrier()
     Arm = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Arm"));
     Arm->SetupAttachment(Post);
     Arm->SetRelativeLocation(FVector(0, 0, 109));
-    Arm->SetCollisionEnabled(ECollisionEnabled::NoCollision);
     Arm->SetMobility(EComponentMobility::Movable);
+    Arm->SetCollisionProfileName(TEXT("BlockAll"));   // the character does not walk through it (08/10)
+    Arm->SetCollisionResponseToChannel(ECC_Camera, ECR_Ignore);
     Prompt = CreateDefaultSubobject<UTextRenderComponent>(TEXT("Prompt"));
     Prompt->SetupAttachment(Booth);
     Prompt->SetRelativeLocation(FVector(0, 0, 200));

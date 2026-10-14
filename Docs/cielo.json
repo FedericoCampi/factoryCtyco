@@ -1,0 +1,25 @@
+{
+ "passed": true,
+ "created": [
+  "Cielo_Atmosfera",
+  "Cielo_Bruma",
+  "Cielo_Nubes",
+  "Cielo_Horizonte"
+ ],
+ "skylight_before": {
+  "label": "SkyFill",
+  "source": "<SkyLightSourceType.SLS_SPECIFIED_CUBEMAP: 1>",
+  "cubemap": "/Engine/MapTemplates/Sky/DaylightAmbientCubemap.DaylightAmbientCubemap",
+  "intensity": 0.550000011920929,
+  "real_time": false
+ },
+ "sun_is_atmosphere_light": true,
+ "folder": "Cielo",
+ "ground": {
+  "z": -60.0,
+  "size_cm": 400000.0,
+  "material": "/Game/FactoryCtyco/Materials/M_Backdrop.M_Backdrop"
+ },
+ "fog_start_cm": 5000.0,
+ "clouds_material": "/Engine/EngineSky/VolumetricClouds/m_SimpleVolumetricCloud_Inst.m_SimpleVolumetricCloud_Inst"
+}

@@ -1,0 +1,39 @@
+{
+ "passed": true,
+ "checks": {
+  "manija_baranda_interior_A": {
+   "passed": true,
+   "movio_cm": 50.0,
+   "manija_en_la_baranda": true
+  },
+  "manija_extremo_B": {
+   "passed": true,
+   "alargo_cm": 300.0,
+   "piezas_piso": [
+    7,
+    9
+   ]
+  },
+  "vuelve_como_estaba": {
+   "passed": true
+  },
+  "se_sube_desde_el_suelo": {
+   "passed": true,
+   "no_aplica": "la pasarela esta a 164 cm del piso"
+  },
+  "apoyado_codo": {
+   "passed": true,
+   "pies_sobre_actor_cm": 42.5
+  },
+  "apoyado_brazo_B": {
+   "passed": true,
+   "pies_sobre_actor_cm": 42.5
+  },
+  "la_baranda_frena": {
+   "passed": true,
+   "y_local": -213.8,
+   "baranda_y": -255.0,
+   "pies_sobre_actor_cm": 42.6
+  }
+ }
+}

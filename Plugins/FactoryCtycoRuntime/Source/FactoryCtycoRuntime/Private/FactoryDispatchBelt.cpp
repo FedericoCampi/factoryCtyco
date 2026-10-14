@@ -208,7 +208,10 @@ bool AFactoryDispatchBelt::TryInteract(AActor* User)
 void AFactoryDispatchBelt::SpawnBox(float SideOffset)
 {
     auto* Box = NewObject<UStaticMeshComponent>(this);
-    Box->SetStaticMesh(BoxMesh);
+    // A labelled box at random (A to D), or the plain one.
+    TArray<UStaticMesh*> Labelled;
+    for (const TObjectPtr<UStaticMesh>& Variant : BoxVariants) if (Variant) Labelled.Add(Variant.Get());
+    Box->SetStaticMesh(Labelled.IsEmpty() ? BoxMesh.Get() : Labelled[FMath::RandRange(0, Labelled.Num() - 1)]);
     Box->SetMobility(EComponentMobility::Movable);
     Box->SetCollisionEnabled(ECollisionEnabled::NoCollision);
     Box->SetupAttachment(RootComponent);

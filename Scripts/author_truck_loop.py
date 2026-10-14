@@ -8,6 +8,9 @@ se agregan 6 tuercas por maza para que el giro se note.
 El eje trasero sigue el recorrido y el delantero tambien (cuerda = distancia entre ejes), asi el
 camion dobla como un vehiculo y no pivotea en el centro.
 
+Persiana (04/10): la pared de atras de la caja sale del camion; en su lugar va la persiana de tablillas de
+author_truck_shutter.py. El forro del interior queda abierto solo atras (el costado ya no se abre).
+
 Salida: SourceAssets/Camion/camion_loop.fbx, Camion.blend y camion_build.json.
 Huesos: Root > Camion (recorrido; origen en el eje trasero, a nivel del piso) > Rueda_DI, Rueda_DD,
 Rueda_TI, Rueda_TD (D = delantera, T = trasera; I = izquierda (+Y), D = derecha (-Y)).
@@ -48,6 +51,9 @@ SKIN_Y = 0.149
 CARGO = (-0.48, 0.21, -0.14, 0.14, 0.19, 0.435)   # interior: x0, x1, y0, y1, z0, z1
 # Techo de la caja (hueso Techo): Unreal lo esconde con la puerta abierta, asi la camara de arriba ve la carga.
 ROOF = (-0.47, 0.20, 0.14, 0.41)       # x0, x1, |y| maximo, z minimo (el techo tiene dos capas: 0,42 y 0,44)
+# Persiana de atras: las caras de la pared trasera entre el marco (medido en el GLB el 04/10: la cara de
+# la puerta esta en x -0.48..-0.50, el marco ocupa |y| > 0.147 y el travesano de arriba z > 0.436).
+REAR = (-0.468, 0.147, 0.19, 0.436)    # x maximo (incluye la cara de adentro, en -0.473), |y| maximo, z0, z1
 # Recorrido en metros (coordenadas Blender del estacionamiento): derecho de oeste a este. Entra por
 # el vano 0 del muro oeste (y -7.69..-4.31, abierto el 28/09 en author_parking_scene.py; la puerta
 # sur se cerro) y sale por la puerta este (y -6.65..-3.35). En y -5.5 entra en las dos con ~20 cm
@@ -77,6 +83,7 @@ WHEELBASE = (WHEELS["Rueda_DI"][0] - REAR_X) * S
 
 DOOR_PART = len(WHEELS)   # indice de la puerta en wheel_of
 ROOF_PART = DOOR_PART + 1
+REAR_PART = ROOF_PART + 1
 
 
 def wheel_of(points):
@@ -93,6 +100,9 @@ def wheel_of(points):
     rx0, rx1, ry, rz = ROOF
     roof = (points[:, 0] > rx0) & (points[:, 0] < rx1) & (np.abs(points[:, 1]) < ry) & (points[:, 2] > rz)
     idx[roof & (idx < 0)] = ROOF_PART
+    qx, qy, qz0, qz1 = REAR
+    rear = (points[:, 0] < qx) & (np.abs(points[:, 1]) < qy) & (points[:, 2] > qz0) & (points[:, 2] < qz1)
+    idx[rear & (idx < 0)] = REAR_PART
     return idx
 
 
@@ -104,7 +114,7 @@ face_wheel = wheel_of(centers.reshape(-1, 3))
 bpy.context.tool_settings.mesh_select_mode = (False, False, True)
 body.data.vertices.foreach_set("select", np.zeros(len(body.data.vertices), dtype=bool))
 body.data.edges.foreach_set("select", np.zeros(len(body.data.edges), dtype=bool))
-for part in range(ROOF_PART + 1):   # pieza por pieza: la puerta y el techo son vecinos
+for part in range(REAR_PART + 1):   # pieza por pieza: la puerta y el techo son vecinos
     # separar reordena las caras: clasificar de nuevo antes de cada pasada
     centers = np.empty(len(body.data.polygons) * 3); body.data.polygons.foreach_get("center", centers)
     body.data.polygons.foreach_set("select", wheel_of(centers.reshape(-1, 3)) == part)
@@ -117,6 +127,7 @@ for part in range(ROOF_PART + 1):   # pieza por pieza: la puerta y el techo son 
 wheel_faces = [int((face_wheel == i).sum()) for i in range(len(WHEELS))]
 door_faces = int((face_wheel == DOOR_PART).sum())
 roof_faces = int((face_wheel == ROOF_PART).sum())
+rear_faces = int((face_wheel == REAR_PART).sum())
 
 # 2. tuercas en cada maza (en el GLB normalizado), del lado de afuera
 co = np.empty(len(body.data.vertices) * 3); body.data.vertices.foreach_get("co", co); co = co.reshape(-1, 3)
@@ -151,7 +162,8 @@ n = len(body.data.polygons)
 centers = np.empty(n * 3); body.data.polygons.foreach_get("center", centers)
 face_wheel = wheel_of(centers.reshape(-1, 3))
 groups = ([body.vertex_groups.new(name="Camion")] + [body.vertex_groups.new(name=w) for w in WHEELS]
-          + [body.vertex_groups.new(name="Puerta"), body.vertex_groups.new(name="Techo")])
+          + [body.vertex_groups.new(name="Puerta"), body.vertex_groups.new(name="Techo"),
+             body.vertex_groups.new(name="Persiana")])
 members = [set() for _ in groups]
 for p in body.data.polygons:
     members[int(face_wheel[p.index]) + 1].update(p.vertices)
@@ -173,7 +185,7 @@ bm = bmesh.new(); bm.from_mesh(body.data)
 deform = bm.verts.layers.deform.verify()
 
 
-def slab(lo, hi, group, inward=False, drop_side=None):
+def slab(lo, hi, group, inward=False, drop_sides=()):
     made = bmesh.ops.create_cube(bm, size=1.0)
     lo, hi = Vector(lo), Vector(hi)
     for v in made["verts"]:
@@ -184,13 +196,18 @@ def slab(lo, hi, group, inward=False, drop_side=None):
         f.material_index = inner_slot
     if inward:
         bmesh.ops.reverse_faces(bm, faces=faces)
-    if drop_side is not None:  # la pared que da a la puerta queda abierta
-        bmesh.ops.delete(bm, geom=[f for f in faces if f.calc_center_median().y > hi.y - 1e-4], context="FACES_ONLY")
+    # las paredes que dan a las puertas quedan abiertas: +y (costado) y -x (persiana)
+    drop = [f for f in faces if ("+y" in drop_sides and f.calc_center_median().y > hi.y - 1e-4)
+            or ("-x" in drop_sides and f.calc_center_median().x < lo.x + 1e-4)]
+    if drop:
+        bmesh.ops.delete(bm, geom=drop, context="FACES_ONLY")
 
 
 cx0, cx1, cy0, cy1, cz0, cz1 = CARGO
-slab((cx0, cy0, cz0), (cx1, cy1, cz1), "Camion", inward=True, drop_side="+y")
-slab((DOOR[0], DOOR_Y - 0.012, DOOR[2]), (DOOR[1], DOOR_Y - 0.004, DOOR[3]), "Puerta")
+# (04/10) el costado ya no se abre: el forro queda cerrado de ese lado y sin el dorso de la puerta (se veia una tabla
+# suelta adentro); solo queda abierto atras, donde va la persiana de tablillas (author_truck_shutter.py)
+slab((cx0, cy0, cz0), (cx1, cy1, cz1), "Camion", inward=True, drop_sides=("-x",))
+slab((cx0 - 0.001, -REAR[1] + 0.006, REAR[2]), (cx0 + 0.003, REAR[1] - 0.006, REAR[3]), "Persiana")   # dorso
 bm.to_mesh(body.data); bm.free()
 zmin = min(v.co.z for v in body.data.vertices)
 to_final = Matrix.Scale(S, 4) @ Matrix.Translation((-REAR_X, 0, -zmin))
@@ -198,6 +215,30 @@ body.data.transform(to_final)
 body.name = "SK_Camion_Mesh"
 co = [v.co for v in body.data.vertices]
 size = [round(max(c[i] for c in co) - min(c[i] for c in co), 3) for i in range(3)]
+
+# persiana: sus caras (las del grupo Persiana) pasan a un objeto propio, con el origen en el medio del borde de arriba
+rear_group = body.vertex_groups["Persiana"].index
+in_rear = np.zeros(len(body.data.vertices), dtype=bool)
+for v in body.data.vertices:
+    in_rear[v.index] = any(g.group == rear_group and g.weight > 0.5 for g in v.groups)
+bpy.ops.object.select_all(action="DESELECT"); body.select_set(True)
+bpy.context.view_layer.objects.active = body
+bpy.context.tool_settings.mesh_select_mode = (False, False, True)
+body.data.vertices.foreach_set("select", np.zeros(len(body.data.vertices), dtype=bool))
+body.data.edges.foreach_set("select", np.zeros(len(body.data.edges), dtype=bool))
+body.data.polygons.foreach_set("select", np.array([all(in_rear[i] for i in p.vertices) for p in body.data.polygons]))
+bpy.ops.object.mode_set(mode="EDIT")
+bpy.ops.mesh.select_mode(type="FACE")
+bpy.ops.mesh.separate(type="SELECTED")
+bpy.ops.object.mode_set(mode="OBJECT")
+shutter = next(o for o in scn.objects if o.type == "MESH" and o is not body)
+shutter.name = "SM_CamionPersiana"
+shutter.vertex_groups.clear()
+body.vertex_groups.remove(body.vertex_groups["Persiana"])
+sco = [v.co for v in shutter.data.vertices]
+rear_top = Vector(((min(c.x for c in sco) + max(c.x for c in sco)) / 2, 0.0, max(c.z for c in sco)))
+shutter.data.transform(Matrix.Translation(-rear_top))
+rear_size = [round(max(c[i] for c in sco) - min(c[i] for c in sco), 3) for i in range(3)]
 
 
 def wheel_center(name):
@@ -337,6 +378,7 @@ bpy.ops.export_scene.fbx(filepath=str(OUT / "camion_loop.fbx"), use_selection=Tr
                          bake_anim_force_startend_keying=True, bake_anim_simplify_factor=0.0,
                          mesh_smooth_type="FACE", primary_bone_axis="Y", secondary_bone_axis="X",
                          path_mode="COPY", embed_textures=True)
+bpy.data.objects.remove(shutter)   # la pared de atras ya no se usa: la reemplaza la persiana de tablillas
 bpy.ops.wm.save_as_mainfile(filepath=str(OUT / "Camion.blend"))
 report = {
     "source": str(SRC), "faces_in": faces_in, "faces": len(body.data.polygons), "size_m": size,
@@ -346,7 +388,9 @@ report = {
     "seconds": round(FRAMES / FPS, 2), "frames": FRAMES, "fps": FPS, "speed_mps": SPEED,
     "max_steer_deg": round(math.degrees(max_steer), 1),
     "bones": ["Root", "Camion"] + list(WHEELS) + ["Puerta", "Puerta_Borde", "Techo"], "door_faces": door_faces,
-    "roof_faces": roof_faces,
+    "roof_faces": roof_faces, "rear_door_faces": rear_faces, "rear_door_size_m": rear_size,
+    # en cm de Unreal (y invertida), desde el eje trasero al piso: RearDoorTop de AFactoryVehiclePath
+    "rear_door_top_cm": [round(rear_top.x * 100, 1), round(-rear_top.y * 100, 1), round(rear_top.z * 100, 1)],
     # en cm de Unreal (x adelante, y a la derecha: la puerta esta del lado -y), desde el eje trasero al piso
     "cargo_cm": {k: round(v * 100, 1) for k, v in zip(("x0", "x1", "y_door", "y_far", "z0", "z1"),
                  ((to_final @ Vector((cx0, 0, 0))).x, (to_final @ Vector((cx1, 0, 0))).x, -cy1 * S, -cy0 * S,

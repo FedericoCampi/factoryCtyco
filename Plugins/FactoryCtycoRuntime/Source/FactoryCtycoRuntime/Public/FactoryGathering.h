@@ -25,6 +25,16 @@ public:
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Resource") TObjectPtr<UTexture2D> Icon;
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Resource") TObjectPtr<UStaticMesh> PickupMesh;
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Resource") FVector PickupScale = FVector::OneVector;
+    /** Size it is shown at on belts, falling into machines and so on: its longest side, cm. */
+    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Resource|Size", meta=(ClampMin="1", Units="Centimeters")) float CargoSize = 30.0f;
+    /** A piece of another material (a block cut from a rock, gravel crushed from a block): its size is SizePercent of
+     *  that one's, so it follows when that one changes. Empty: CargoSize. */
+    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Resource|Size") TObjectPtr<UFactoryResourceDefinition> SizeFrom;
+    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Resource|Size", meta=(ClampMin="1", ClampMax="400", Units="Percent")) float SizePercent = 100.0f;
+    /** The size it is shown at (cm, longest side), following SizeFrom. */
+    UFUNCTION(BlueprintPure, Category="Resource") float GetCargoSize() const;
+    /** World scale that shows PickupMesh at GetCargoSize(). */
+    FVector CargoScale() const;
 };
 
 UCLASS(ClassGroup=(Factory), meta=(BlueprintSpawnableComponent))
@@ -79,7 +89,10 @@ public:
     UFUNCTION(BlueprintCallable, Category="Gathering") void RefreshTarget();
     UFUNCTION(BlueprintCallable, Category="Gathering") void Interact();
     UFUNCTION(BlueprintCallable, Category="Gathering") void ToggleInventory();
-    UFUNCTION(BlueprintCallable, Category="Gathering") void ToggleMute();
+    /** M: music on or off. */
+    UFUNCTION(BlueprintCallable, Category="Gathering") void ToggleMusic();
+    /** N: the other sounds on or off. */
+    UFUNCTION(BlueprintCallable, Category="Gathering") void ToggleSounds();
     bool CanReach(const AFactoryResourcePile* Pile) const;
 protected:
     virtual void BeginPlay() override;

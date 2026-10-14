@@ -16,6 +16,7 @@
 #include "EngineUtils.h"
 #include "GameFramework/Pawn.h"
 #include "GameFramework/PlayerController.h"
+#include "Containers/Ticker.h"
 #include "Kismet/GameplayStatics.h"
 #include "UObject/ConstructorHelpers.h"
 
@@ -39,7 +40,9 @@ namespace
 
 AFactoryBuilding::AFactoryBuilding()
 {
-    PrimaryActorTick.bCanEverTick = false;
+    // Ticks only while something falls into it (StartFall).
+    PrimaryActorTick.bCanEverTick = true;
+    PrimaryActorTick.bStartWithTickEnabled = false;
     RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
     Visual = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Visual"));
     Visual->SetupAttachment(RootComponent);
@@ -55,6 +58,12 @@ AFactoryBuilding::AFactoryBuilding()
     Cargo->SetCollisionProfileName(TEXT("NoCollision"));
     Cargo->SetVisibility(false);
     Cargo->SetUsingAbsoluteScale(true);   // stretched belts do not stretch what they carry
+    Falling = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Falling"));
+    Falling->SetupAttachment(RootComponent);
+    Falling->SetCollisionProfileName(TEXT("NoCollision"));
+    Falling->SetUsingAbsoluteLocation(true);
+    Falling->SetUsingAbsoluteScale(true);
+    Falling->SetVisibility(false);
     Supports = CreateDefaultSubobject<UInstancedStaticMeshComponent>(TEXT("Supports"));
     Supports->SetupAttachment(RootComponent);
     Supports->SetUsingAbsoluteLocation(true);
@@ -71,7 +80,124 @@ AFactoryBuilding::AFactoryBuilding()
 void AFactoryBuilding::OnConstruction(const FTransform& Transform)
 {
     Super::OnConstruction(Transform);
+    AbsorbZStretch();
+    ApplySlope();
+    ApplyLiftHandle();
     RefreshVisuals();
+}
+
+bool AFactoryBuilding::IsStraightBelt() const
+{
+    return Definition && Definition->Kind == EFactoryBuildingKind::Belt && FMath::Abs(Definition->TurnDegrees) < 0.5f && LiftHeight <= 0.0f;
+}
+
+bool AFactoryBuilding::IsLift() const
+{
+    return Definition && Definition->Kind == EFactoryBuildingKind::Belt && FMath::Abs(Definition->TurnDegrees) < 0.5f && LiftHeight > 0.0f;
+}
+
+void AFactoryBuilding::ApplyLiftHandle()
+{
+    if (!IsLift()) return;
+    const FVector Top(100, 0, 33 + Lift() + LiftHeight);
+    // A diamond dragged up or down: the lift's top goes there.
+    if (!OutputEndHandle.IsZero() && !OutputEndHandle.Equals(PlacedOutHandle.IsZero() ? Top : PlacedOutHandle, 0.5f))
+        LiftHeight = FMath::Max(10.0f, OutputEndHandle.Z - 33 - Lift());
+    InputEndHandle = PlacedInHandle = FVector(-100, 0, 33 + Lift());
+    OutputEndHandle = PlacedOutHandle = FVector(100, 0, 33 + Lift() + LiftHeight);
+}
+
+namespace { constexpr float FallSeconds = 0.45f; }
+
+void AFactoryBuilding::StartFall(const UFactoryResourceDefinition* Item, const FVector& From)
+{
+    if (!Item || !Item->PickupMesh || MachineDropPoint.IsZero()) return;
+    Falling->SetStaticMesh(Item->PickupMesh);
+    Falling->SetWorldScale3D(Item->CargoScale());
+    Falling->SetWorldLocation(From);
+    Falling->SetVisibility(true);
+    FallFrom = From;
+    FallLeft = FallSeconds;
+    SetActorTickEnabled(true);
+}
+
+void AFactoryBuilding::Tick(float DeltaSeconds)
+{
+    Super::Tick(DeltaSeconds);
+    if (FallLeft <= 0.0f) { SetActorTickEnabled(false); return; }
+    FallLeft = FMath::Max(0.0f, FallLeft - DeltaSeconds);
+    // A short hop over the edge and down into the drop point.
+    const float T = 1.0f - FallLeft / FallSeconds;
+    const FVector To = GetActorTransform().TransformPosition(MachineDropPoint);
+    Falling->SetWorldLocation(FMath::Lerp(FallFrom, To, T) + FVector(0, 0, 35.0f * FMath::Sin(T * PI)));
+    Falling->SetWorldRotation(FRotator(T * 200.0f, T * 90.0f, 0));
+    if (FallLeft <= 0.0f)
+    {
+        Falling->SetVisibility(false);
+        SetActorTickEnabled(false);
+    }
+}
+
+void AFactoryBuilding::PlacePlatform()
+{
+    if (!Definition) return;
+    Visual->SetRelativeLocation(Definition->MeshOffset + FVector(0, 0, Lift() + PlatformRise));
+    Collision->SetRelativeLocation(FVector(0, 0, Lift() + PlatformRise + 19));
+}
+
+void AFactoryBuilding::LowerPlatform(float DeltaSeconds)
+{
+    if (!IsLift() || PlatformRise <= 0.0f) return;
+    PlatformRise = FMath::FInterpConstantTo(PlatformRise, 0.0f, DeltaSeconds, LiftSpeed);
+    PlacePlatform();
+}
+
+void AFactoryBuilding::ApplySlope()
+{
+    if (!IsStraightBelt()) return;
+    const float Deck = Lift() + 33.0f;
+    const FVector Middle(0, 0, Deck), InEnd(-100, 0, Deck), OutEnd(100, 0, Deck);
+    const FTransform& T = GetActorTransform();
+    const FVector MiddleWorld = T.TransformPosition(Middle);
+    const FVector Forward = FRotator(0, GetActorRotation().Yaw, 0).Vector();
+    // A dragged end handle: the belt points from its middle to it (zero: not placed yet).
+    auto FromHandle = [&](const FVector& Handle, const FVector& Placed, const FVector& End, float Sign, float& OutSlope)
+    {
+        if (Handle.IsZero() || Handle.Equals(Placed.IsZero() ? End : Placed, 0.5f)) return false;
+        const FVector Delta = (T.TransformPosition(Handle) - MiddleWorld) * Sign;
+        const float Along = FVector::DotProduct(Delta, Forward);
+        if (Along < 1.0f) return false;
+        OutSlope = FMath::RadiansToDegrees(FMath::Atan2(Delta.Z, Along));
+        return true;
+    };
+    float Wanted = Slope;
+    const bool bHandle = FromHandle(OutputEndHandle, PlacedOutHandle, OutEnd, 1.0f, Wanted)
+        || FromHandle(InputEndHandle, PlacedInHandle, InEnd, -1.0f, Wanted);
+    InputEndHandle = PlacedInHandle = InEnd;
+    OutputEndHandle = PlacedOutHandle = OutEnd;
+    if (!bHandle && FMath::IsNearlyEqual(Slope, AppliedSlope, 0.01f))
+    {
+        // Slope untouched: the actor was turned in pitch some other way (gizmo, level, save); Slope follows it.
+        Slope = AppliedSlope = GetActorRotation().Pitch;
+        return;
+    }
+    Wanted = FMath::Clamp(Wanted, -60.0f, 60.0f);
+    FRotator Rotation = GetActorRotation();
+    Rotation.Pitch = Wanted;
+    SetActorRotation(Rotation);
+    SetActorLocation(GetActorLocation() + MiddleWorld - GetActorTransform().TransformPosition(Middle));
+    Slope = AppliedSlope = Wanted;
+}
+
+void AFactoryBuilding::AbsorbZStretch()
+{
+    // A belt stretched in Z goes up on legs instead: the stretch becomes Elevation (34 cm per unit: the belt's height).
+    const FVector Scale = GetActorScale3D();
+    if (Definition && Definition->Kind == EFactoryBuildingKind::Belt && Scale.Z > 0.0f && !FMath::IsNearlyEqual(Scale.Z, 1.0f, 1e-3f))
+    {
+        Elevation = FMath::Max(0.0f, Elevation + (Scale.Z - 1.0f) * 34.0f);
+        SetActorScale3D(FVector(Scale.X, Scale.Y, 1.0f));
+    }
 }
 
 // Levels save the component transforms RefreshVisuals wrote when the actor was placed; a
@@ -79,12 +205,19 @@ void AFactoryBuilding::OnConstruction(const FTransform& Transform)
 void AFactoryBuilding::BeginPlay()
 {
     Super::BeginPlay();
+    AbsorbZStretch();
+    ApplySlope();
+    ApplyLiftHandle();
+    PlatformRise = 0.0f;
     RefreshVisuals();
 }
 
 float AFactoryBuilding::Lift() const
 {
-    return Definition ? FMath::Max(0.0f, Definition->BaseHeight) : 0.0f;
+    if (!Definition) return 0.0f;
+    // A raised belt stands on its legs, not on the platform: it rides at Elevation, where it hands material on.
+    if (Definition->Kind == EFactoryBuildingKind::Belt && (Elevation > 0.0f || LiftHeight > 0.0f)) return Elevation;
+    return FMath::Max(0.0f, Definition->BaseHeight);
 }
 
 void AFactoryBuilding::RefreshVisuals()
@@ -93,7 +226,8 @@ void AFactoryBuilding::RefreshVisuals()
     // The building stays on the floor for the grid and for handing material on; only what is
     // seen and touched goes up, onto the platform.
     const float Up = Lift();
-    UStaticMesh* Platform = Up > 0 ? Definition->BaseMesh.Get() : nullptr;
+    const bool bRaisedBelt = Definition->Kind == EFactoryBuildingKind::Belt && (Elevation > 0.0f || LiftHeight > 0.0f);
+    UStaticMesh* Platform = Up > 0 && !bRaisedBelt ? Definition->BaseMesh.Get() : nullptr;
     Base->SetStaticMesh(Platform);
     if (Platform) Base->SetRelativeScale3D(FVector(1, 1, Up / FMath::Max(Platform->GetBoundingBox().GetSize().Z, 1.0)));
     Visual->SetStaticMesh(Definition->Mesh);
@@ -102,9 +236,22 @@ void AFactoryBuilding::RefreshVisuals()
     Visual->SetRelativeRotation(FRotator(0, Definition->MeshYaw, 0));
     const bool bBelt = Definition->Kind == EFactoryBuildingKind::Belt;
     const bool bCorner = bBelt && FMath::Abs(Definition->TurnDegrees) >= 0.5f;
-    const float Height = (bBelt ? 32.0f : 150.0f) + Up;
-    Collision->SetBoxExtent(FVector(88, bBelt && !bCorner ? 72 : 88, Height / 2));
-    Collision->SetRelativeLocation(FVector(0, 0, Height / 2 + 2));
+    if (bBelt)
+    {
+        // Only the belt itself blocks: under a raised belt there is room (its legs have their own collision).
+        // A corner blocks with its own mesh (a box would also fill the inside of the curve).
+        Collision->SetBoxExtent(FVector(88, 72, 17));
+        Collision->SetRelativeLocation(FVector(0, 0, Up + 19));
+        Collision->SetCollisionEnabled(bCorner ? ECollisionEnabled::NoCollision : ECollisionEnabled::QueryAndPhysics);
+        Visual->SetCollisionProfileName(bCorner ? TEXT("BlockAll") : TEXT("NoCollision"));
+    }
+    else
+    {
+        const float Height = 150.0f + Up;
+        Collision->SetBoxExtent(FVector(88, 88, Height / 2));
+        Collision->SetRelativeLocation(FVector(0, 0, Height / 2 + 2));
+    }
+    if (IsLift()) PlacePlatform();
     Input->Capacity = bBelt ? 1 : Definition->Capacity;
     Output->Capacity = Definition->Kind == EFactoryBuildingKind::Processor ? Definition->Capacity : 0;
     BuildSupports();
@@ -115,13 +262,21 @@ FVector AFactoryBuilding::BeltLocalAt(float Fraction, float* OutYaw) const
     const float F = FMath::Clamp(Fraction, 0.0f, 1.0f);
     const float Z = 33 + Lift();
     const float Turn = Definition ? Definition->TurnDegrees : 0.0f;
+    if (IsLift())
+    {
+        // Lift: slides onto the middle of the platform, rides it up and slides off the front edge at the top.
+        constexpr float Slide = 0.15f;
+        if (OutYaw) *OutYaw = 0.0f;
+        const float X = F < Slide ? FMath::Lerp(-100.0f, 0.0f, F / Slide) : F > 1.0f - Slide ? FMath::Lerp(0.0f, 100.0f, (F - 1.0f + Slide) / Slide) : 0.0f;
+        return FVector(X, 0, Z + LiftHeight * FMath::Clamp((F - Slide) / (1.0f - 2.0f * Slide), 0.0f, 1.0f));
+    }
     if (FMath::Abs(Turn) < 0.5f)
     {
         if (OutYaw) *OutYaw = 0.0f;
         return FVector(FMath::Lerp(-100.0f, 100.0f, F), 0, Z);
     }
-    // Corner: from the middle of the back edge, heading +X, along a 100 cm radius towards Sign * Y.
-    constexpr float Radius = 100.0f;
+    // Corner: from the middle of the back edge, heading +X, along TurnRadius towards Sign * Y.
+    const float Radius = FMath::Max(20.0f, Definition->TurnRadius);
     const float Sign = Turn > 0.0f ? 1.0f : -1.0f;
     const float Angle = FMath::DegreesToRadians(FMath::Abs(Turn)) * F;
     if (OutYaw) *OutYaw = Sign * FMath::RadiansToDegrees(Angle);
@@ -144,21 +299,24 @@ float AFactoryBuilding::BeltLength() const
 float AFactoryBuilding::TravelSeconds() const
 {
     const bool bBelt = Definition && Definition->Kind == EFactoryBuildingKind::Belt;
+    // A lift rides up at LiftSpeed for the middle 70 % of its trip.
+    if (IsLift()) return LiftHeight / FMath::Max(LiftSpeed, 10.0f) / 0.7f;
     return bBelt ? BeltTravelSeconds * FMath::Max(BeltLength(), 20.0f) / 200.0f : BeltTravelSeconds;
 }
 
 FVector AFactoryBuilding::InputPoint() const
 {
     // Material is handed on at floor-belt height (33 cm over the actor's base), not over a platform.
-    FVector Local = Definition && Definition->Kind == EFactoryBuildingKind::Belt ? BeltLocalAt(0.0f) : FVector(-100, 0, 0);
-    Local.Z = 33;
+    // A raised belt hands it on at its own height, a tilted one at the height of that end.
+    const bool bBelt = Definition && Definition->Kind == EFactoryBuildingKind::Belt;
+    FVector Local = bBelt ? BeltLocalAt(0.0f) - FVector(0, 0, Lift() - Elevation) : MachineInput.IsZero() ? FVector(-100, 0, 33) : MachineInput;
     return GetActorTransform().TransformPosition(Local);
 }
 
 FVector AFactoryBuilding::OutputPoint() const
 {
-    FVector Local = Definition && Definition->Kind == EFactoryBuildingKind::Belt ? BeltLocalAt(1.0f) : FVector(100, 0, 0);
-    Local.Z = 33;
+    const bool bBelt = Definition && Definition->Kind == EFactoryBuildingKind::Belt;
+    FVector Local = bBelt ? BeltLocalAt(1.0f) - FVector(0, 0, Lift() - Elevation) : MachineOutput.IsZero() ? FVector(100, 0, 33) : MachineOutput;
     return GetActorTransform().TransformPosition(Local);
 }
 
@@ -167,31 +325,60 @@ void AFactoryBuilding::PlaceCargo(float Fraction)
     float Heading = 0.0f;
     const FVector Spot = BeltLocalAt(FMath::Clamp(Fraction, 0.0f, 1.0f) * 0.9f + 0.05f, &Heading);
     Cargo->SetRelativeLocationAndRotation(Spot, FRotator(0, Heading, 0));
+    if (IsLift())
+    {
+        // The platform carries the load: it is wherever the load is.
+        PlatformRise = Spot.Z - 33 - Lift();
+        PlacePlatform();
+    }
 }
 
 void AFactoryBuilding::BuildSupports()
 {
     TArray<FVector> Tops;
-    if (Definition && Definition->Kind == EFactoryBuildingKind::Belt)
+    if (IsLift())
     {
-        // The belt's underside (the actor's base, local Z 0) near each end and every SupportSpacing between them.
+        // Four guide posts at the platform's corners, from over the top of the lift down to the floor.
+        for (const FVector2D Corner : {FVector2D(-82, 64), FVector2D(-82, -64), FVector2D(82, 64), FVector2D(82, -64)})
+            Tops.Add(GetActorTransform().TransformPosition(FVector(Corner.X, Corner.Y, Lift() + LiftHeight + 60)));
+    }
+    else if (Definition && Definition->Kind == EFactoryBuildingKind::Belt)
+    {
+        // Legs on both sides of the belt, from its underside (Lift) to the floor: near each end and every
+        // SupportSpacing between them.
         const float Span = BeltLength();
         const int32 Between = FMath::FloorToInt(FMath::Max(Span - 50.0f, 0.0f) / SupportSpacing);
         TArray<float> Fractions = {0.1f, 0.9f};
         for (int32 I = 1; I <= Between; ++I) Fractions.Add(0.1f + 0.8f * I / (Between + 1));
         for (const float F : Fractions)
         {
-            FVector Local = BeltLocalAt(F);
-            Local.Z = 0.0f;
-            Tops.Add(GetActorTransform().TransformPosition(Local));
+            float Heading = 0.0f;
+            FVector Local = BeltLocalAt(F, &Heading);
+            Local.Z = Lift();
+            const FVector Side = FRotator(0, Heading, 0).RotateVector(FVector(0, 58, 0));
+            Tops.Add(GetActorTransform().TransformPosition(Local + Side));
+            Tops.Add(GetActorTransform().TransformPosition(Local - Side));
         }
     }
-    FactoryPlaceSupports(Supports, this, SupportMesh, SupportMaterial, Tops, SupportWidth, SupportMinGap);
+    const int32 Missed = FactoryPlaceSupports(Supports, this, SupportMesh, SupportMaterial, Tops, SupportWidth, SupportMinGap);
+    // In the editor a belt can be built before the floor under it is loaded: try again a moment later.
+    if (Missed == 0 || !GetWorld() || GetWorld()->IsGameWorld() || SupportRetries >= 10)
+    {
+        SupportRetries = 0;
+        return;
+    }
+    ++SupportRetries;
+    FTSTicker::GetCoreTicker().AddTicker(FTickerDelegate::CreateWeakLambda(this, [this](float)
+    {
+        BuildSupports();
+        return false;
+    }), 0.5f);
 }
 
 bool AFactoryBuilding::CanAccept(FName Item) const
 {
     if (!Definition || Input->GetFreeSpace() <= 0) return false;
+    if (IsLift() && PlatformRise > 1.0f) return false;   // the platform is still coming down
     if (Definition->Kind == EFactoryBuildingKind::Storage) return Item == StorageItem;
     return Definition->InputItem.IsNone() || Definition->InputItem == Item;
 }
@@ -263,9 +450,7 @@ void AFactoryBuilding::UpdateCargo(AFactoryDemoWorld* Factory)
         UFactoryResourceDefinition* Item = Factory->Resource(Pair.Key);
         if (!Item || !Item->PickupMesh) continue;
         Cargo->SetStaticMesh(Item->PickupMesh);
-        const FVector Size = Item->PickupMesh->GetBoundingBox().GetSize();
-        const float Scale = 30.0f / FMath::Max(Size.GetMax(), 1.0f);
-        Cargo->SetRelativeScale3D(FVector(Scale));
+        Cargo->SetRelativeScale3D(Item->CargoScale());
         PlaceCargo(ProgressSeconds / TravelSeconds());
         Cargo->SetVisibility(true);
         break;
@@ -398,7 +583,7 @@ void AFactoryDemoWorld::Step(float DeltaSeconds)
     const auto All = Buildings();
     for (AFactoryBuilding* Building : All)
     {
-        Building->bConnected = Receiver(Building, All) != nullptr;
+        Building->bConnected = Receiver(Building, All) != nullptr || Building->bFeedsProcess;
         Building->Simulate(DeltaSeconds, this);
     }
     struct FOffer { AFactoryBuilding* From; AFactoryBuilding* To; FName Item; };
@@ -423,6 +608,9 @@ void AFactoryDemoWorld::Step(float DeltaSeconds)
         if (!Offer.To->CanAccept(Offer.Item) || Offer.From->Supply()->GetQuantity(Offer.Item) < 1) continue;
         if (Offer.To->Input->AddItem(Resource(Offer.Item), 1) != 1) continue;
         Offer.From->Supply()->RemoveItem(Offer.Item, 1);
+        // Seen falling into the machine (its hopper) from where it was handed over.
+        if (Offer.To->Definition->Kind != EFactoryBuildingKind::Belt)
+            if (const UFactoryResourceDefinition* Item = Resource(Offer.Item)) Offer.To->StartFall(Item, Offer.From->OutputPoint());
         if (Offer.From->Definition->Kind == EFactoryBuildingKind::Belt)
         {
             Offer.From->ProgressSeconds = 0;
@@ -462,6 +650,8 @@ bool AFactoryDemoWorld::SaveFactory(APawn* Player)
         Saved.Yaw = Building->GetActorRotation().Yaw;
         Saved.Rotation = Building->GetActorRotation();
         Saved.Scale = Building->GetActorScale3D();
+        Saved.Elevation = Building->Elevation;
+        Saved.Slope = Building->Slope;
         Saved.PaidScrap = Building->PaidScrap;
         Saved.StorageItem = Building->StorageItem;
         Saved.Input = Building->Input->Items;
@@ -478,7 +668,7 @@ bool AFactoryDemoWorld::LoadFactory(APawn* Player)
     auto* Inventory = Player ? Player->FindComponentByClass<UFactoryInventoryComponent>() : nullptr;
     if (!Inventory) return false;
     const auto* Data = Cast<UFactoryDemoSave>(UGameplayStatics::LoadGameFromSlot(SaveSlot, 0));
-    if (!Data || Data->Version < 1 || Data->Version > 3) return false;
+    if (!Data || Data->Version < 1 || Data->Version > 4) return false;
     if (Data->PlatesProduced < 0 || Data->PlatesDelivered < 0) return false;
     const int32 RestoredStage = Data->Version >= 2 ? Data->SiteStage : 0;
     const float RestoredRemaining = Data->Version >= 2 ? Data->SiteTransitionRemaining : 0.0f;
@@ -505,6 +695,7 @@ bool AFactoryDemoWorld::LoadFactory(APawn* Player)
         if (!Definition || !Resource(Saved.StorageItem) || Saved.Id.IsNone() || Ids.Contains(Saved.Id) || Saved.Position.ContainsNaN()
             || !FMath::IsFinite(Saved.Yaw) || !FMath::IsFinite(Saved.ProgressSeconds) || Saved.ProgressSeconds < 0
             || Saved.Rotation.ContainsNaN() || Saved.Scale.ContainsNaN() || Saved.Scale.GetAbsMin() < 0.01f
+            || !FMath::IsFinite(Saved.Elevation) || Saved.Elevation < 0 || !FMath::IsFinite(Saved.Slope)
             || Saved.PaidScrap < 0 || !ValidItems(Saved.Input, Definition->Kind == EFactoryBuildingKind::Belt ? 1 : Definition->Capacity)
             || !ValidItems(Saved.Output, Definition->Kind == EFactoryBuildingKind::Processor ? Definition->Capacity : 0)) return false;
         Ids.Add(Saved.Id);
@@ -522,6 +713,7 @@ bool AFactoryDemoWorld::LoadFactory(APawn* Player)
         Building->PersistentId = Saved.Id;
         Building->PaidScrap = Saved.PaidScrap;
         Building->StorageItem = Saved.StorageItem;
+        if (Data->Version >= 4) { Building->Elevation = Saved.Elevation; Building->Slope = Saved.Slope; }
         Building->RefreshVisuals();
         RestoreInventory(Building->Input, Saved.Input, this);
         RestoreInventory(Building->Output, Saved.Output, this);

@@ -1,0 +1,46 @@
+{
+ "passed": true,
+ "door_size_cm": [
+  310,
+  16,
+  304
+ ],
+ "materials": [
+  "Sectional door",
+  "Dock shelter rubber"
+ ],
+ "matched": [
+  "Dock shelter rubber"
+ ],
+ "doors": {
+  "Porton_Muelle_1": [
+   -4407,
+   996,
+   412
+  ],
+  "Porton_Muelle_2": [
+   -3784,
+   996,
+   412
+  ],
+  "Porton_Muelle_3": [
+   -3162,
+   996,
+   412
+  ]
+ },
+ "bays": {
+  "Cajon_Muelle_3": [
+   "Porton_Muelle_2",
+   197
+  ],
+  "Cajon_Muelle_2": [
+   "Porton_Muelle_1",
+   227
+  ],
+  "Cajon_Muelle_1": [
+   "Porton_Muelle_3",
+   267
+  ]
+ }
+}

@@ -2,6 +2,7 @@
 #include "Animation/AnimSingleNodeInstance.h"
 #include "Animation/AnimSequence.h"
 #include "Animation/BlendSpace.h"
+#include "Components/InputComponent.h"
 #include "Components/SkeletalMeshComponent.h"
 #include "GameFramework/Character.h"
 #include "GameFramework/CharacterMovementComponent.h"
@@ -39,7 +40,34 @@ void URobotLocomotionComponent::BeginPlay()
         {
             OwnerCharacter->GetMesh()->PlayAnimation(Locomotion, true);
         }
+        if (bCanJump)
+        {
+            // The Blueprint turned jumping off (JumpMaxCount 0); this gives it back. Pawn-owned input components are
+            // gathered by the PlayerController, under the guide's intro (which blocks them while it is on screen).
+            OwnerCharacter->JumpMaxCount = 1;
+            OwnerCharacter->GetCharacterMovement()->JumpZVelocity = JumpSpeed;
+            JumpInput = NewObject<UInputComponent>(OwnerCharacter, TEXT("RobotJumpInput"));
+            JumpInput->RegisterComponent();
+            JumpInput->bBlockInput = false;
+            JumpInput->BindKey(EKeys::SpaceBar, IE_Pressed, this, &URobotLocomotionComponent::StartJump).bConsumeInput = false;
+            JumpInput->BindKey(EKeys::SpaceBar, IE_Released, this, &URobotLocomotionComponent::StopJump).bConsumeInput = false;
+        }
     }
+}
+
+void URobotLocomotionComponent::StartJump()
+{
+    ACharacter* OwnerCharacter = Character.Get();
+    if (!bCanJump || !OwnerCharacter) return;
+    // Not while the movement keys are ignored (intro, cutscenes).
+    if (const AController* Controller = OwnerCharacter->GetController(); Controller && Controller->IsMoveInputIgnored()) return;
+    OwnerCharacter->GetCharacterMovement()->JumpZVelocity = JumpSpeed;
+    OwnerCharacter->Jump();
+}
+
+void URobotLocomotionComponent::StopJump()
+{
+    if (ACharacter* OwnerCharacter = Character.Get()) OwnerCharacter->StopJumping();
 }
 
 void URobotLocomotionComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)

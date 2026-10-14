@@ -1,0 +1,42 @@
+{
+ "passed": true,
+ "curva_salida_vs_antes_cm": 0.0,
+ "curva": {
+  "antes": {
+   "entrada": [
+    1809.2,
+    646.8,
+    106.2
+   ],
+   "salida": [
+    2011.1,
+    444.9,
+    106.2
+   ]
+  },
+  "entrada": [
+   2011.1,
+   444.9,
+   106.2
+  ],
+  "salida": [
+   1809.2,
+   646.8,
+   106.2
+  ],
+  "desde_Triturar3_cm": 12.1,
+  "hasta_Triturar_cm": 11.4
+ },
+ "puente": [
+  {
+   "cinta": "Cinta_Puente1",
+   "etiquetas": [],
+   "carpeta": "Environment"
+  },
+  {
+   "cinta": "Cinta_Puente1_Curva",
+   "etiquetas": [],
+   "carpeta": "Environment"
+  }
+ ]
+}

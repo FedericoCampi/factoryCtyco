@@ -1,0 +1,17 @@
+{
+ "passed": true,
+ "checks": {
+  "musica_es_sc_musica": {
+   "passed": true
+  },
+  "m_silencia_solo_musica": {
+   "passed": true
+  },
+  "n_silencia_solo_sonidos": {
+   "passed": true
+  },
+  "panel_silencia_todo_y_vuelve": {
+   "passed": true
+  }
+ }
+}

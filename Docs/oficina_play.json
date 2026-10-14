@@ -1,0 +1,41 @@
+{
+ "passed": true,
+ "checks": {
+  "administracion_en_el_panel": {
+   "passed": true,
+   "pisos": [
+    "FÁBRICA",
+    "DESPACHO",
+    "EMPLEADOS",
+    "ADMINISTRACIÓN"
+   ]
+  },
+  "en_la_cabina": {
+   "passed": true
+  },
+  "arranca_el_viaje": {
+   "passed": true,
+   "piso": 4
+  },
+  "llega_a_la_oficina": {
+   "passed": true,
+   "personaje": [
+    1420,
+    6655,
+    1187
+   ],
+   "piso": 1100.0
+  },
+  "se_ve_la_oficina": {
+   "passed": true,
+   "visibles": [
+    "Oficina"
+   ]
+  },
+  "camina_adentro": {
+   "passed": true,
+   "avanzo_cm": 278,
+   "z": 1187
+  }
+ }
+}

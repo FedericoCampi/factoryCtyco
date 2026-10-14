@@ -64,7 +64,11 @@ public:
     UPROPERTY(Category="Elevator", VisibleAnywhere, BlueprintReadOnly) TObjectPtr<UStaticMeshComponent> Cabin;
     /** The floor inside, which rides up and down with the character. */
     UPROPERTY(Category="Elevator", VisibleAnywhere, BlueprintReadOnly) TObjectPtr<UStaticMeshComponent> Platform;
-    /** Hidden while the player is inside, so the isometric camera can see them. */
+    /** Panels that close the cabin walls above their half-height panels (SM_Ascensor2Relleno; fixed, with collision). */
+    UPROPERTY(Category="Elevator", VisibleAnywhere, BlueprintReadOnly) TObjectPtr<UStaticMeshComponent> Panels;
+    /** Rides up and down with the platform (the rider keeps a roof over the head).
+     *  Hidden while the player is inside in the isometric view, so the camera above can see them; in first person it
+     *  stays (the camera is inside the cabin). */
     UPROPERTY(Category="Elevator", VisibleAnywhere, BlueprintReadOnly) TObjectPtr<UStaticMeshComponent> Roof;
     /** Right outer, right inner, left outer, left inner (fixed at this floor; they slide open and shut). */
     UPROPERTY(Category="Elevator", VisibleAnywhere, BlueprintReadOnly) TArray<TObjectPtr<UStaticMeshComponent>> Doors;

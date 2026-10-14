@@ -6,6 +6,7 @@
 class UBlendSpace;
 class UAnimSequence;
 class ACharacter;
+class UInputComponent;
 
 UCLASS(ClassGroup=(Factory), meta=(BlueprintSpawnableComponent))
 class FACTORYCTYCORUNTIME_API URobotLocomotionComponent : public UActorComponent
@@ -32,6 +33,12 @@ public:
     float FastWalkSpeed = 300.0f;
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Robot Movement")
     bool bFastWalking = false;
+    /** Space bar jumps. Off: no jump at all. */
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Robot Movement")
+    bool bCanJump = true;
+    /** Upward speed of a jump (cm/s); 420 rises about 90 cm. */
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Robot Movement", meta=(ClampMin="0.0", EditCondition="bCanJump"))
+    float JumpSpeed = 420.0f;
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Robot Animation")
     float PlanarSpeed = 0.0f;
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Robot Animation")
@@ -41,4 +48,7 @@ protected:
     virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 private:
     TWeakObjectPtr<ACharacter> Character;
+    UPROPERTY(Transient) TObjectPtr<UInputComponent> JumpInput;
+    void StartJump();
+    void StopJump();
 };

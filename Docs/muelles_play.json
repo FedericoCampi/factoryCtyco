@@ -1,0 +1,44 @@
+{
+ "passed": true,
+ "checks": {
+  "recta_manijas": {
+   "passed": true,
+   "baranda_cm": 40.0,
+   "largo_cm": 200.0
+  },
+  "sin_garita": {
+   "passed": true
+  },
+  "sin_calle": {
+   "passed": true
+  },
+  "paso_al_muelle": {
+   "passed": true,
+   "y": 1277,
+   "borde_muelle_y": 653,
+   "pies_cm": 12.2
+  },
+  "recta_apoyado": {
+   "passed": true,
+   "pies_sobre_actor_cm": 39.1
+  },
+  "camiones_estacionados": {
+   "passed": true,
+   "camiones": [
+    {
+     "camion": "Camion_Recorrido",
+     "estacionado": true,
+     "cajon": "Cajon_Muelle_3",
+     "eje_trasero_a_cm": 0.0
+    },
+    {
+     "camion": "Camion_Recorrido2",
+     "estacionado": true,
+     "cajon": "Cajon_Muelle_2",
+     "eje_trasero_a_cm": 0.0
+    }
+   ],
+   "segundos_reales": 8.8
+  }
+ }
+}

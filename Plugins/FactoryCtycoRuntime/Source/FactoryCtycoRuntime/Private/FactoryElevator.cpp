@@ -1,5 +1,6 @@
 #include "FactoryElevator.h"
 #include "FactoryStaff.h"
+#include "FactoryCameraComponent.h"
 #include "Camera/PlayerCameraManager.h"
 #include "Components/AudioComponent.h"
 #include "Components/CapsuleComponent.h"
@@ -69,7 +70,9 @@ AFactoryElevator::AFactoryElevator()
     Cabin = MakeMesh(TEXT("Cabin"), RootComponent, true);
     Platform = MakeMesh(TEXT("Platform"), RootComponent, true);
     Platform->SetMobility(EComponentMobility::Movable);
+    Panels = MakeMesh(TEXT("Panels"), Cabin, true);
     Roof = MakeMesh(TEXT("Roof"), Cabin, false);
+    Roof->SetMobility(EComponentMobility::Movable);
     Roof->SetCastShadow(true);
     for (const TCHAR* Name : {TEXT("DoorRightOuter"), TEXT("DoorRightInner"), TEXT("DoorLeftOuter"), TEXT("DoorLeftInner")})
         Doors.Add(MakeMesh(Name, Cabin, false));
@@ -195,6 +198,7 @@ void AFactoryElevator::SetDepth(float Depth)
 {
     const float Shake = BumpElapsed < BumpSeconds ? 3.0f * FMath::Sin(BumpElapsed * 2.0f * PI * 7.0f) * FMath::Exp(-BumpElapsed * 9.0f) : 0.0f;
     Platform->SetRelativeLocation(FVector(0, 0, Shake - Depth));
+    Roof->SetRelativeLocation(FVector(0, 0, Shake - Depth));   // the roof rides with the floor
 }
 
 bool AFactoryElevator::DriveDoors(float Goal, float DeltaSeconds)
@@ -313,7 +317,11 @@ void AFactoryElevator::Tick(float DeltaSeconds)
 
     const bool bInside = Viewer && InCabin(Viewer);
     if (!bInside || !IsIdle()) bMenuOpen = false;   // walking out closes the panel
-    Roof->SetVisibility(!(bInside || Rider.IsValid()));
+    // The roof goes while the player is in the cabin (or riding) so the isometric camera above sees in; in first
+    // person the camera is inside and the cabin keeps its roof.
+    const UFactoryCameraComponent* View = Viewer ? Viewer->FindComponentByClass<UFactoryCameraComponent>() : nullptr;
+    const bool bFirstPerson = View && View->IsFirstPerson();
+    Roof->SetVisibility(bFirstPerson || !(bInside || Rider.IsValid()));
     const bool bShow = IsIdle() && bInside && !bMenuOpen;
     Prompt->SetHiddenInGame(!bShow);
     if (!bShow) return;

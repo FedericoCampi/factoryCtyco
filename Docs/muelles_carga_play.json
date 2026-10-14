@@ -1,0 +1,465 @@
+{
+ "passed": true,
+ "checks": {
+  "garita_en_los_muelles": {
+   "passed": true
+  },
+  "calle": {
+   "passed": true
+  },
+  "cintas_encadenadas": {
+   "passed": true,
+   "enlaces": [
+    [
+     "Cinta_Carga3",
+     "Cinta_Muelle_5"
+    ]
+   ]
+  },
+  "cinta_espera_en_el_porton": {
+   "passed": true,
+   "cajon": "Cajon_Muelle_1",
+   "espera_en_cm": 159.5
+  },
+  "estaciona_en_cajon_1": {
+   "passed": true,
+   "cajon": "Cajon_Muelle_1"
+  },
+  "carga_desde_la_cinta": {
+   "passed": true,
+   "cajas_dadas": 10,
+   "carga_maxima": 10,
+   "amarrado_al_estacionar": true
+  },
+  "abre_la_persiana": {
+   "passed": true,
+   "atras_subida_tablillas": [
+    true,
+    122.9,
+    true,
+    0
+   ]
+  },
+  "persiana_cerrada_al_salir": {
+   "passed": true,
+   "tablillas": [
+    16,
+    16
+   ]
+  },
+  "cajas_no_pasan_el_porton_cerrado": {
+   "passed": true,
+   "cajas_vistas": 18,
+   "pasaron": 0,
+   "esperando_al_abrir_la_barrera": 2
+  },
+  "cajas_miran_hacia_la_cinta": {
+   "passed": true,
+   "peor_giro": [
+    -3.9,
+    "Cinta_Muelle_5"
+   ]
+  },
+  "porton_cerrado_en_la_garita": {
+   "passed": true,
+   "apertura": 0.0
+  },
+  "porton_abierto_al_estacionar": {
+   "passed": true,
+   "apertura": 1.0
+  },
+  "porton_sube_estacionado": {
+   "passed": true,
+   "porton_escala": [
+    "Porton_Muelle_3",
+    0.08
+   ]
+  },
+  "porton_baja_al_irse": {
+   "passed": true
+  },
+  "sale_lleno": {
+   "passed": true
+  },
+  "cuenta_la_entrega": {
+   "passed": true,
+   "paquetes": 10
+  }
+ },
+ "timeline": [
+  [
+   "spawn",
+   0.3
+  ],
+  [
+   "run",
+   4.4
+  ],
+  [
+   "parked",
+   15.8
+  ],
+  [
+   "left",
+   24.8
+  ]
+ ],
+ "cajas": [
+  [
+   4.75,
+   0.125,
+   1,
+   {
+    "Cinta_Carga3": 1
+   },
+   0
+  ],
+  [
+   5.09,
+   0.125,
+   2,
+   {
+    "Cinta_Carga3": 2
+   },
+   0
+  ],
+  [
+   5.11,
+   0.125,
+   2,
+   {
+    "Cinta_Carga3": 2
+   },
+   0
+  ],
+  [
+   5.44,
+   0.018,
+   3,
+   {
+    "Cinta_Carga3": 3
+   },
+   0
+  ],
+  [
+   5.78,
+   0.125,
+   4,
+   {
+    "Cinta_Carga3": 4
+   },
+   0
+  ],
+  [
+   6.11,
+   0.125,
+   5,
+   {
+    "Cinta_Carga3": 5
+   },
+   0
+  ],
+  [
+   6.44,
+   0.125,
+   6,
+   {
+    "Cinta_Muelle_5": 1,
+    "Cinta_Carga3": 5
+   },
+   0
+  ],
+  [
+   6.78,
+   0.125,
+   7,
+   {
+    "Cinta_Muelle_5": 1,
+    "Cinta_Carga3": 6
+   },
+   0
+  ],
+  [
+   7.11,
+   0.125,
+   8,
+   {
+    "Cinta_Muelle_5": 2,
+    "Cinta_Carga3": 6
+   },
+   0
+  ],
+  [
+   7.44,
+   0.125,
+   9,
+   {
+    "Cinta_Muelle_5": 2,
+    "Cinta_Carga3": 7
+   },
+   0
+  ],
+  [
+   7.78,
+   0.125,
+   9,
+   {
+    "Cinta_Muelle_5": 2,
+    "Cinta_Carga3": 7
+   },
+   0
+  ],
+  [
+   9.78,
+   0.125,
+   10,
+   {
+    "Cinta_Muelle_5": 3,
+    "Cinta_Carga3": 7
+   },
+   0
+  ],
+  [
+   10.45,
+   0.125,
+   10,
+   {
+    "Cinta_Muelle_5": 4,
+    "Cinta_Carga3": 6
+   },
+   0
+  ],
+  [
+   11.11,
+   0.125,
+   10,
+   {
+    "Cinta_Muelle_5": 5,
+    "Cinta_Carga3": 5
+   },
+   0
+  ],
+  [
+   11.77,
+   0.125,
+   10,
+   {
+    "Cinta_Muelle_5": 6,
+    "Cinta_Carga3": 4
+   },
+   0
+  ],
+  [
+   15.77,
+   0.125,
+   10,
+   {
+    "Cinta_Muelle_5": 5,
+    "Cinta_Carga3": 4
+   },
+   0
+  ],
+  [
+   16.11,
+   0.125,
+   10,
+   {
+    "Cinta_Muelle_5": 5,
+    "Cinta_Carga3": 3
+   },
+   1
+  ],
+  [
+   16.44,
+   0.125,
+   10,
+   {
+    "Cinta_Muelle_5": 4,
+    "Cinta_Carga3": 3
+   },
+   2
+  ],
+  [
+   16.77,
+   0.125,
+   10,
+   {
+    "Cinta_Muelle_5": 4,
+    "Cinta_Carga3": 2
+   },
+   3
+  ],
+  [
+   17.11,
+   0.125,
+   10,
+   {
+    "Cinta_Muelle_5": 3,
+    "Cinta_Carga3": 2
+   },
+   4
+  ],
+  [
+   17.44,
+   0.125,
+   10,
+   {
+    "Cinta_Muelle_5": 3,
+    "Cinta_Carga3": 1
+   },
+   5
+  ],
+  [
+   17.77,
+   0.125,
+   10,
+   {
+    "Cinta_Muelle_5": 2,
+    "Cinta_Carga3": 1
+   },
+   6
+  ],
+  [
+   18.11,
+   0.125,
+   10,
+   {
+    "Cinta_Muelle_5": 3
+   },
+   7
+  ],
+  [
+   18.44,
+   0.125,
+   10,
+   {
+    "Cinta_Muelle_5": 2
+   },
+   7
+  ],
+  [
+   18.77,
+   0.125,
+   10,
+   {
+    "Cinta_Muelle_5": 2
+   },
+   8
+  ],
+  [
+   19.11,
+   0.125,
+   10,
+   {
+    "Cinta_Muelle_5": 1
+   },
+   8
+  ],
+  [
+   19.44,
+   0.125,
+   10,
+   {
+    "Cinta_Muelle_5": 1
+   },
+   9
+  ],
+  [
+   19.77,
+   0.125,
+   10,
+   {},
+   9
+  ],
+  [
+   20.11,
+   0.125,
+   10,
+   {},
+   10
+  ],
+  [
+   27.44,
+   0.125,
+   10,
+   {},
+   0
+  ]
+ ],
+ "al_estacionar": {
+  "eje_trasero": [
+   -3153,
+   1263
+  ],
+  "punta": [
+   -3173,
+   1230
+  ],
+  "distancia": 38,
+  "cinta_amarrada_a": "Camion_Recorrido",
+  "siguiente": null,
+  "tags": [],
+  "amarrado": true,
+  "carga": 0,
+  "capacidad": 10,
+  "usa_atras": true,
+  "cajon": [
+   -3153,
+   1263
+  ]
+ },
+ "cajas_en_cintas": {},
+ "salidas_carga3": [
+  "Cinta_Muelle_5"
+ ],
+ "carga": [
+  [
+   0,
+   0
+  ],
+  [
+   16.1,
+   1
+  ],
+  [
+   16.4,
+   2
+  ],
+  [
+   16.8,
+   3
+  ],
+  [
+   17.1,
+   4
+  ],
+  [
+   17.4,
+   5
+  ],
+  [
+   17.8,
+   6
+  ],
+  [
+   18.1,
+   7
+  ],
+  [
+   18.8,
+   8
+  ],
+  [
+   19.4,
+   9
+  ],
+  [
+   20.1,
+   10
+  ],
+  [
+   27.4,
+   0
+  ]
+ ]
+}

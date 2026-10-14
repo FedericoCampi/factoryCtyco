@@ -1,0 +1,16 @@
+{
+ "passed": true,
+ "mesh": "/Game/FactoryCtyco/Environments/CintaCargaCurva/SM_CintaCargaCurva",
+ "slots": [
+  "M_CintaAcero",
+  "M_CintaNaranja",
+  "M_Rodillo"
+ ],
+ "collisions": 8,
+ "curves": [
+  "Cinta_Esquina",
+  "Cinta_Muelle_2",
+  "Cinta_Muelle_4"
+ ],
+ "turn_or_length_differs": []
+}

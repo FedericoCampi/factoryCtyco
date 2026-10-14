@@ -1,0 +1,20 @@
+{
+ "passed": true,
+ "delta_cm": -150.0,
+ "Horno_Fundicion": [
+  236.7,
+  86.7
+ ],
+ "Tubo_Descarga": [
+  360.0,
+  210.0
+ ],
+ "Codo_Metalico": [
+  383.2,
+  233.2
+ ],
+ "elevacion_horno": [
+  236.7,
+  86.7
+ ]
+}

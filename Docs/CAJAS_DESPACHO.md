@@ -110,3 +110,29 @@ Todo esto vale para las cintas de carga (`AFactoryLoadingBelt`, las `Cinta_Carga
 - Colocar la esquina: `Scripts/apply_belt_corner.py` (informe `Docs/belt_corner.json`). Prueba en Play:
   `Scripts/playtest_belt_corner.py` (esquina + rampa de 12° de prueba en el piso de la fábrica, que no se guardan;
   7 comprobaciones, pasó el 30/09; `Docs/belt_corner_play.json`).
+
+## Circuito sin cortes (03/10)
+Las cintas de cajas de las máquinas terminaban en su tope y las cintas de carga empezaban ~3 m más allá (con la
+rejilla del piso en el medio). `Scripts/apply_puentes_despacho.py` las une con tramos de cinta de carga (copias de
+`Cinta_Carga2` y `Cinta_Esquina`, mismo aspecto y altura): `Cinta_Puente2` (recta, de `Despacho_Cajas2` a
+`Cinta_Carga2`) y `Cinta_Puente1` + `Cinta_Puente1_Curva` (recta y cuarto de vuelta espejado y agrandado, de
+`Despacho_Cajas` a `Cinta_Carga3`). Una caja dejada en un puente sigue sola a la carga; las de la cinta de despacho
+todavía se agarran con E. Informe: `Docs/puentes_despacho.json`.
+
+## Curva de la cinta de despacho (04/10)
+`SM_CintaCargaCurva` (`Scripts/author_loading_belt_curve.py`): la cinta de rodillos de `SM_CintaCarga` doblada 90°, con
+el radio de la esquina negra (1,538 m; `Length` 241,6, `TurnDegrees` -90; escala Y -1 para doblar al otro lado). Rodillos
+radiales con `M_DespachoRodillo` (giran), barandas naranjas, patas. `Scripts/apply_cinta_curva.py` la importa y se la
+pone a todas las cintas de carga curvas (reemplaza a `SM_CintaEsquina`) → `Docs/cinta_curva.json`.
+
+## Inclinar las cintas de despacho y ver el recorrido (04/10)
+- **Inclinar** (rectas): `Slope` en Detalles (grados; positivo sube la punta de salida) o los dos rombos de las puntas
+  (`InputEndHandle`, `OutputEndHandle`): arrastrar uno hacia arriba o abajo inclina la cinta sobre la **otra** punta, así
+  la cinta enganchada ahí no se suelta. Girarla en pitch con el gizmo también cambia `Slope`. Las curvas no se inclinan.
+- **Recorrido**: cada cinta de carga dibuja en el editor una línea blanca 3 cm sobre los rodillos (`Route`), de la punta
+  de carga a la de salida, y una flecha blanca en la salida (`RouteArrow`): sigue la línea y la flecha para ver a dónde
+  van las cajas. No se ve en el juego.
+- **Invertir sentido**: botón en Detalles de cada cinta de carga (`ReverseDirection`). Da vuelta hacia dónde van las cajas
+  sin mover la cinta (el actor pasa a la otra punta, mira al revés y, en una curva, se espeja). Se usó en `Cinta_Esquina`
+  (04/10): el recorrido es `Cinta_Carga2` → `Cinta_Esquina` → `Cinta_Carga4` → `Cinta_Carga` → `Cinta_Carga3` →
+  `Cinta_Muelle_5` → camión (`playtest_muelles_carga.py`, 15/15).

@@ -1,0 +1,43 @@
+{
+ "passed": true,
+ "sk_camion": {
+  "passed": true,
+  "trucks": [
+   "Camion_Volcador",
+   "Camion_Recorrido",
+   "Camion_Recorrido2"
+  ],
+  "length_cm": 520.4,
+  "shutter_kept": true
+ },
+ "volcador": true,
+ "camioneros": [
+  {
+   "camion": "Camion_Volcador",
+   "malla": "SK_TecJunior",
+   "lugar_cm": [
+    335,
+    -38,
+    16
+   ]
+  },
+  {
+   "camion": "Camion_Recorrido",
+   "malla": "SK_TecJunior",
+   "lugar_cm": [
+    335,
+    -38,
+    16
+   ]
+  },
+  {
+   "camion": "Camion_Recorrido2",
+   "malla": "SK_TecJunior",
+   "lugar_cm": [
+    335,
+    -38,
+    16
+   ]
+  }
+ ]
+}

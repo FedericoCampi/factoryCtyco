@@ -8,6 +8,8 @@
 #include "GameFramework/Pawn.h"
 #include "GameFramework/PlayerController.h"
 #include "GameFramework/SpringArmComponent.h"
+#include "Components/SkeletalMeshComponent.h"
+#include "Camera/CameraComponent.h"
 #include "InputCoreTypes.h"
 #include "InputKeyEventArgs.h"
 
@@ -30,7 +32,9 @@ void UFactoryCameraComponent::BeginPlay()
         DesiredDistance = InitialDistance;
         Arm->AddTickPrerequisiteComponent(this);
         ArmOverPawn = Arm->GetComponentLocation() - GetOwner()->GetActorLocation();
+        ArmRelative = Arm->GetRelativeLocation();
     }
+    if (const UCameraComponent* Camera = GetOwner()->FindComponentByClass<UCameraComponent>()) IsometricFov = Camera->FieldOfView;
     Focus = GetOwner()->GetActorLocation();
     LastPawnLocation = Focus;
     if (bStartFree) StopFollowing();
@@ -127,6 +131,7 @@ void UFactoryCameraComponent::BindControls(APlayerController* Player)
         CameraInput->BindKey(EKeys::MouseScrollDown, IE_Pressed, this, &UFactoryCameraComponent::ZoomOut).bConsumeInput = false;
         CameraInput->BindKey(EKeys::RightMouseButton, IE_Pressed, this, &UFactoryCameraComponent::StartRightDrag).bConsumeInput = false;
         CameraInput->BindKey(EKeys::Home, IE_Pressed, this, &UFactoryCameraComponent::ResetCamera).bConsumeInput = false;
+        CameraInput->BindKey(EKeys::V, IE_Pressed, this, &UFactoryCameraComponent::ToggleFirstPerson).bConsumeInput = false;
         CameraInput->BindAxisKey(EKeys::MouseX, this, &UFactoryCameraComponent::PanHorizontal).bConsumeInput = false;
         CameraInput->BindAxisKey(EKeys::MouseY, this, &UFactoryCameraComponent::PanVertical).bConsumeInput = false;
     }
@@ -142,6 +147,17 @@ void UFactoryCameraComponent::TickComponent(float DeltaTime, ELevelTick TickType
     APlayerController* Player = Pawn && Pawn->IsLocallyControlled() ? Cast<APlayerController>(Pawn->GetController()) : nullptr;
     if (Controller.Get() != Player) BindControls(Player);
     KeyPan(DeltaTime);
+    if (USpringArmComponent* Arm = SpringArm.Get(); Arm && bFirstPerson)
+    {
+        // First person: at the eyes, looking where the mouse turned; the character walks that way.
+        Arm->SetWorldLocation(GetOwner()->GetActorLocation() + FVector(0, 0, EyeHeight));
+        Arm->TargetArmLength = 0.0f;
+        Arm->TargetOffset = FVector::ZeroVector;
+        Arm->SocketOffset = FVector::ZeroVector;
+        Arm->SetWorldRotation(FRotator(LookPitch, DesiredYaw, 0.0f));
+        if (Player) Player->SetControlRotation(FRotator(0, DesiredYaw, 0));
+        return;
+    }
     if (USpringArmComponent* Arm = SpringArm.Get())
     {
         const FRotator CurrentRotation = Arm->GetComponentRotation();
@@ -173,13 +189,58 @@ void UFactoryCameraComponent::TickComponent(float DeltaTime, ELevelTick TickType
     }
 }
 
+void UFactoryCameraComponent::SetFirstPerson(bool bOn)
+{
+    USpringArmComponent* Arm = SpringArm.Get();
+    if (!Arm || bOn == bFirstPerson) return;
+    bFirstPerson = bOn;
+    ACharacter* Character = Cast<ACharacter>(GetOwner());
+    if (Character && Character->GetMesh()) Character->GetMesh()->SetOwnerNoSee(bOn);
+    UCameraComponent* Camera = GetOwner()->FindComponentByClass<UCameraComponent>();
+    if (bOn)
+    {
+        bWasFree = bFree;
+        bFree = false;
+        LookPitch = 0.0f;
+        bArmCollided = Arm->bDoCollisionTest;
+        ArmSocket = Arm->SocketOffset;
+        Arm->bDoCollisionTest = false;
+        if (Camera) Camera->SetFieldOfView(FirstPersonFov);
+        // The mouse looks around: no cursor, and the mouse stays in the window.
+        if (APlayerController* Player = Controller.Get())
+        {
+            Player->bShowMouseCursor = false;
+            Player->SetInputMode(FInputModeGameOnly());
+        }
+        return;
+    }
+    if (APlayerController* Player = Controller.Get())
+    {
+        // The cursor comes back, as the game sets it up (UFactoryDemoComponent::BeginPlay).
+        Player->bShowMouseCursor = true;
+        FInputModeGameAndUI Mode;
+        Mode.SetHideCursorDuringCapture(false);
+        Mode.SetLockMouseToViewportBehavior(EMouseLockMode::LockInFullscreen);
+        Player->SetInputMode(Mode);
+    }
+    // Back to the isometric camera, as it was.
+    Arm->SetRelativeLocation(ArmRelative);
+    Arm->TargetArmLength = DesiredDistance;
+    Arm->bDoCollisionTest = bArmCollided;
+    Arm->SocketOffset = ArmSocket;
+    if (Camera) Camera->SetFieldOfView(IsometricFov);
+    if (bWasFree) StopFollowing();
+}
+
 void UFactoryCameraComponent::ZoomIn()
 {
+    if (bFirstPerson) return;
     DesiredDistance = FMath::Clamp(DesiredDistance * (1.0f - ZoomFraction), MinimumDistance, MaximumDistance);
 }
 
 void UFactoryCameraComponent::ZoomOut()
 {
+    if (bFirstPerson) return;
     DesiredDistance = FMath::Clamp(DesiredDistance / (1.0f - ZoomFraction), MinimumDistance, MaximumDistance);
 }
 
@@ -193,6 +254,11 @@ bool UFactoryCameraComponent::IsOrbiting() const
 
 void UFactoryCameraComponent::PanHorizontal(float Value)
 {
+    if (bFirstPerson)
+    {
+        DesiredYaw = FRotator::NormalizeAxis(DesiredYaw + Value * LookSensitivity);
+        return;
+    }
     if (IsOrbiting())
     {
         RightDragSincePress += FMath::Abs(Value);
@@ -202,6 +268,11 @@ void UFactoryCameraComponent::PanHorizontal(float Value)
 }
 void UFactoryCameraComponent::PanVertical(float Value)
 {
+    if (bFirstPerson)
+    {
+        LookPitch = FMath::Clamp(LookPitch + Value * LookSensitivity, -75.0f, 75.0f);
+        return;
+    }
     if (IsOrbiting()) RightDragSincePress += FMath::Abs(Value);
     else Pan(0.0f, Value);
 }
@@ -210,7 +281,7 @@ void UFactoryCameraComponent::Pan(float Horizontal, float Vertical)
 {
     APlayerController* Player = Controller.Get();
     USpringArmComponent* Arm = SpringArm.Get();
-    if (!Player || !Arm || !Player->IsInputKeyDown(EKeys::MiddleMouseButton)) return;
+    if (!Player || !Arm || bFirstPerson || !Player->IsInputKeyDown(EKeys::MiddleMouseButton)) return;
     if (Horizontal == 0.0f && Vertical == 0.0f) return;
     const FRotator Heading(0.0f, Arm->GetComponentRotation().Yaw, 0.0f);
     const FVector Forward = Heading.Vector();
@@ -230,7 +301,7 @@ void UFactoryCameraComponent::KeyPan(float DeltaTime)
 {
     APlayerController* Player = Controller.Get();
     USpringArmComponent* Arm = SpringArm.Get();
-    if (!Player || !Arm || KeyPanSpeed <= 0.0f) return;
+    if (!Player || !Arm || bFirstPerson || KeyPanSpeed <= 0.0f) return;
     const float Forward = (Player->IsInputKeyDown(EKeys::Up) ? 1.0f : 0.0f) - (Player->IsInputKeyDown(EKeys::Down) ? 1.0f : 0.0f);
     const float Side = (Player->IsInputKeyDown(EKeys::Right) ? 1.0f : 0.0f) - (Player->IsInputKeyDown(EKeys::Left) ? 1.0f : 0.0f);
     if (Forward == 0.0f && Side == 0.0f) return;
@@ -248,6 +319,7 @@ void UFactoryCameraComponent::KeyPan(float DeltaTime)
 
 void UFactoryCameraComponent::ResetCamera()
 {
+    SetFirstPerson(false);
     if (bFree) Follow(GetOwner());   // Home: back on the own character
     DesiredDistance = FMath::Clamp(InitialDistance, MinimumDistance, MaximumDistance);
     DesiredPan = FVector::ZeroVector;

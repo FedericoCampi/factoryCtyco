@@ -1,0 +1,16 @@
+{
+ "passed": true,
+ "elevators": [
+  "Ascensor_Empleados",
+  "Ascensor_Estacionamiento",
+  "Ascensor_Fabrica"
+ ],
+ "panels_size_cm": [
+  220,
+  290,
+  230
+ ],
+ "melt_seconds": 5.0,
+ "liquid": "/Game/FactoryCtyco/Factory/Materials/MI_LiquidoFundido.MI_LiquidoFundido",
+ "brightness": 1.2
+}

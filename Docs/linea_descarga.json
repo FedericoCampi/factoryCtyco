@@ -1,0 +1,63 @@
+{
+ "passed": true,
+ "container_floor": [
+  -0.0,
+  "SceneRobot_Fabrica"
+ ],
+ "tubo": {
+  "location": [
+   -502.0,
+   -658.0,
+   360.0
+  ],
+  "outlet": [
+   -401.7,
+   -657.6,
+   405.9
+  ],
+  "radius_cm": 14.7,
+  "slope_deg": -5.42
+ },
+ "codo": {
+  "location": [
+   -351.8,
+   -686.6,
+   383.2
+  ],
+  "rotation": [
+   -5.42,
+   0.0,
+   90.0
+  ],
+  "yaw_before": 80.0,
+  "scale": 1.0352,
+  "inlet_port": 1,
+  "joint_gap_cm": 0.0,
+  "spout": [
+   -314.1,
+   -733.7,
+   397.6
+  ],
+  "spout_dir": [
+   0.0,
+   -1.0,
+   -0.0
+  ]
+ },
+ "container": {
+  "placed_now": true,
+  "location": [
+   -314.0,
+   -769.0,
+   -0.0
+  ],
+  "yaw": -90.0,
+  "size_cm": [
+   150,
+   70,
+   56
+  ],
+  "top_z": 56.0,
+  "spout_over_container": true
+ }
+}

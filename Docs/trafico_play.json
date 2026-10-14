@@ -1,0 +1,57 @@
+{
+ "passed": true,
+ "checks": {
+  "linea_sobre_el_piso": {
+   "passed": true,
+   "puntos": 8,
+   "debajo_del_piso": [],
+   "se_dibuja": true
+  },
+  "linea_sin_escalones": {
+   "passed": true,
+   "escalones": []
+  },
+  "personaje_contra_el_brazo": {
+   "passed": true,
+   "personaje_x": -4656,
+   "brazo_x": -4695
+  },
+  "camiones_no_se_atraviesan": {
+   "passed": true,
+   "encimados": [],
+   "muestras": 89,
+   "esperaron_a": {
+    "Camion_Volcador": "Camion_Recorrido2",
+    "Camion_Recorrido2": "Camion_Volcador"
+   },
+   "retrocesos": 8
+  },
+  "barrera_nunca_baja_sobre_un_camion": {
+   "passed": true,
+   "golpes": []
+  },
+  "ruedas_en_el_piso": {
+   "passed": true,
+   "muestras": 51,
+   "fuera": []
+  },
+  "movimiento_suave": {
+   "passed": true,
+   "saltos": []
+  },
+  "todos_terminan": {
+   "passed": true,
+   "volcado": true,
+   "estacionados": [
+    "Camion_Recorrido",
+    "Camion_Recorrido2"
+   ],
+   "segundos": 29.7
+  },
+  "personaje_contra_el_camion": {
+   "passed": true,
+   "camion": "Camion_Recorrido",
+   "al_costado_cm": 140
+  }
+ }
+}

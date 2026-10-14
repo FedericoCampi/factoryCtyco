@@ -1,0 +1,26 @@
+{
+ "passed": true,
+ "estiramiento": [
+  1.0,
+  0.75
+ ],
+ "lugar": [
+  20,
+  -1540,
+  164
+ ],
+ "yaw": 90.0,
+ "medidas": {
+  "outer_a": -191.2,
+  "inner_a": -90.0,
+  "end_a": 263.0,
+  "outer_b": -249.0,
+  "inner_b": -136.0,
+  "end_b": 201.8
+ },
+ "piezas": [
+  6,
+  11,
+  13
+ ]
+}

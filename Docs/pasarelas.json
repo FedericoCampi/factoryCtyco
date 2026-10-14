@@ -1,0 +1,41 @@
+{
+ "passed": true,
+ "pasarelas": [
+  {
+   "actor": "Pasarela_Recta",
+   "malla": "/Game/FactoryCtyco/Environments/Pasarelas/Recta/SM_PasarelaRecta",
+   "lugar": [
+    330,
+    -1250,
+    168
+   ],
+   "tamano_cm": [
+    989,
+    252,
+    137
+   ],
+   "piso_cm": 204.4,
+   "triangulos": 150000,
+   "materiales": 1,
+   "colision": "<CollisionTraceFlag.CTF_USE_COMPLEX_AS_SIMPLE: 3>"
+  },
+  {
+   "actor": "Pasarela_L",
+   "malla": "/Game/FactoryCtyco/Environments/Pasarelas/L/SM_PasarelaL",
+   "lugar": [
+    1200,
+    -300,
+    164
+   ],
+   "tamano_cm": [
+    527,
+    539,
+    141
+   ],
+   "piso_cm": 204.4,
+   "triangulos": 150000,
+   "materiales": 1,
+   "colision": "<CollisionTraceFlag.CTF_USE_COMPLEX_AS_SIMPLE: 3>"
+  }
+ ]
+}

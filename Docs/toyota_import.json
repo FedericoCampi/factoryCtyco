@@ -1,0 +1,17 @@
+{
+ "passed": true,
+ "actor": "Toyota",
+ "location": [
+  -3300,
+  160,
+  10
+ ],
+ "size_cm": [
+  490,
+  250,
+  196
+ ],
+ "triangles": 80000,
+ "materials": 1,
+ "collision": 1
+}

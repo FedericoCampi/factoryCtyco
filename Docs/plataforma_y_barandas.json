@@ -1,0 +1,116 @@
+{
+ "passed": true,
+ "piezas": {
+  "SM_PlataformaPiso": {
+   "tamano_cm": [
+    120.0,
+    120.0,
+    2.3
+   ],
+   "triangulos": 19214,
+   "colision": "caja"
+  },
+  "SM_PlataformaEsquina": {
+   "tamano_cm": [
+    58.0,
+    57.7,
+    68.0
+   ],
+   "triangulos": 15164,
+   "colision": "compleja"
+  },
+  "SM_PlataformaColumna": {
+   "tamano_cm": [
+    18.1,
+    18.1,
+    23.0
+   ],
+   "triangulos": 947,
+   "colision": "compleja"
+  },
+  "SM_PlataformaPie": {
+   "tamano_cm": [
+    32.3,
+    33.1,
+    9.1
+   ],
+   "triangulos": 2159,
+   "colision": "compleja"
+  },
+  "SM_PlataformaCostado": {
+   "tamano_cm": [
+    60.0,
+    27.9,
+    24.3
+   ],
+   "triangulos": 5698,
+   "colision": "compleja"
+  },
+  "SM_BarandaEscaleraTramo": {
+   "tamano_cm": [
+    90.0,
+    15.3,
+    79.1
+   ],
+   "triangulos": 3572,
+   "colision": "caja"
+  },
+  "SM_BarandaEscaleraPoste": {
+   "tamano_cm": [
+    23.0,
+    15.9,
+    78.6
+   ],
+   "triangulos": 1690,
+   "colision": "caja"
+  }
+ },
+ "actores": [
+  {
+   "nombre": "Plataforma_Industrial",
+   "clase": "FactoryPlatform",
+   "lugar": [
+    1000,
+    -1300,
+    0
+   ],
+   "caja_cm": [
+    876,
+    -1425,
+    0,
+    1124,
+    -1175,
+    100
+   ],
+   "piezas": {
+    "esquinas": 4,
+    "columnas": 4,
+    "pies": 4,
+    "costados": 4,
+    "piso": 1
+   },
+   "altura_piso_cm": 97.5
+  },
+  {
+   "nombre": "Baranda_1",
+   "clase": "FactoryRailing",
+   "lugar": [
+    829,
+    -1070,
+    0
+   ],
+   "caja_cm": [
+    818,
+    -1078,
+    0,
+    1183,
+    -1062,
+    80
+   ],
+   "piezas": {
+    "tramos": 3,
+    "postes": 4
+   }
+  }
+ ]
+}

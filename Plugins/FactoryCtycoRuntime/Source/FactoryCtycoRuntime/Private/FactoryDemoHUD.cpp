@@ -1,4 +1,7 @@
 #include "FactoryDemo.h"
+#include "Kismet/GameplayStatics.h"
+#include "Sound/SoundClass.h"
+#include "Sound/SoundMix.h"
 #include "FactoryDispatchBelt.h"
 #include "FactoryElevator.h"
 #include "FactoryMission.h"
@@ -75,8 +78,19 @@ void AFactoryDemoHUD::DrawElevatorMenu(float S, float W, float H)
 
 bool AFactoryDemoHUD::ClickMoneyBar(float X, float Y)
 {
+    if (FirstPersonCorner.bIsValid && FirstPersonCorner.IsInside(FVector2D(X, Y)))
+    {
+        const APawn* Pawn = PlayerOwner ? PlayerOwner->GetPawn() : nullptr;
+        if (auto* Camera = Pawn ? Pawn->FindComponentByClass<UFactoryCameraComponent>() : nullptr) Camera->ToggleFirstPerson();
+        return true;
+    }
+    if (MusicCorner.bIsValid && MusicCorner.IsInside(FVector2D(X, Y)))
+    {
+        ToggleMusic();
+        return true;
+    }
     if (!MuteCorner.bIsValid || !MuteCorner.IsInside(FVector2D(X, Y))) return false;
-    ToggleMute();
+    ToggleSounds();
     return true;
 }
 
@@ -95,11 +109,44 @@ bool AFactoryDemoHUD::ClickInfoPanel(float X, float Y)
     return true;
 }
 
+void AFactoryDemoHUD::ToggleMusic()
+{
+    bMusicMuted = !bMusicMuted;
+    ApplyVolumes();
+}
+
+void AFactoryDemoHUD::ToggleSounds()
+{
+    bSoundsMuted = !bSoundsMuted;
+    ApplyVolumes();
+}
+
 void AFactoryDemoHUD::ToggleMute()
 {
-    bMuted = !bMuted;
+    const bool bAll = !(bMusicMuted && bSoundsMuted);
+    bMusicMuted = bSoundsMuted = bAll;
+    ApplyVolumes();
+}
+
+void AFactoryDemoHUD::ApplyVolumes()
+{
     MutedAt = GetWorld()->GetRealTimeSeconds();
-    if (FAudioDeviceHandle Device = GetWorld()->GetAudioDevice()) Device->SetTransientPrimaryVolume(bMuted ? 0.0f : 1.0f);
+    USoundClass* Music = LoadObject<USoundClass>(nullptr, TEXT("/Game/FactoryCtyco/Audio/SC_Musica.SC_Musica"));
+    USoundClass* Sounds = LoadObject<USoundClass>(nullptr, TEXT("/Game/FactoryCtyco/Audio/SC_Sonidos.SC_Sonidos"));
+    if (!Music || !Sounds)
+    {
+        // Without the two classes there is no telling them apart: all or nothing.
+        if (FAudioDeviceHandle Device = GetWorld()->GetAudioDevice()) Device->SetTransientPrimaryVolume(bMusicMuted && bSoundsMuted ? 0.0f : 1.0f);
+        return;
+    }
+    if (!VolumeMix) VolumeMix = NewObject<USoundMix>(this);
+    UGameplayStatics::SetSoundMixClassOverride(this, VolumeMix, Music, bMusicMuted ? 0.0f : 1.0f, 1.0f, 0.15f, true);
+    UGameplayStatics::SetSoundMixClassOverride(this, VolumeMix, Sounds, bSoundsMuted ? 0.0f : 1.0f, 1.0f, 0.15f, true);
+    if (!bMixPushed)
+    {
+        UGameplayStatics::PushSoundMixModifier(this, VolumeMix);
+        bMixPushed = true;
+    }
 }
 
 void AFactoryDemoHUD::DrawHUD()
@@ -132,7 +179,7 @@ void AFactoryDemoHUD::DrawHUD()
     {
         Rect(Panel,0,H-44,W,44);
         Rect(Border,0,H-44,W,1);
-        Text(TEXT("WASD Mover   SHIFT Rápido   E Usar   I Info   M Silenciar   Clic Personaje: seguir   Flechas/Central Mover cámara   Rueda Zoom   Arrastrar Der. Orbitar   Inicio Seguirme"),24,H-31,.86f,White);
+        Text(TEXT("WASD Mover   SHIFT Rápido   E Usar   I Info   M Música   N Sonidos   Clic Personaje: seguir   Flechas/Central Mover cámara   Rueda Zoom   Arrastrar Der. Orbitar   Inicio Seguirme"),24,H-31,.86f,White);
         // Camera state, right of the hints: free or following someone.
         if (const auto* Camera = Pawn->FindComponentByClass<UFactoryCameraComponent>(); Camera && Camera->bStartFree)
         {
@@ -153,6 +200,7 @@ void AFactoryDemoHUD::DrawHUD()
         if (bInfoOpen && !bInfoShown) InfoShownAt = GetWorld()->GetRealTimeSeconds();
         bInfoShown = bInfoOpen;
         DrawMoney(S, W, H);
+        DrawInteraction(S, W, H);
         DrawEvents(S, W, H);
         DrawNpcSpeech(S, W, H);
         DrawGuide(S, W, H);

@@ -1,0 +1,10 @@
+{
+ "passed": true,
+ "trucks": [
+  "Camion_Volcador",
+  "Camion_Recorrido",
+  "Camion_Recorrido2"
+ ],
+ "length_cm": 520.4,
+ "shutter_kept": true
+}

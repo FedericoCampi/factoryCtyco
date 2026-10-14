@@ -1,0 +1,21 @@
+{
+ "passed": true,
+ "mallas": {
+  "SM_Cabina": "<CollisionTraceFlag.CTF_USE_COMPLEX_AS_SIMPLE: 3>",
+  "SM_BarreraPoste": "<CollisionTraceFlag.CTF_USE_COMPLEX_AS_SIMPLE: 3>"
+ },
+ "choques": {
+  "booth": {
+   "oeste": null,
+   "este": "Booth",
+   "sur": "Post",
+   "norte": "StaticMeshComponent0"
+  },
+  "post": {
+   "oeste": "Post",
+   "este": "Post",
+   "sur": "Post",
+   "norte": "Booth"
+  }
+ }
+}

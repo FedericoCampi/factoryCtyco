@@ -1,0 +1,22 @@
+{
+ "passed": true,
+ "codo": {
+  "size_cm": [
+   91,
+   100,
+   35
+  ],
+  "collisions": 1,
+  "triangles": 153848,
+  "materials": [
+   "Material_0"
+  ],
+  "actor": "Codo_Metalico",
+  "folder": "Fabrica",
+  "location": [
+   -302,
+   -688,
+   0
+  ]
+ }
+}

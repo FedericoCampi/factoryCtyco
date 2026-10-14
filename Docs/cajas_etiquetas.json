@@ -1,0 +1,31 @@
+{
+ "passed": true,
+ "belts": [
+  "Despacho_Cajas",
+  "Despacho_Cajas2"
+ ],
+ "variants": [
+  "SM_CajaDespacho_A",
+  "SM_CajaDespacho_B",
+  "SM_CajaDespacho_C",
+  "SM_CajaDespacho_D"
+ ],
+ "slots": [
+  [
+   "M_Carton",
+   "M_Carton"
+  ],
+  [
+   "M_CintaEmbalar",
+   "M_CintaEmbalar"
+  ],
+  [
+   "M_EtiquetaPapel",
+   "M_EtiquetaPapel"
+  ],
+  [
+   "M_EtiquetaTinta",
+   "M_EtiquetaTinta"
+  ]
+ ]
+}

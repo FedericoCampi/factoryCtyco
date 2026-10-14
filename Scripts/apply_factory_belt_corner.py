@@ -54,6 +54,11 @@ def import_mesh():
     mesh = unreal.load_asset(path)
     if not isinstance(mesh, unreal.StaticMesh):
         raise RuntimeError("No se importo la esquina")
+    # la esquina choca con su propia malla (una caja llenaria tambien el hueco de adentro de la curva)
+    body = mesh.get_editor_property("body_setup")
+    body.set_editor_property("collision_trace_flag", unreal.CollisionTraceFlag.CTF_USE_COMPLEX_AS_SIMPLE)
+    mesh.set_editor_property("body_setup", body)
+    lib.save_loaded_asset(mesh, False)
     return mesh
 
 
@@ -79,6 +84,7 @@ try:
     corner_def.set_editor_property("mesh_offset", unreal.Vector(0, 0, 0))
     corner_def.set_editor_property("mesh_yaw", 0.0)
     corner_def.set_editor_property("turn_degrees", -90.0)
+    corner_def.set_editor_property("turn_radius", json.loads((SRC / "build.json").read_text(encoding="utf-8"))["turn_radius_cm"])
     lib.save_loaded_asset(corner_def, False)
 
     factory = next(a for a in level if isinstance(a, unreal.FactoryDemoWorld))

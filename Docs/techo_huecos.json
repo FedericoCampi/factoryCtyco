@@ -1,0 +1,40 @@
+{
+ "passed": true,
+ "dinteles": {
+  "Techo_Fabrica_+Y_hueco_0": [
+   215,
+   800
+  ],
+  "Techo_Fabrica_+Y_hueco_10": [
+   215,
+   800
+  ],
+  "Techo_Fabrica_+Y_hueco_20": [
+   215,
+   800
+  ],
+  "Techo_Fabrica_-X_hueco_1": [
+   215,
+   800
+  ],
+  "Techo_Fabrica_+X_hueco_3": [
+   222,
+   800,
+   "sobre el ascensor"
+  ],
+  "Techo_Fabrica_+X_hueco_4": [
+   222,
+   800,
+   "sobre el ascensor"
+  ],
+  "Techo_Fabrica_+X_hueco_5": [
+   222,
+   800,
+   "sobre el ascensor"
+  ],
+  "Techo_Fabrica_+X_hueco_9": [
+   215,
+   800
+  ]
+ }
+}

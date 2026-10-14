@@ -2,6 +2,7 @@
 #include "FactoryDemo.h"
 #include "FactoryElevator.h"
 #include "FactoryMachineSwitch.h"
+#include "FactoryMeltProcess.h"
 #include "FactoryDispatchBelt.h"
 #include "FactoryGateBarrier.h"
 #include "FactoryLoadingBelt.h"
@@ -20,6 +21,25 @@
 #include "GameFramework/PlayerController.h"
 #include "InputCoreTypes.h"
 #include "UObject/ConstructorHelpers.h"
+
+float UFactoryResourceDefinition::GetCargoSize() const
+{
+    // A piece of another material: a percentage of that one's size (a few links at most; a loop stops there).
+    const UFactoryResourceDefinition* Item = this;
+    float Factor = 1.0f;
+    for (int32 Depth = 0; Item->SizeFrom && Item->SizeFrom != Item && Depth < 8; ++Depth)
+    {
+        Factor *= Item->SizePercent / 100.0f;
+        Item = Item->SizeFrom;
+    }
+    return Item->CargoSize * Factor;
+}
+
+FVector UFactoryResourceDefinition::CargoScale() const
+{
+    const float Longest = PickupMesh ? PickupMesh->GetBoundingBox().GetSize().GetMax() : 1.0f;
+    return FVector(GetCargoSize() / FMath::Max(Longest, 1.0f));
+}
 
 int32 UFactoryInventoryComponent::GetTotal() const
 {
@@ -138,7 +158,8 @@ void UFactoryGatheringComponent::BeginPlay()
     GatheringInput->bBlockInput = false;
     GatheringInput->BindKey(EKeys::E, IE_Pressed, this, &UFactoryGatheringComponent::Interact);
     GatheringInput->BindKey(EKeys::I, IE_Pressed, this, &UFactoryGatheringComponent::ToggleInventory);
-    GatheringInput->BindKey(EKeys::M, IE_Pressed, this, &UFactoryGatheringComponent::ToggleMute);
+    GatheringInput->BindKey(EKeys::M, IE_Pressed, this, &UFactoryGatheringComponent::ToggleMusic);
+    GatheringInput->BindKey(EKeys::N, IE_Pressed, this, &UFactoryGatheringComponent::ToggleSounds);
     // Carrying boxes from the dispatch belts.
     if (!GetOwner()->FindComponentByClass<UFactoryCarryComponent>())
     {
@@ -212,6 +233,9 @@ void UFactoryGatheringComponent::Interact()
     }
     for (TActorIterator<AFactoryMachineSwitch> It(GetWorld()); It; ++It)
         if (It->TryInteract(GetOwner())) return;
+    // At the furnace: light it or open the pour; at its container: take the ingot.
+    for (TActorIterator<AFactoryMeltProcess> It(GetWorld()); It; ++It)
+        if (It->TryInteract(GetOwner())) return;
     // Belt panels can stand close together: E goes to the nearest one in reach.
     AFactoryDispatchBelt* NearestBelt = nullptr;
     double NearestBeltDistance = TNumericLimits<double>::Max();
@@ -247,12 +271,19 @@ void UFactoryGatheringComponent::Interact()
     RefreshTarget();
 }
 void UFactoryGatheringComponent::ToggleInventory() { bInventoryOpen = !bInventoryOpen; }
-void UFactoryGatheringComponent::ToggleMute()
+void UFactoryGatheringComponent::ToggleMusic()
 {
-    // M: silence the whole game (the option also sits on the info panel, key I).
+    // M: the music (silencing everything sits on the info panel, key I).
     if (const APawn* Pawn = Cast<APawn>(GetOwner()))
         if (const APlayerController* Player = Cast<APlayerController>(Pawn->GetController()))
-            if (auto* HUD = Cast<AFactoryDemoHUD>(Player->GetHUD())) HUD->ToggleMute();
+            if (auto* HUD = Cast<AFactoryDemoHUD>(Player->GetHUD())) HUD->ToggleMusic();
+}
+void UFactoryGatheringComponent::ToggleSounds()
+{
+    // N: every other sound.
+    if (const APawn* Pawn = Cast<APawn>(GetOwner()))
+        if (const APlayerController* Player = Cast<APlayerController>(Pawn->GetController()))
+            if (auto* HUD = Cast<AFactoryDemoHUD>(Player->GetHUD())) HUD->ToggleSounds();
 }
 void UFactoryGatheringComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {

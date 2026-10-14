@@ -1,0 +1,44 @@
+{
+ "passed": true,
+ "checks": {
+  "inicio": {
+   "guia_en_pausa": true,
+   "personaje": [
+    -250,
+    -380,
+    87
+   ]
+  },
+  "piedra_llega": {
+   "en_bruto_en_la_cinta": true,
+   "bloque_en_la_cinta": true,
+   "cortadas": 5,
+   "carga_que_sube": "SM_PiedraTriturada"
+  },
+  "tanda": {
+   "cargado": 4,
+   "estado": "<FactoryFurnaceStage.READY: 1>",
+   "piedras_cargadas": 11
+  },
+  "fundir": {
+   "prompt": "[E] ENCENDER HORNO",
+   "brillo": 2853
+  },
+  "colar": {
+   "tramos_de_chorro": 21,
+   "llenado": 1.0,
+   "calor_al_empezar_a_enfriar": 0.89,
+   "calor_final": 0.0
+  },
+  "lingote": {
+   "hechos": 1,
+   "en_inventario": 1
+  }
+ },
+ "capturas": [
+  "fundicion_fundiendo.png",
+  "fundicion_colando.png",
+  "fundicion_llenando.png",
+  "fundicion_lingote.png"
+ ]
+}

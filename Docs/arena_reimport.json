@@ -1,7 +1,7 @@
 {
  "passed": true,
- "triangles": 194253,
- "convex_collisions": 73,
+ "triangles": 191967,
+ "convex_collisions": 74,
  "bounds_cm": [
   -1160.3,
   -1200.0,

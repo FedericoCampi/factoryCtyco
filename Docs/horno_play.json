@@ -1,0 +1,76 @@
+{
+ "passed": true,
+ "checks": {
+  "apagado_tapa_en_reposo": {
+   "passed": true,
+   "tapa": 38.0
+  },
+  "apagado_no_toma": {
+   "passed": true,
+   "cargadas_apagado": 0
+  },
+  "prendido_abre_mas": {
+   "passed": true,
+   "tapa_maxima": 75.0
+  },
+  "junta_3": {
+   "passed": true,
+   "cargadas": 3
+  },
+  "cerrado_mientras_funde": {
+   "passed": true,
+   "tapa_minima": 0.0
+  },
+  "material_espera_en_la_cinta": {
+   "passed": true,
+   "en_la_cinta": 1
+  },
+  "cuela_solo": {
+   "passed": true
+  },
+  "liquido_del_color_del_material": {
+   "passed": true,
+   "liquido": [
+    0.55,
+    0.52,
+    0.49
+   ],
+   "material": [
+    0.55,
+    0.52,
+    0.49
+   ]
+  },
+  "vuelve_a_abrir": {
+   "passed": true,
+   "tapa": 75.0
+  }
+ },
+ "timeline": [
+  [
+   "apagado",
+   4.5,
+   38.0
+  ],
+  [
+   "prendido",
+   6.1,
+   38.0
+  ],
+  [
+   "fundiendo",
+   7.9,
+   75.0
+  ],
+  [
+   "colando",
+   8.2,
+   0.0
+  ],
+  [
+   "reabre",
+   10.2,
+   0.0
+  ]
+ ]
+}

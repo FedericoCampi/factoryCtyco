@@ -78,6 +78,8 @@ public:
     UPROPERTY(Category="Guide|Intro", EditAnywhere, BlueprintReadWrite) TArray<FFactoryIntroSlide> Slides;
     /** Skips the intro and briefing (handy for testing): the steps start at once. */
     UPROPERTY(Category="Guide|Intro", EditAnywhere, BlueprintReadWrite) bool bSkipIntro = false;
+    /** Pauses the whole guide (intro, mission card and arrow) without losing its steps: the game starts free. */
+    UPROPERTY(Category="Guide", EditAnywhere, BlueprintReadWrite) bool bPaused = false;
 
     UPROPERTY(Category="Guide|Mission", EditAnywhere, BlueprintReadWrite) FString MissionKicker = TEXT("MISIÓN 1");
     UPROPERTY(Category="Guide|Mission", EditAnywhere, BlueprintReadWrite) FString MissionTitle = TEXT("Reabrir el despacho");

@@ -112,7 +112,9 @@ def _belt(materials):
     parts = []
     parts.append(_box("Belt_LowerChassis", (0, 0, 4), (192, 120, 8), 1.5, materials, 0))
     # The clear working surface ends at Z28, below the runtime slats at Z30.5.
-    parts.append(_box("Belt_RubberDeck", (0, 0, 23), (172, 116, 10), 1.2, materials, 0))
+    # The deck reaches the cell edge (X +-100), flush with the orange end fittings, and covers the end rollers:
+    # no grey strip between the belt and its end, which a belt stretched in X made wide (01/10).
+    parts.append(_box("Belt_RubberDeck", (0, 0, 23), (200, 116, 10), 1.2, materials, 0))
     for y in (-65, 65):
         parts.append(_box("Belt_SteelRail", (0, y, 21), (148, 10, 18), 1.4, materials, 1))
         for x in (-87, 87):

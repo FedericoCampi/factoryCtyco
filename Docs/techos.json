@@ -1,0 +1,39 @@
+{
+ "passed": true,
+ "Fabrica": {
+  "paredes": 27,
+  "dinteles": 8,
+  "lamparas": 25,
+  "lineas": {
+   "-Y": -2519.2,
+   "+Y": 961.9,
+   "-X": -1069.2,
+   "+X": 2349.3
+  },
+  "techo_z": 800.0
+ },
+ "Laboratorio": {
+  "paredes": 20,
+  "dinteles": 3,
+  "lamparas": 9,
+  "lineas": {
+   "-Y": -912.5,
+   "+Y": 912.5,
+   "-X": 3367.5,
+   "+X": 5392.5
+  },
+  "techo_z": 500.0
+ },
+ "Recepcion": {
+  "paredes": 12,
+  "dinteles": 3,
+  "lamparas": 1,
+  "lineas": {
+   "-Y": 7127.5,
+   "+Y": 8152.5,
+   "-X": -3720.0,
+   "+X": -2869.5
+  },
+  "techo_z": 1021.0
+ }
+}

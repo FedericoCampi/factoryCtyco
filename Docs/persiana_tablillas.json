@@ -1,0 +1,27 @@
+{
+ "passed": true,
+ "trucks": [
+  "Camion_Recorrido",
+  "Camion_Recorrido2"
+ ],
+ "heights_cm": {
+  "SM_CamionPersianaLama": 7.82,
+  "SM_CamionPersianaZocalo": 6.0,
+  "SM_CamionPersianaMarco": 138.9
+ },
+ "materials": {
+  "SM_CamionPersianaLama": [
+   "M_PersianaLama",
+   "M_PersianaJunta"
+  ],
+  "SM_CamionPersianaZocalo": [
+   "M_PersianaGoma",
+   "M_PersianaMarco"
+  ],
+  "SM_CamionPersianaMarco": [
+   "M_PersianaMarco",
+   "M_PersianaJunta"
+  ]
+ },
+ "old_deleted": true
+}

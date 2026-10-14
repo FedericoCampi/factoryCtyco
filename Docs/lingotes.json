@@ -1,0 +1,100 @@
+{
+ "passed": true,
+ "lingotes": [
+  {
+   "lingote": "Lingote_Prueba_1",
+   "en": [
+    1860,
+    -380,
+    0
+   ],
+   "piso": "SceneRobot_Fabrica"
+  },
+  {
+   "lingote": "Lingote_Prueba_2",
+   "en": [
+    1930,
+    -380,
+    0
+   ],
+   "piso": "SceneRobot_Fabrica"
+  },
+  {
+   "lingote": "Lingote_Prueba_3",
+   "en": [
+    2000,
+    -380,
+    0
+   ],
+   "piso": "SceneRobot_Fabrica"
+  },
+  {
+   "lingote": "Lingote_Prueba_4",
+   "en": [
+    2070,
+    -380,
+    0
+   ],
+   "piso": "SceneRobot_Fabrica"
+  },
+  {
+   "lingote": "Lingote_Prueba_5",
+   "en": [
+    2140,
+    -380,
+    0
+   ],
+   "piso": "SceneRobot_Fabrica"
+  },
+  {
+   "lingote": "Lingote_Prueba_6",
+   "en": [
+    1860,
+    -325,
+    0
+   ],
+   "piso": "SceneRobot_Fabrica"
+  },
+  {
+   "lingote": "Lingote_Prueba_7",
+   "en": [
+    1930,
+    -325,
+    0
+   ],
+   "piso": "SceneRobot_Fabrica"
+  },
+  {
+   "lingote": "Lingote_Prueba_8",
+   "en": [
+    2000,
+    -325,
+    0
+   ],
+   "piso": "SceneRobot_Fabrica"
+  },
+  {
+   "lingote": "Lingote_Prueba_9",
+   "en": [
+    2070,
+    -325,
+    0
+   ],
+   "piso": "SceneRobot_Fabrica"
+  },
+  {
+   "lingote": "Lingote_Prueba_10",
+   "en": [
+    2140,
+    -325,
+    0
+   ],
+   "piso": "SceneRobot_Fabrica"
+  }
+ ],
+ "tamaño_cm": [
+  30,
+  12,
+  8
+ ]
+}

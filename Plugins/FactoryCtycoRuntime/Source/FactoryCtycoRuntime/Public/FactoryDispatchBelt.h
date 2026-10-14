@@ -41,6 +41,9 @@ class FACTORYCTYCORUNTIME_API AFactoryDispatchBelt : public AActor
 public:
     AFactoryDispatchBelt();
     UPROPERTY(Category="Dispatch Belt", EditAnywhere, BlueprintReadOnly) TObjectPtr<UStaticMesh> BoxMesh;
+    /** Boxes with a label (A to D, author_dispatch_box_labels.py): each new box is one of them at random (the label
+     *  travels with the box, it is its mesh). Empty: always BoxMesh. */
+    UPROPERTY(Category="Dispatch Belt", EditAnywhere, BlueprintReadOnly) TArray<TObjectPtr<UStaticMesh>> BoxVariants;
     /** Where boxes appear, inside the machine. */
     UPROPERTY(Category="Dispatch Belt", EditAnywhere, BlueprintReadOnly, meta=(MakeEditWidget)) FVector Start = FVector(0, -70, 58);
     /** Where the first box stops, at the end of the belt. */

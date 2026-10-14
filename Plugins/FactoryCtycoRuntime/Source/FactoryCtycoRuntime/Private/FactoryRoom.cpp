@@ -59,12 +59,25 @@ void AFactoryAutoDoor::Tick(float DeltaSeconds)
     Super::Tick(DeltaSeconds);
     // The middle of the doorway, from the hinge along the closed leaf (-X of the leaf).
     const FVector Middle = GetActorLocation() + FRotator(0, ClosedYaw, 0).RotateVector(FVector(-Width / 2, 0, 100));
-    bool bSomeone = false;
-    for (TActorIterator<APawn> It(GetWorld()); It && !bSomeone; ++It)
-        bSomeone = FVector::Dist2D(It->GetActorLocation(), Middle) <= OpenRadius && FMath::Abs(It->GetActorLocation().Z - Middle.Z) < 250.0f;
+    // The nearest pawn in reach (it sets the way when the door starts to open).
+    const APawn* Nearest = nullptr;
+    double NearestDistance = OpenRadius;
+    for (TActorIterator<APawn> It(GetWorld()); It; ++It)
+    {
+        const double Distance = FVector::Dist2D(It->GetActorLocation(), Middle);
+        if (Distance <= NearestDistance && FMath::Abs(It->GetActorLocation().Z - Middle.Z) < 250.0f) { NearestDistance = Distance; Nearest = *It; }
+    }
+    const bool bSomeone = Nearest != nullptr;
+    if (Openness <= 0.0f && bSomeone)
+    {
+        // A positive turn swings the free edge to the leaf's -Y: away from a pawn on its +Y side.
+        const FVector Side = FRotator(0, ClosedYaw, 0).RotateVector(FVector::RightVector);
+        const bool bOnPlusSide = FVector::DotProduct(Nearest->GetActorLocation() - Middle, Side) >= 0.0f;
+        Swing = bOpenAwayFromPawn ? FMath::Abs(OpenYaw) * (bOnPlusSide ? 1.0f : -1.0f) : OpenYaw;
+    }
     const float Before = Openness;
     Openness = FMath::Clamp(Openness + (bSomeone ? 1.0f : -1.0f) * DeltaSeconds / OpenSeconds, 0.0f, 1.0f);
     if (Openness == Before) return;
     const float Eased = Openness * Openness * (3.0f - 2.0f * Openness);
-    SetActorRotation(FRotator(0, ClosedYaw + OpenYaw * Eased, 0));
+    SetActorRotation(FRotator(0, ClosedYaw + Swing * Eased, 0));
 }

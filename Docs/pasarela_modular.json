@@ -1,0 +1,106 @@
+{
+ "passed": true,
+ "piezas": {
+  "SM_PasarelaPiso": {
+   "tamano_cm": [
+    1.3,
+    1.4,
+    0.4
+   ],
+   "triangulos": 10864,
+   "colision": 1
+  },
+  "SM_PasarelaBaranda": {
+   "tamano_cm": [
+    1.3,
+    0.3,
+    0.9
+   ],
+   "triangulos": 3260,
+   "colision": 1
+  },
+  "SM_PasarelaPoste": {
+   "tamano_cm": [
+    0.2,
+    0.3,
+    1.0
+   ],
+   "triangulos": 1519,
+   "colision": 1
+  },
+  "SM_PasarelaRectaPiso": {
+   "tamano_cm": [
+    116.0,
+    250.2,
+    38.5
+   ],
+   "triangulos": 5551,
+   "colision": 1
+  },
+  "SM_PasarelaRectaBaranda": {
+   "tamano_cm": [
+    116.0,
+    30.7,
+    94.8
+   ],
+   "triangulos": 5823,
+   "colision": 1
+  },
+  "SM_PasarelaRectaPoste": {
+   "tamano_cm": [
+    24.0,
+    30.6,
+    96.2
+   ],
+   "triangulos": 2043,
+   "colision": 1
+  }
+ },
+ "actores": [
+  {
+   "nombre": "Pasarela_Recta",
+   "clase": "FactoryWalkwayStraight",
+   "lugar": [
+    180,
+    -1080,
+    168
+   ],
+   "yaw": -90.0,
+   "piezas": [
+    4,
+    8,
+    10
+   ]
+  },
+  {
+   "nombre": "Pasarela_Recta2",
+   "clase": "FactoryWalkwayStraight",
+   "lugar": [
+    -720,
+    -1160,
+    168
+   ],
+   "yaw": -90.0,
+   "piezas": [
+    4,
+    8,
+    10
+   ]
+  },
+  {
+   "nombre": "Pasarela_L",
+   "clase": "FactoryWalkwayL",
+   "lugar": [
+    -560,
+    -1600,
+    164
+   ],
+   "yaw": 0.0,
+   "piezas": [
+    6,
+    10,
+    12
+   ]
+  }
+ ]
+}

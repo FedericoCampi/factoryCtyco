@@ -1,0 +1,129 @@
+{
+ "passed": true,
+ "piezas": {
+  "SM_PasarelaVerdePiso": {
+   "tamano_cm": [
+    189.0,
+    122.9,
+    25.0
+   ],
+   "triangulos": 23533,
+   "colision": 1
+  },
+  "SM_PasarelaVerdeBaranda": {
+   "tamano_cm": [
+    170.0,
+    9.0,
+    57.1
+   ],
+   "triangulos": 3127,
+   "colision": 1
+  },
+  "SM_PasarelaVerdePoste": {
+   "tamano_cm": [
+    22.0,
+    13.6,
+    95.1
+   ],
+   "triangulos": 4222,
+   "colision": 1
+  },
+  "SM_PasarelaVerdePatas": {
+   "tamano_cm": [
+    72.1,
+    128.6,
+    45.0
+   ],
+   "triangulos": 15061,
+   "colision": "compleja"
+  },
+  "SM_PasarelaLElevadaPiso": {
+   "tamano_cm": [
+    200.0,
+    140.3,
+    34.0
+   ],
+   "triangulos": 11675,
+   "colision": 1
+  },
+  "SM_PasarelaLElevadaBaranda": {
+   "tamano_cm": [
+    136.0,
+    12.3,
+    93.9
+   ],
+   "triangulos": 2356,
+   "colision": 1
+  },
+  "SM_PasarelaLElevadaPoste": {
+   "tamano_cm": [
+    17.0,
+    21.9,
+    95.3
+   ],
+   "triangulos": 1606,
+   "colision": 1
+  },
+  "SM_PasarelaLElevadaPatas": {
+   "tamano_cm": [
+    97.0,
+    149.9,
+    69.9
+   ],
+   "triangulos": 7591,
+   "colision": "compleja"
+  }
+ },
+ "actores": [
+  {
+   "nombre": "Pasarela_Verde",
+   "clase": "FactoryWalkwayStraight",
+   "lugar": [
+    190,
+    -1250,
+    70
+   ],
+   "yaw": 90.0,
+   "caja_cm": [
+    126,
+    -1558,
+    254,
+    -942,
+    235
+   ],
+   "altura_piso_cm": 65.3,
+   "piso_cm": 135.3,
+   "piezas": [
+    3,
+    6,
+    8,
+    3
+   ]
+  },
+  {
+   "nombre": "Pasarela_L_Elevada",
+   "clase": "FactoryWalkwayL",
+   "lugar": [
+    260,
+    -910,
+    150
+   ],
+   "yaw": 180.0,
+   "caja_cm": [
+    -90,
+    -1259,
+    601,
+    -566,
+    349
+   ],
+   "altura_piso_cm": 99.7,
+   "piso_cm": 249.7,
+   "piezas": [
+    6,
+    16,
+    18,
+    6
+   ]
+  }
+ ]
+}

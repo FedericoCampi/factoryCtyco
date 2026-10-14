@@ -84,6 +84,7 @@ void AFactoryGuide::BeginPlay()
         Shaft->SetMaterial(0, ArrowMaterial);
     }
     Arrow->SetVisibility(false, true);
+    if (bPaused) { Phase = EPhase::Done; Slide = Slides.Num(); return; }
     if (bSkipIntro || (Slides.IsEmpty() && MissionTitle.IsEmpty())) { StartSteps(); return; }
     if (Slides.IsEmpty()) Phase = EPhase::Briefing;
     // While the story is on screen, its keys come first and the rest of the game waits.

@@ -1,0 +1,53 @@
+{
+ "passed": true,
+ "copias": {
+  "Cinta_Carga3_Cajon3": {
+   "carga": [
+    -3784,
+    415,
+    40
+   ],
+   "punta": [
+    -3784,
+    790,
+    128
+   ]
+  },
+  "Cinta_Muelle_5_Cajon3": {
+   "carga": [
+    -3786,
+    793,
+    37
+   ],
+   "punta": [
+    -3786,
+    1143,
+    125
+   ]
+  },
+  "Cinta_Carga3_Cajon2": {
+   "carga": [
+    -4406,
+    415,
+    40
+   ],
+   "punta": [
+    -4406,
+    790,
+    128
+   ]
+  },
+  "Cinta_Muelle_5_Cajon2": {
+   "carga": [
+    -4408,
+    793,
+    37
+   ],
+   "punta": [
+    -4408,
+    1143,
+    125
+   ]
+  }
+ }
+}

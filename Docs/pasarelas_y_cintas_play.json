@@ -1,0 +1,44 @@
+{
+ "passed": true,
+ "checks": {
+  "despacho_puente_visible": {
+   "passed": true,
+   "ocultas": []
+  },
+  "cuarzo_piedra_puesta": {
+   "passed": true,
+   "item": "Quartz"
+  },
+  "escalera_se_sube": {
+   "passed": true,
+   "pies_sobre_piso_cm": 206.5,
+   "x": 29,
+   "y": -550
+  },
+  "pasarela_Pasarela_Recta": {
+   "passed": true,
+   "pies_cm": 207.4,
+   "piso_cm": 205.0
+  },
+  "pasarela_Pasarela_L": {
+   "passed": true,
+   "pies_cm": 214.6,
+   "piso_cm": 204.6
+  },
+  "salto_habilitado": {
+   "passed": true,
+   "jump_max_count": 1,
+   "jump_z_velocity": 420.0
+  },
+  "salto_sube_y_baja": {
+   "passed": true,
+   "alto_cm": 89.6
+  },
+  "cuarzo_pasa_la_curva": {
+   "passed": true,
+   "paso_por_curva": true,
+   "llego_a_Triturar": true,
+   "segundos": 4.8
+  }
+ }
+}

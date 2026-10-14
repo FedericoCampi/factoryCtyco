@@ -1,0 +1,33 @@
+{
+ "passed": true,
+ "leaf_size_cm": [
+  96,
+  11,
+  210
+ ],
+ "doors": {
+  "Puerta_Muelle_Personal_1": [
+   -2647,
+   1014,
+   108,
+   180
+  ],
+  "Puerta_Muelle_Personal_1_hoja_cm": [
+   118,
+   8,
+   228
+  ],
+  "Puerta_Muelle_Personal_0": [
+   -5010,
+   1014,
+   108,
+   180
+  ],
+  "Puerta_Muelle_Personal_0_hoja_cm": [
+   119,
+   8,
+   228
+  ]
+ },
+ "blocker_hidden": true
+}

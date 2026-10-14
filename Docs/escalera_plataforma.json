@@ -1,0 +1,17 @@
+{
+ "passed": true,
+ "actor": "Escalera_Plataforma",
+ "location": [
+  330,
+  -550,
+  0
+ ],
+ "size_cm": [
+  366,
+  701,
+  286
+ ],
+ "triangles": 141638,
+ "materials": 1,
+ "collision": "<CollisionTraceFlag.CTF_USE_COMPLEX_AS_SIMPLE: 3>"
+}

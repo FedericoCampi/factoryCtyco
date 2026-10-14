@@ -4,7 +4,11 @@
 #include "FactoryDemo.h"
 #include "FactoryEconomy.h"
 #include "FactoryGuide.h"
+#include "FactoryCameraComponent.h"
 #include "FactoryHudDraw.h"
+#include "FactoryGathering.h"
+#include "UObject/UObjectIterator.h"
+#include "Components/TextRenderComponent.h"
 #include "FactoryMission.h"
 #include "FactoryNpc.h"
 #include "EngineUtils.h"
@@ -232,19 +236,38 @@ void AFactoryDemoHUD::DrawMoney(float S, float W, float H)
     Pen.Centered(TEXT("$"), Coin.X, Coin.Y - 11, .82f * Jump, GInk);
     const bool bFlash = Since < .8f && Last;
     Pen.Text(Amount, X + 48, Y + 9, 1.15f * Jump, bFlash ? (Last->Amount > 0 ? Hex(0x1E9E5A) : Hex(0xE5484D)) : GInk);
-    // Mute button, always there: a round sticker with a speaker (crossed out when muted); it grows under the mouse.
+    // Sound buttons, always there: round stickers, music (a note) and sounds (a speaker), crossed out when silenced;
+    // they grow under the mouse.
     float MouseX = 0, MouseY = 0;
     const bool bMouse = PlayerOwner && PlayerOwner->GetMousePosition(MouseX, MouseY);
-    const FVector2D MC(X + PW + 34, Y + PH / 2);
+    {
+        const FVector2D NC(X + PW + 34, Y + PH / 2);
+        const bool bNoteOver = bMouse && FVector2D::Distance(FVector2D(MouseX, MouseY) / S, NC) < 24;
+        const float NR = bNoteOver ? 24 : 22;
+        Pen.Fill(Circle(NC + FVector2D(3, 4), NR + 3), Faded(GInk, .3f));
+        Pen.Fill(Circle(NC, NR + 3), GInk);
+        Pen.Fill(Circle(NC, NR), bMusicMuted ? Hex(0xE5484D) : GCream);
+        const FLinearColor NoteInk = bMusicMuted ? FLinearColor::White : GInk;
+        // Two eighth notes joined by a beam.
+        Pen.Fill(Circle(NC + FVector2D(-7, 8), 4.5f, 16), NoteInk);
+        Pen.Fill(Circle(NC + FVector2D(7, 5), 4.5f, 16), NoteInk);
+        Pen.Fill(Quad(NC + FVector2D(-4, 8), NC + FVector2D(-2, 8), NC + FVector2D(-2, -10), NC + FVector2D(-4, -10)), NoteInk);
+        Pen.Fill(Quad(NC + FVector2D(10, 5), NC + FVector2D(12, 5), NC + FVector2D(12, -13), NC + FVector2D(10, -13)), NoteInk);
+        Pen.Fill(Quad(NC + FVector2D(-4, -10), NC + FVector2D(12, -13), NC + FVector2D(12, -8), NC + FVector2D(-4, -5)), NoteInk);
+        if (bMusicMuted)
+            Pen.Fill(Quad(NC + FVector2D(-13, -14), NC + FVector2D(-9, -16), NC + FVector2D(13, 14), NC + FVector2D(9, 16)), NoteInk);
+        MusicCorner = FBox2D((NC - FVector2D(NR + 3, NR + 3)) * S, (NC + FVector2D(NR + 3, NR + 3)) * S);
+    }
+    const FVector2D MC(X + PW + 90, Y + PH / 2);
     const bool bOver = bMouse && FVector2D::Distance(FVector2D(MouseX, MouseY) / S, MC) < 24;
     const float MR = bOver ? 24 : 22;
     Pen.Fill(Circle(MC + FVector2D(3, 4), MR + 3), Faded(GInk, .3f));
     Pen.Fill(Circle(MC, MR + 3), GInk);
-    Pen.Fill(Circle(MC, MR), bMuted ? Hex(0xE5484D) : GCream);
-    const FLinearColor Icon = bMuted ? FLinearColor::White : GInk;
+    Pen.Fill(Circle(MC, MR), bSoundsMuted ? Hex(0xE5484D) : GCream);
+    const FLinearColor Icon = bSoundsMuted ? FLinearColor::White : GInk;
     Pen.Fill(Quad(MC + FVector2D(-11, -4), MC + FVector2D(-5, -4), MC + FVector2D(-5, 4), MC + FVector2D(-11, 4)), Icon);
     Pen.Fill({MC + FVector2D(-6, -4), MC + FVector2D(3, -11), MC + FVector2D(3, 11), MC + FVector2D(-6, 4)}, Icon);
-    if (bMuted)
+    if (bSoundsMuted)
         Pen.Fill(Quad(MC + FVector2D(-13, -14), MC + FVector2D(-9, -16), MC + FVector2D(13, 14), MC + FVector2D(9, 16)), Icon);
     else
         for (int32 Wave = 0; Wave < 2; ++Wave)
@@ -259,6 +282,41 @@ void AFactoryDemoHUD::DrawMoney(float S, float W, float H)
             }
         }
     MuteCorner = FBox2D((MC - FVector2D(MR + 3, MR + 3)) * S, (MC + FVector2D(MR + 3, MR + 3)) * S);
+    // First person button, next to mute: an eye; orange while the camera is at the character's eyes.
+    {
+        const APawn* Pawn = PlayerOwner ? PlayerOwner->GetPawn() : nullptr;
+        const auto* Camera = Pawn ? Pawn->FindComponentByClass<UFactoryCameraComponent>() : nullptr;
+        const bool bOn = Camera && Camera->IsFirstPerson();
+        const FVector2D EC(MC.X + 56, MC.Y);
+        const bool bEyeOver = bMouse && FVector2D::Distance(FVector2D(MouseX, MouseY) / S, EC) < 24;
+        const float ER = bEyeOver ? 24 : 22;
+        Pen.Fill(Circle(EC + FVector2D(3, 4), ER + 3), Faded(GInk, .3f));
+        Pen.Fill(Circle(EC, ER + 3), GInk);
+        Pen.Fill(Circle(EC, ER), bOn ? GOrange : GCream);
+        const FLinearColor EyeInk = bOn ? FLinearColor::White : GInk;
+        // Almond: two arcs; iris and pupil in the middle.
+        TArray<FVector2D> Almond;
+        for (int32 I = 0; I <= 12; ++I)
+        {
+            const float A = PI * I / 12.0f;
+            Almond.Add(EC + FVector2D(-13 * FMath::Cos(A), -8 * FMath::Sin(A)));
+        }
+        for (int32 I = 1; I < 12; ++I)
+        {
+            const float A = PI * I / 12.0f;
+            Almond.Add(EC + FVector2D(13 * FMath::Cos(A), 8 * FMath::Sin(A)));
+        }
+        Pen.Fill(Almond, EyeInk);
+        Pen.Fill(Circle(EC, 6, 20), bOn ? GOrange : GCream);
+        Pen.Fill(Circle(EC, 3, 16), EyeInk);
+        Pen.Centered(bOn ? TEXT("1ª") : TEXT("1ª"), EC.X + 15, EC.Y + 9, .5f, EyeInk);
+        FirstPersonCorner = FBox2D((EC - FVector2D(ER + 3, ER + 3)) * S, (EC + FVector2D(ER + 3, ER + 3)) * S);
+        if (bOn)   // punto de mira
+        {
+            Pen.Fill(Circle(FVector2D(W / 2, H / 2), 4.5f, 16), Faded(GInk, .6f));
+            Pen.Fill(Circle(FVector2D(W / 2, H / 2), 2.5f, 16), FLinearColor::White);
+        }
+    }
     // Recent changes float up and fade next to the pill.
     for (const FFactoryMoneyChange& Change : Changes)
     {
@@ -266,11 +324,63 @@ void AFactoryDemoHUD::DrawMoney(float S, float W, float H)
         if (T < 0.0f || T > 2.2f) continue;
         const FString Text = (Change.Amount > 0 ? TEXT("+") : TEXT("")) + UFactoryEconomySubsystem::Format(Change.Amount);
         const float Alpha = T < .2f ? T / .2f : 1.0f - Clamp01((T - 1.4f) / .8f);
-        const float PX = X + PW + 74, PY = Y + 10 - 26 * EaseOutQuart(T / 2.2f);
+        const float PX = X + PW + 186, PY = Y + 10 - 26 * EaseOutQuart(T / 2.2f);
         const float TW = Pen.Width(Text, .9f) + 20;
         Pen.Fill(RoundRect(PX, PY - 2, TW, 30, 15), Faded(Change.Amount > 0 ? GGreen : Hex(0xE5484D), Alpha));
         Pen.Text(Text, PX + 10, PY + 3, .9f, Faded(FLinearColor::White, Alpha));
     }
+}
+
+void AFactoryDemoHUD::DrawInteraction(float S, float W, float H)
+{
+    const APawn* Pawn = PlayerOwner ? PlayerOwner->GetPawn() : nullptr;
+    if (!Pawn) return;
+    const auto* Camera = Pawn->FindComponentByClass<UFactoryCameraComponent>();
+    const bool bFirstPerson = Camera && Camera->IsFirstPerson();
+    FString Hint;
+    if (bFirstPerson)
+    {
+        // The prompts the actors show in the world when the character is near: the nearest one.
+        double Best = FMath::Square(450.0);
+        for (TObjectIterator<UTextRenderComponent> It; It; ++It)
+        {
+            const UTextRenderComponent* Prompt = *It;
+            if (Prompt->GetWorld() != GetWorld() || Prompt->bHiddenInGame || !Prompt->IsVisible() || !Prompt->GetName().Contains(TEXT("Prompt"))) continue;
+            const double Distance = FVector::DistSquared(Prompt->GetComponentLocation(), Pawn->GetActorLocation());
+            if (Distance < Best && !Prompt->Text.IsEmpty()) { Best = Distance; Hint = Prompt->Text.ToString(); }
+        }
+    }
+    if (Hint.IsEmpty())
+    {
+        // A pile to pick up (only its ring shows in the world), or something to load from the inventory.
+        const auto* Gathering = Pawn->FindComponentByClass<UFactoryGatheringComponent>();
+        auto* Demo = Pawn->FindComponentByClass<UFactoryDemoComponent>();
+        const auto* Inventory = Demo ? Demo->Inventory() : nullptr;
+        if (Demo && !Demo->bBuilding) Demo->RefreshFocus();
+        const AFactoryBuilding* Building = Demo ? Demo->FocusedBuilding.Get() : nullptr;
+        const AFactoryResourcePile* Pile = Gathering ? Gathering->FocusedPile.Get() : nullptr;
+        const bool bPileFirst = Pile && (!Building || FVector::DistSquared2D(Pawn->GetActorLocation(), Pile->GetActorLocation())
+            < FVector::DistSquared2D(Pawn->GetActorLocation(), Building->GetActorLocation()));
+        if (bPileFirst && Pile->Resource) Hint = FString::Printf(TEXT("[E] JUNTAR %s"), *Pile->Resource->DisplayName.ToString().ToUpper());
+        else if (Building && Inventory && Demo->Factory)
+            for (const UFactoryResourceDefinition* Item : Demo->Factory->Resources)
+                if (Item && Inventory->GetQuantity(Item->ItemId) > 0 && Building->CanAccept(Item->ItemId))
+                {
+                    const bool bBelt = Building->Definition && Building->Definition->Kind == EFactoryBuildingKind::Belt;
+                    Hint = FString::Printf(TEXT("[E] CARGAR %s %s"), *Item->DisplayName.ToString().ToUpper(), bBelt ? TEXT("EN LA CINTA") : TEXT("EN LA MÁQUINA"));
+                    break;
+                }
+    }
+    if (Hint.IsEmpty()) return;
+    Hint.ReplaceInline(TEXT("<br>"), TEXT("  "));
+    Hint.ReplaceInline(TEXT("\n"), TEXT("  "));
+    // First person: under the crosshair; the isometric view: over the hints bar at the bottom.
+    FPen Pen{this, Canvas, S, GEngine->GetMediumFont(), GEngine->GetLargeFont()};
+    const float TW = Pen.Width(Hint, .9f) + 34, CX = W / 2, CY = bFirstPerson ? H / 2 + 46 : H - 92;
+    Pen.Fill(RoundRect(CX - TW / 2 + 3, CY + 4, TW, 34, 17), Faded(GInk, .3f));
+    Pen.Fill(RoundRect(CX - TW / 2 - 3, CY - 3, TW + 6, 40, 20), GInk);
+    Pen.Fill(RoundRect(CX - TW / 2, CY, TW, 34, 17), GCream);
+    Pen.Centered(Hint, CX, CY + 6, .9f, GInk);
 }
 
 void AFactoryDemoHUD::DrawNpcSpeech(float S, float W, float H)

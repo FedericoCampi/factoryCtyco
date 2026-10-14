@@ -1,0 +1,22 @@
+{
+ "passed": true,
+ "equipos": [
+  {
+   "actor": "Tolvas_Gemelas",
+   "malla": "/Game/FactoryCtyco/Environments/DespachoEquipos/TolvasGemelas/SM_TolvasGemelas",
+   "lugar": [
+    -2200,
+    1900,
+    -10
+   ],
+   "tamano_cm": [
+    600,
+    271,
+    401
+   ],
+   "escena": "Despacho",
+   "triangulos": 150000,
+   "materiales": 1
+  }
+ ]
+}

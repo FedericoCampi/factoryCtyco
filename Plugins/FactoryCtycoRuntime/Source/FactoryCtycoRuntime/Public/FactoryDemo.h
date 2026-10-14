@@ -42,9 +42,11 @@ public:
     UPROPERTY(Category="Factory Demo", EditAnywhere, BlueprintReadOnly) int32 OutputQuantity = 1;
     UPROPERTY(Category="Factory Demo", EditAnywhere, BlueprintReadOnly) float CycleSeconds = 4;
     /** Belts only. 0: straight, from the back edge (-X) to the front edge (+X) of its cell. Otherwise a corner: from the
-     *  back edge it bends this many degrees (negative: towards local -Y) along a 100 cm radius; -90 leaves by the side
+     *  back edge it bends this many degrees (negative: towards local -Y) along TurnRadius; -90 leaves by the side
      *  edge of the same cell. Mirror an actor (scale Y -1) to make it turn the other way. */
     UPROPERTY(Category="Factory Demo|Belt", EditAnywhere, BlueprintReadOnly, meta=(ClampMin="-180", ClampMax="180")) float TurnDegrees = 0;
+    /** Corners: radius of the curve's centre line (cm). */
+    UPROPERTY(Category="Factory Demo|Belt", EditAnywhere, BlueprintReadOnly, meta=(ClampMin="20")) float TurnRadius = 100;
 };
 
 UCLASS(Blueprintable)
@@ -57,17 +59,52 @@ public:
     UPROPERTY(Category="Factory Demo", EditAnywhere, BlueprintReadWrite) FName PersistentId;
     UPROPERTY(Category="Factory Demo", EditAnywhere, BlueprintReadWrite) int32 PaidScrap = 0;
     UPROPERTY(Category="Factory Demo", EditAnywhere, BlueprintReadWrite) FName StorageItem = TEXT("Scrap");
+    /** Belts: how high the belt rides over the floor (cm); legs (Supports) hold it up instead of the definition's
+     *  platform (BaseMesh), and the space below stays free.
+     *  Stretching a belt in Z in the editor raises it this way instead of stretching the belt. */
+    UPROPERTY(Category="Factory Demo|Belt", EditAnywhere, BlueprintReadWrite, meta=(ClampMin="0")) float Elevation = 0;
+    /** Straight belts: tilt in degrees (positive: the output end goes up). It turns the actor in pitch around the middle
+     *  of the belt, so the belt stays where it is; turning the actor in pitch with the gizmo changes it too. */
+    UPROPERTY(Category="Factory Demo|Belt", EditAnywhere, BlueprintReadWrite, meta=(ClampMin="-60", ClampMax="60", UIMin="-60", UIMax="60", Units="Degrees")) float Slope = 0;
+    /** Straight belts: handles on the belt's ends in the viewport (actor space). Drag one up or down to tilt the belt
+     *  around its middle; it goes back to its end afterwards. */
+    UPROPERTY(Category="Factory Demo|Belt", EditAnywhere, AdvancedDisplay, meta=(MakeEditWidget="true")) FVector InputEndHandle = FVector::ZeroVector;
+    UPROPERTY(Category="Factory Demo|Belt", EditAnywhere, AdvancedDisplay, meta=(MakeEditWidget="true")) FVector OutputEndHandle = FVector::ZeroVector;
+    /** Machines and storages: where material comes in and goes out (actor space; drag them in the viewport). Zero: the
+     *  middle of the back (-X) and front (+X) edges, 33 cm up. A machine can take from above (a belt ending over its
+     *  hopper) and hand out below. */
+    UPROPERTY(Category="Factory Demo|Machine", EditAnywhere, meta=(MakeEditWidget="true")) FVector MachineInput = FVector::ZeroVector;
+    UPROPERTY(Category="Factory Demo|Machine", EditAnywhere, meta=(MakeEditWidget="true")) FVector MachineOutput = FVector::ZeroVector;
+    /** Machines: what arrives is seen falling from where it was handed over to this point (actor space; inside a
+     *  hopper, for instance). Zero: it just goes in. */
+    UPROPERTY(Category="Factory Demo|Machine", EditAnywhere, meta=(MakeEditWidget="true")) FVector MachineDropPoint = FVector::ZeroVector;
+    /** What is falling into the machine (MachineDropPoint). */
+    UPROPERTY(Category="Factory Demo|Machine", VisibleAnywhere, BlueprintReadOnly) TObjectPtr<UStaticMeshComponent> Falling;
+    /** Shows Mesh falling from From into MachineDropPoint (if set). */
+    void StartFall(const UFactoryResourceDefinition* Item, const FVector& From);
+    virtual void Tick(float DeltaSeconds) override;
+    /** Belts: a lift platform instead of a belt. What arrives at its back edge rides the platform up this many cm and
+     *  leaves by the front edge at the top; then the platform goes back down for the next one. 0: an ordinary belt.
+     *  Dragging the output handle (the diamond at the front) up or down sets it too. */
+    UPROPERTY(Category="Factory Demo|Lift", EditAnywhere, BlueprintReadWrite, meta=(ClampMin="0", Units="Centimeters")) float LiftHeight = 0;
+    /** How fast the platform goes up and down (cm/s). */
+    UPROPERTY(Category="Factory Demo|Lift", EditAnywhere, BlueprintReadWrite, meta=(ClampMin="10")) float LiftSpeed = 120.0f;
+    /** Lifts: how high the platform is now over its bottom (cm). */
+    UPROPERTY(Category="Factory Demo|Lift", Transient, VisibleInstanceOnly, BlueprintReadOnly) float PlatformRise = 0;
+    UFUNCTION(Category="Factory Demo|Lift", BlueprintPure) bool IsLift() const;
+    /** Lifts: an empty platform goes back down (called every frame). */
+    void LowerPlatform(float DeltaSeconds);
     UPROPERTY(Category="Factory Demo", VisibleAnywhere, BlueprintReadOnly) TObjectPtr<UStaticMeshComponent> Visual;
     UPROPERTY(Category="Factory Demo", VisibleAnywhere, BlueprintReadOnly) TObjectPtr<UStaticMeshComponent> Base;
     UPROPERTY(Category="Factory Demo", VisibleAnywhere, BlueprintReadOnly) TObjectPtr<UBoxComponent> Collision;
     UPROPERTY(Category="Factory Demo", VisibleAnywhere, BlueprintReadOnly) TObjectPtr<UStaticMeshComponent> Cargo;
     /** Posts from a raised belt down to the floor (rebuilt when it moves). */
     UPROPERTY(Category="Factory Demo|Supports", VisibleAnywhere, BlueprintReadOnly) TObjectPtr<UInstancedStaticMeshComponent> Supports;
-    /** Post under a raised belt: stretched from the floor to the belt's underside (the actor's base). */
+    /** Post under a raised belt: stretched from the floor to the belt's underside. */
     UPROPERTY(Category="Factory Demo|Supports", EditAnywhere, BlueprintReadOnly) TObjectPtr<UStaticMesh> SupportMesh;
     UPROPERTY(Category="Factory Demo|Supports", EditAnywhere, BlueprintReadOnly) TObjectPtr<UMaterialInterface> SupportMaterial;
-    /** One post near each end and one every this many cm between them. */
-    UPROPERTY(Category="Factory Demo|Supports", EditAnywhere, BlueprintReadOnly, meta=(ClampMin="50")) float SupportSpacing = 250.0f;
+    /** A pair of posts near each end and one every this many cm between them. */
+    UPROPERTY(Category="Factory Demo|Supports", EditAnywhere, BlueprintReadOnly, meta=(ClampMin="50")) float SupportSpacing = 400.0f;
     /** Post width (cm); 0 keeps SupportMesh's own width. */
     UPROPERTY(Category="Factory Demo|Supports", EditAnywhere, BlueprintReadOnly, meta=(ClampMin="0")) float SupportWidth = 12.0f;
     /** Posts only where the belt is at least this high over the floor (cm). */
@@ -78,6 +115,8 @@ public:
     UPROPERTY(Category="Factory Demo", VisibleAnywhere, BlueprintReadWrite) float ProgressSeconds = 0;
     UPROPERTY(Category="Factory Demo", VisibleAnywhere, BlueprintReadOnly) FString StateText;
     UPROPERTY(Category="Factory Demo", VisibleAnywhere, BlueprintReadOnly) bool bConnected = false;
+    /** Belts: something else takes what reaches the output end (a furnace's mouth, AFactoryMeltProcess). */
+    UPROPERTY(Category="Factory Demo", Transient, VisibleAnywhere, BlueprintReadOnly) bool bFeedsProcess = false;
     UFUNCTION(Category="Factory Demo", BlueprintCallable) void RefreshVisuals();
     /** Height of the platform under this building (cm): its visuals, cargo and details are raised by this much. */
     UFUNCTION(Category="Factory Demo", BlueprintPure) float Lift() const;
@@ -102,6 +141,25 @@ public:
     virtual void OnConstruction(const FTransform& Transform) override;
 protected:
     virtual void BeginPlay() override;
+private:
+    /** Belts: a stretch in Z becomes Elevation (and the scale goes back to 1). */
+    void AbsorbZStretch();
+    /** Lifts: a dragged output handle becomes LiftHeight; the handle goes back to the top of the lift. */
+    void ApplyLiftHandle();
+    /** Lifts: puts the platform (and the belt slats on it) at PlatformRise. */
+    void PlacePlatform();
+    float FallLeft = 0.0f;
+    FVector FallFrom = FVector::ZeroVector;
+    /** Straight belts: Slope (or a dragged end handle, or the actor's own pitch) becomes the actor's pitch, around the
+     *  middle of the belt; the handles go back to the ends. */
+    void ApplySlope();
+    bool IsStraightBelt() const;
+    /** The Slope last turned into the actor's pitch: when Slope still equals it, the gizmo turned the actor instead. */
+    float AppliedSlope = 0;
+    /** Where ApplySlope last put the handles (zero: not yet): a handle somewhere else was dragged. */
+    FVector PlacedInHandle = FVector::ZeroVector, PlacedOutHandle = FVector::ZeroVector;
+    /** Editor: tries placed again while the floor under the posts is not found (it may not be loaded yet). */
+    uint8 SupportRetries = 0;
 };
 
 USTRUCT()
@@ -115,6 +173,9 @@ struct FFactorySavedBuilding
     /** Version 3: full rotation (tilted belts) and scale (stretched belts). */
     UPROPERTY() FRotator Rotation = FRotator::ZeroRotator;
     UPROPERTY() FVector Scale = FVector::OneVector;
+    /** Version 4: raised and tilted belts. */
+    UPROPERTY() float Elevation = 0;
+    UPROPERTY() float Slope = 0;
     UPROPERTY() int32 PaidScrap = 0;
     UPROPERTY() FName StorageItem = TEXT("Scrap");
     UPROPERTY() TMap<FName, int32> Input;
@@ -127,7 +188,7 @@ class FACTORYCTYCORUNTIME_API UFactoryDemoSave : public USaveGame
 {
     GENERATED_BODY()
 public:
-    UPROPERTY() int32 Version = 3;
+    UPROPERTY() int32 Version = 4;
     UPROPERTY() TArray<FFactorySavedBuilding> Buildings;
     UPROPERTY() TMap<FName, int32> Piles;
     UPROPERTY() TMap<FName, int32> Inventory;
@@ -241,9 +302,16 @@ public:
     bool ClickCatalog(float X, float Y);
     /** A click on the info panel's options (key I); returns whether it hit one. */
     bool ClickInfoPanel(float X, float Y);
-    /** Silences the whole game or brings the sound back (key M, or the option on the info panel). */
+    /** Silences the music or brings it back (key M, or the note button next to the money). */
+    UFUNCTION(BlueprintCallable, Category="HUD") void ToggleMusic();
+    /** Silences every other sound (machines, belts, doors, the elevator...) or brings them back (key N, or the speaker
+     *  button next to the money). */
+    UFUNCTION(BlueprintCallable, Category="HUD") void ToggleSounds();
+    /** Silences everything, or brings everything back if all was silent (the option on the info panel). */
     UFUNCTION(BlueprintCallable, Category="HUD") void ToggleMute();
-    UFUNCTION(BlueprintCallable, Category="HUD") bool IsMuted() const { return bMuted; }
+    UFUNCTION(BlueprintCallable, Category="HUD") bool IsMusicMuted() const { return bMusicMuted; }
+    UFUNCTION(BlueprintCallable, Category="HUD") bool IsSoundsMuted() const { return bSoundsMuted; }
+    UFUNCTION(BlueprintCallable, Category="HUD") bool IsMuted() const { return bMusicMuted && bSoundsMuted; }
     /** A click on the events sign (top left) opens or closes their detail; returns whether it hit it. */
     bool ClickEvents(float X, float Y);
     /** Opens or closes the events detail (what a click on the sign does). */
@@ -275,7 +343,12 @@ private:
     bool bInfoShown = false;
     int32 SeenDelivered = -1;
     float DeliveredAt = -100.0f, MutedAt = -100.0f;
-    bool bMuted = false;
+    bool bMusicMuted = false, bSoundsMuted = false;
+    /** Music and sounds are two sound classes (SC_Musica, and SC_Sonidos for everything else): this mix sets their
+     *  volumes. */
+    UPROPERTY(Transient) TObjectPtr<class USoundMix> VolumeMix;
+    bool bMixPushed = false;
+    void ApplyVolumes();
     /** Events sign (top left) and its detail. */
     void DrawEvents(float S, float W, float H);
     bool bEventsOpen = false;
@@ -311,10 +384,18 @@ private:
      *  (always visible). */
     void DrawMoney(float S, float W, float H);
     FBox2D MuteCorner = FBox2D(ForceInit);
+    /** Music button, next to the money (the speaker one, MuteCorner, is for the sounds). */
+    FBox2D MusicCorner = FBox2D(ForceInit);
+    /** First person button, next to mute. */
+    FBox2D FirstPersonCorner = FBox2D(ForceInit);
 public:
     /** A click on the mute button next to the money; returns whether it hit it. */
     bool ClickMoneyBar(float X, float Y);
 private:
+    /** What E does here, on screen: in first person the nearest prompt shown in the world (they float over the
+     *  machines and over the character's head, out of sight from its eyes) under the crosshair; in both views, a
+     *  pile to pick up or a belt / machine to load from the inventory. */
+    void DrawInteraction(float S, float W, float H);
     /** Speech bubbles of the characters who are talking (AFactoryNpc), over their heads. */
     void DrawNpcSpeech(float S, float W, float H);
     /** Elevator floor the current guide step asks for (highlighted on the elevator panel), or empty. */

@@ -110,3 +110,11 @@ puerta hacia adentro. Queda 1,7 m afuera del borde de la losa, pegado al contraf
   agujero viejo cerrado. No se probó el viaje en Play.
 - Respaldos: `SourceAssets/SceneRobot/respaldo_2026-09-30_ascensor` y `Saved/Respaldos/2026-09-30_ascensor_cintas`
   (nivel y `SM_SceneRobot` anteriores).
+
+## Paredes cerradas y techo que viaja (04/10)
+- Las paredes de la cabina eran paneles a media altura (costados ~1 m, fondo ~1,55 m) y arriba quedaba abierto. Ahora
+  `SM_Ascensor2Relleno` (`Scripts/author_elevator_paneles.py`: mide qué parte de cada pared tiene geometría y llena el
+  resto entre los postes, en el plano de la pared y del color de sus paneles) va en el componente `Panels` de cada
+  ascensor, con colisión. El frente es la entrada (lo cierran las puertas).
+- El **techo viaja con el piso** (sube y baja con el personaje). Se esconde solo en vista isométrica con el jugador adentro.
+- Aplicar: `Scripts/apply_ascensor_paneles.py`. Prueba: `Scripts/playtest_ascensor_techo.py` (6/6).

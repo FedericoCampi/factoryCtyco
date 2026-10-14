@@ -1,0 +1,15 @@
+{
+ "passed": true,
+ "cantidad": {
+  "focos": 25,
+  "rellenos": 25
+ },
+ "antes": {
+  "focos": 252.4,
+  "rellenos": 33.7
+ },
+ "ahora": {
+  "focos": 210.4,
+  "rellenos": 28.0
+ }
+}

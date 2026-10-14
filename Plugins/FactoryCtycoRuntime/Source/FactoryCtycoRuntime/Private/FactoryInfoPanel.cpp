@@ -74,7 +74,7 @@ void AFactoryDemoHUD::DrawCharacterPanel(float S, float W, float H)
         SeenDelivered = Mission->Delivered;
     }
     Info.SinceDelivery = Now - DeliveredAt;
-    Info.bMuted = bMuted;
+    Info.bMuted = bMusicMuted && bSoundsMuted;
     Info.SinceMute = Now - MutedAt;
     float MX = -1, MY = -1;
     if (PlayerOwner && PlayerOwner->GetMousePosition(MX, MY)) Info.Mouse = FVector2D(MX, MY) / S;
@@ -242,8 +242,8 @@ void AFactoryDemoHUD::DrawCharacterPanel(float S, float W, float H)
             Pen.Fill(Card2(RoundRect(BX - 3, BY - 3, BW + 6, BH + 6, 27), BC, BP), Faded(Ink, Seen(4)));
             Pen.Fill(Card2(RoundRect(BX, BY, BW, BH, 24), BC, BP), Faded(Info.bMuted ? Red : Blue, Seen(4)));
             const FVector2D At = Xf({FVector2D(BX + 22, BY + 13)}, Pivot, K, Off)[0];
-            Pen.Text(TEXT("Silenciar juego"), At.X, At.Y, .95f * K * BP, Faded(White, Seen(4)));
-            const FString State = Info.bMuted ? TEXT("SILENCIADO [M]") : TEXT("SONIDO: SÍ [M]");
+            Pen.Text(TEXT("Silenciar todo"), At.X, At.Y, .95f * K * BP, Faded(White, Seen(4)));
+            const FString State = Info.bMuted ? TEXT("SILENCIADO") : TEXT("M MÚSICA · N SONIDOS");
             const FVector2D SAt = Xf({FVector2D(BX + BW - 22, BY + 15)}, Pivot, K, Off)[0];
             Pen.Text(State, SAt.X - Pen.Width(State, .8f * K * BP), SAt.Y, .8f * K * BP, Faded(White, Seen(4)));
             SetButton(BX, BY, BW, BH);
